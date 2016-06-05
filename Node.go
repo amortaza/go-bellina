@@ -14,6 +14,7 @@ type Node struct {
 	FontName string
 	FontSize int32
 	FontRed, FontGreen, FontBlue float32
+	FontNudgeX, FontNudgeY int32
 }
 
 func NewNode() *Node {

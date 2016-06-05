@@ -53,3 +53,7 @@ func Font(fontName string, fontSize int32) {
 func FontColor(red, green, blue float32) {
 	Current_Node.FontRed, Current_Node.FontGreen, Current_Node.FontBlue = red, green, blue
 }
+
+func FontNudge(x, y int32) {
+	Current_Node.FontNudgeX, Current_Node.FontNudgeY = x, y
+}
