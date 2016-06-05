@@ -9,7 +9,12 @@ func Root() {
 }
 
 func Div() {
+	parent := Current_Node
+
 	Current_Node = NewNode()
+
+	parent.Kids.PushBack(Current_Node)
+	Current_Node.Parent = parent
 
 	nodeStack.Push(Current_Node)
 }

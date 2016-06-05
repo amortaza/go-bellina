@@ -1,5 +1,7 @@
 package bl
 
+import "container/list"
+
 type Node struct {
 	Left, Top, Width, Height int32
 
@@ -15,6 +17,9 @@ type Node struct {
 	FontSize int32
 	FontRed, FontGreen, FontBlue float32
 	FontNudgeX, FontNudgeY int32
+
+	Parent *Node
+	Kids *list.List
 }
 
 func NewNode() *Node {
@@ -22,6 +27,8 @@ func NewNode() *Node {
 
 	node.Flags = COLOR_SOLID
 	node.LabelOpacity = 1
+
+	node.Kids = list.New()
 
 	return node
 }
