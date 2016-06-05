@@ -18,6 +18,10 @@ type Node struct {
 	FontRed, FontGreen, FontBlue float32
 	FontNudgeX, FontNudgeY int32
 
+	BorderThickness []int32
+	BorderRed, BorderGreen, BorderBlue float32
+	BorderTopsCanvas bool
+
 	Parent *Node
 	Kids *list.List
 }

@@ -62,3 +62,67 @@ func FontColor(red, green, blue float32) {
 func FontNudge(x, y int32) {
 	Current_Node.FontNudgeX, Current_Node.FontNudgeY = x, y
 }
+
+func BorderThickness(thickness []int32) {
+	Current_Node.BorderThickness = thickness
+}
+
+func BorderColor(red, green, blue float32) {
+	Current_Node.BorderRed, Current_Node.BorderGreen, Current_Node.BorderBlue = red, green, blue
+}
+
+func BorderTopsCanvas() {
+	Current_Node.BorderTopsCanvas = true
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
