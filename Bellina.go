@@ -75,6 +75,10 @@ func BorderTopsCanvas() {
 	Current_Node.BorderTopsCanvas = true
 }
 
+func NodeOpacity(opacity []float32) {
+	Current_Node.NodeOpacity = opacity
+}
+
 
 
 

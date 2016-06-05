@@ -8,6 +8,8 @@ type Node struct {
 	Red1, Green1, Blue1 float32
 	Red2, Green2, Blue2 float32
 
+	NodeOpacity []float32
+
 	Flags uint32
 
 	Label string
@@ -31,6 +33,7 @@ func NewNode() *Node {
 
 	node.Flags = COLOR_SOLID
 	node.LabelOpacity = 1
+	node.NodeOpacity = FourOnes
 
 	node.Kids = list.New()
 
