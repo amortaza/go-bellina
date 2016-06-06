@@ -1,9 +1,30 @@
 package bl
 
+import (
+	"g4"
+)
+
+func Init() {
+	g4.Init()
+
+	g_textureByPartialName = make(map[string] *g4.Texture)
+}
+
+func Uninit() {
+	// free texture map images
+	for _, value := range g_textureByPartialName {
+		value.Free()
+	}
+
+	g4.Uninit()
+}
+
 func Root() {
 	Current_Node = NewNode()
 
-	nodeStack.Push(Current_Node)
+	Current_Node.ID = "ROOT"
+
+	g_nodeStack.Push(Current_Node)
 
 	Root_Node = Current_Node
 }
@@ -16,11 +37,21 @@ func Div() {
 	parent.Kids.PushBack(Current_Node)
 	Current_Node.Parent = parent
 
-	nodeStack.Push(Current_Node)
+	g_nodeStack.Push(Current_Node)
+}
+
+func ID(id string) {
+	Current_Node.ID = id
 }
 
 func End() {
-	Current_Node = nodeStack.Pop().(*Node)
+	g_nodeStack.Pop()
+
+	if g_nodeStack.Size == 0 {
+		Current_Node = nil
+	} else {
+		Current_Node = g_nodeStack.Top().(*Node)
+	}
 }
 
 func Pos(left, top int32) {
@@ -77,6 +108,22 @@ func BorderTopsCanvas() {
 
 func NodeOpacity(opacity []float32) {
 	Current_Node.NodeOpacity = opacity
+}
+
+func Texture(partialname string) {
+ 	texture, ok := g_textureByPartialName[partialname]
+
+	if !ok {
+		texture = g4.NewTexture()
+		texture.LoadImage("assets/images/" + partialname + ".png")
+
+		g_textureByPartialName[partialname] = texture
+	}
+
+	Current_Node.Texture = texture
+
+	Current_Node.Width = texture.Width
+	Current_Node.Height = texture.Height
 }
 
 

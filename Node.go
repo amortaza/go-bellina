@@ -1,8 +1,13 @@
 package bl
 
-import "container/list"
+import (
+	"container/list"
+	"g4"
+)
 
 type Node struct {
+	ID string
+
 	Left, Top, Width, Height int32
 
 	Red1, Green1, Blue1 float32
@@ -23,6 +28,8 @@ type Node struct {
 	BorderThickness []int32
 	BorderRed, BorderGreen, BorderBlue float32
 	BorderTopsCanvas bool
+
+	Texture *g4.Texture
 
 	Parent *Node
 	Kids *list.List
