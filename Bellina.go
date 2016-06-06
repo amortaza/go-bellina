@@ -106,8 +106,12 @@ func BorderTopsCanvas() {
 	Current_Node.BorderTopsCanvas = true
 }
 
-func NodeOpacity(opacity []float32) {
-	Current_Node.NodeOpacity = opacity
+func NodeOpacity(opacity float32) {
+	Current_Node.NodeOpacity = []float32{opacity,opacity,opacity,opacity}
+}
+
+func SeeThru() {
+	Current_Node.SeeThru = true
 }
 
 func Texture(partialname string) {

@@ -31,6 +31,8 @@ type Node struct {
 
 	Texture *g4.Texture
 
+	SeeThru bool
+
 	Parent *Node
 	Kids *list.List
 }
