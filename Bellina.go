@@ -4,21 +4,6 @@ import (
 	"g4"
 )
 
-func Init() {
-	g4.Init()
-
-	g_textureByPartialName = make(map[string] *g4.Texture)
-}
-
-func Uninit() {
-	// free texture map images
-	for _, value := range g_textureByPartialName {
-		value.Free()
-	}
-
-	g4.Uninit()
-}
-
 func Root() {
 	Current_Node = NewNode()
 
@@ -114,10 +99,6 @@ func NodeOpacity4f(opacity []float32) {
 	Current_Node.NodeOpacity = opacity
 }
 
-func SeeThru() {
-	Current_Node.SeeThru = true
-}
-
 func Texture(partialname string) {
  	texture, ok := g_textureByPartialName[partialname]
 
@@ -132,6 +113,8 @@ func Texture(partialname string) {
 
 	Current_Node.Width = texture.Width
 	Current_Node.Height = texture.Height
+
+	Current_Node.SeeThru = true
 }
 
 
