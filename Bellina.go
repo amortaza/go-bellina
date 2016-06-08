@@ -117,7 +117,13 @@ func Texture(partialname string) {
 	Current_Node.SeeThru = true
 }
 
+func OnMouseMove(cb func(*MouseMoveEvent)) {
+	Current_Node.OnMouseMove = cb;
+}
 
+func OnMouseButton(cb func(*MouseButtonEvent)) {
+	Current_Node.OnMouseButton = cb;
+}
 
 
 

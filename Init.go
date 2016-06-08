@@ -16,10 +16,10 @@ func Init() {
 
 	})
 
-	event.Register(event.Mouse_Move_Event_Type, func(event event.Event) {
+	event.Register(Mouse_Move_Event_Type, func(event event.Event) {
 	})
 
-	event.Register(event.Mouse_Button_Event_Type, func(event event.Event) {
+	event.Register(Mouse_Button_Event_Type, func(event event.Event) {
 	})
 
 	event.Register(event.Resize_Event_Type, func(event event.Event) {

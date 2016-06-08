@@ -2,7 +2,6 @@ package bl
 
 import (
 	"xel"
-	"bellina/core"
 	"g4"
 )
 
@@ -25,19 +24,19 @@ func onLoop() {
 	g4.PushView(xel.WinWidth, xel.WinHeight)
 
 	canvas := renderCanvas(Root_Node)
-	canvas.Paint(false, 64, 64, nil)
+	canvas.Paint(false, Root_Node.Left, Root_Node.Top, nil) // also modify spatial
 	canvas.Free()
 
 	g4.PopView()
 }
 
-func Start(tick func()) {
+func Start(width, height int32, title string, tick func()) {
 
 	g_tick = tick
 
-	xel.Init(800, 600)
+	xel.Init(width, height)
 
-	xel.SetCallbacks(onAfterGL, onLoop, onBeforeDelete, core.IO_onResize, core.IO_onMouseMove, core.IO_onMouseButton, core.IO_onKey)
+	xel.SetCallbacks(onAfterGL, onLoop, onBeforeDelete, IO_onResize, IO_onMouseMove, IO_onMouseButton, IO_onKey)
 
 	xel.Loop()
 
