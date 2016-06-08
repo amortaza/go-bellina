@@ -6,12 +6,22 @@ import (
 )
 
 var g_tick func()
+var g_init func()
+var g_uninit func()
 
 func onAfterGL() {
 	Init()
+
+	if g_init != nil {
+		g_init()
+	}
 }
 
 func onBeforeDelete() {
+	if g_uninit != nil {
+		g_uninit()
+	}
+
 	Uninit()
 }
 
@@ -30,9 +40,11 @@ func onLoop() {
 	g4.PopView()
 }
 
-func Start(width, height int32, title string, tick func()) {
+func Start(width, height int32, title string, init func(), tick func(), uninit func()) {
 
 	g_tick = tick
+	g_init = init
+	g_uninit = uninit
 
 	xel.Init(width, height)
 
