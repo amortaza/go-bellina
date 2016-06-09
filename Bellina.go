@@ -2,6 +2,7 @@ package bl
 
 import (
 	"g4"
+	"container/list"
 )
 
 func Root() {
@@ -118,11 +119,19 @@ func Texture(partialname string) {
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
-	Current_Node.OnMouseMove = cb;
+	if Current_Node.OnMouseMoveCallbacks == nil {
+		Current_Node.OnMouseMoveCallbacks = list.New()
+	}
+
+	Current_Node.OnMouseMoveCallbacks.PushBack(cb);
 }
 
 func OnMouseButton(cb func(*MouseButtonEvent)) {
-	Current_Node.OnMouseButton = cb;
+	if Current_Node.OnMouseButtonCallbacks == nil {
+		Current_Node.OnMouseButtonCallbacks = list.New()
+	}
+
+	Current_Node.OnMouseButtonCallbacks.PushBack(cb);
 }
 
 

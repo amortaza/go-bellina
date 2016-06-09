@@ -27,8 +27,13 @@ func IO_onMouseMove(x,y int32) {
 			break
 		}
 
-		if node.OnMouseMove != nil {
-			node.OnMouseMove(e)
+		if node.OnMouseMoveCallbacks != nil {
+			for element := node.OnMouseMoveCallbacks.Front(); element != nil; element = element.Next() {
+			    	cb := element.Value.(func(*MouseMoveEvent))
+
+				cb(e)
+
+			}
 		}
 
 		if !e.BubbleToParent {
@@ -57,8 +62,12 @@ func IO_onMouseButton(button xel.MouseButton, action xel.Action) {
 			break
 		}
 
-		if node.OnMouseButton != nil {
-			node.OnMouseButton(e)
+		if node.OnMouseButtonCallbacks != nil {
+			for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
+				cb := element.Value.(func(*MouseButtonEvent))
+
+				cb(e)
+			}
 		}
 
 		if !e.BubbleToParent {

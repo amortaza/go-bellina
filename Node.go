@@ -36,8 +36,8 @@ type Node struct {
 	Parent *Node
 	Kids *list.List
 
-	OnMouseMove func(*MouseMoveEvent)
-	OnMouseButton func(*MouseButtonEvent)
+	OnMouseMoveCallbacks *list.List
+	OnMouseButtonCallbacks *list.List
 }
 
 func NewNode() *Node {

@@ -18,8 +18,7 @@ func Init() {
 
 func Uninit() {
 	// free plugins
-	for e := g_plugins.Front(); e != nil; e = e.Next() {
-		plugin := e.Value.(PlugIn)
+	for _, plugin := range g_pluginByName {
 
 		plugin.Uninit()
 	}
