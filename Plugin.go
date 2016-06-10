@@ -16,13 +16,20 @@ type PlugIn interface {
 }
 
 func Plugin(p PlugIn) {
-	p.Init()
 
-	g_pluginByName[p.Name()] = p
+	if _, has := g_pluginByName[p.Name()]; !has {
+		p.Init()
+
+		g_pluginByName[p.Name()] = p
+	}
 }
 
 func On(pluginName string, cb func(interface{})) {
-	plugin := g_pluginByName[pluginName]
+	plugin, ok := g_pluginByName[pluginName]
+
+	if !ok {
+		panic( "On() cannot find unregistered plugin named " + pluginName)
+	}
 
 	plugin.On(cb)
 }

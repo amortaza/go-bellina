@@ -3,6 +3,7 @@ package bl
 import (
 	"container/list"
 	"g4"
+	"fmt"
 )
 
 type Node struct {
@@ -29,6 +30,7 @@ type Node struct {
 	BorderRed, BorderGreen, BorderBlue float32
 	BorderTopsCanvas bool
 
+	// no need to free this - this is globally managed
 	Texture *g4.Texture
 
 	SeeThru bool
@@ -48,6 +50,6 @@ func NewNode() *Node {
 	node.NodeOpacity = FourOnes
 
 	node.Kids = list.New()
-
+	
 	return node
 }
