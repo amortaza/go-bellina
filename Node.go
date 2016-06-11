@@ -3,7 +3,6 @@ package bl
 import (
 	"container/list"
 	"g4"
-	"fmt"
 )
 
 type Node struct {

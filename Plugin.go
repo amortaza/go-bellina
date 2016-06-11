@@ -1,6 +1,5 @@
 package bl
 
-
 var g_pluginByName map[string] PlugIn
 
 func init() {

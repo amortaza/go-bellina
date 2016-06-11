@@ -3,6 +3,7 @@ package bl
 import (
 	"g4"
 	"bellina/core"
+	"fmt"
 )
 
 func renderCanvas(node *Node) *g4.Canvas {
@@ -44,6 +45,12 @@ func renderCanvas(node *Node) *g4.Canvas {
 }
 
 func renderBorders(x, y int32, node *Node) {
+	//#ifdef nonprod
+	if node.BorderThickness == nil {
+		fmt.Println("Border flag is set, but border thickness was not defined.")
+		return
+	}
+
 	var thickness int32
 
 	color := []float32{node.BorderRed, node.BorderGreen, node.BorderBlue, 1 }
@@ -51,7 +58,6 @@ func renderBorders(x, y int32, node *Node) {
 	if node.Flags & BORDER_LEFT != 0 {
 		thickness = node.BorderThickness[0]
 		g4.DrawColorRect(x, y, thickness, node.Height, color, color, color, color)
-
 	}
 
 	if node.Flags & BORDER_RIGHT != 0 {

@@ -32,7 +32,6 @@ func IO_onMouseMove(x,y int32) {
 			    	cb := element.Value.(func(*MouseMoveEvent))
 
 				cb(e)
-
 			}
 		}
 
