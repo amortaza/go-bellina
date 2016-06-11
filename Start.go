@@ -3,6 +3,8 @@ package bl
 import (
 	"xel"
 	"g4"
+	"container/list"
+	"bellina/event"
 )
 
 var g_tick func()
@@ -26,6 +28,9 @@ func onBeforeDelete() {
 }
 
 func onLoop() {
+
+	g_nodeByID = make(map[string] *Node)
+	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
 
 	g_tick()
 

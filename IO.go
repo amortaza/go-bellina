@@ -6,7 +6,7 @@ import (
 )
 
 func IO_onKey(key xel.Key, action xel.Action) {
-	keyEvent := event.NewKeyEvent(key, action)
+	keyEvent := NewKeyEvent(key, action)
 
 	event.Fire(keyEvent)
 }
@@ -15,6 +15,10 @@ func IO_onMouseMove(x,y int32) {
 	Mouse_X, Mouse_y = x, y
 
 	node := GetNodeAt(x,y)
+
+	if node == nil {
+		node = Root_Node
+	}
 
 	var e *MouseMoveEvent
 
@@ -27,13 +31,7 @@ func IO_onMouseMove(x,y int32) {
 			break
 		}
 
-		if node.OnMouseMoveCallbacks != nil {
-			for element := node.OnMouseMoveCallbacks.Front(); element != nil; element = element.Next() {
-			    	cb := element.Value.(func(*MouseMoveEvent))
-
-				cb(e)
-			}
-		}
+		node.CallMouseMoveCallbacks(e)
 
 		if !e.BubbleToParent {
 			break
@@ -49,6 +47,10 @@ func IO_onMouseMove(x,y int32) {
 
 func IO_onMouseButton(button xel.MouseButton, action xel.Action) {
 	node := GetNodeAt(Mouse_X, Mouse_y)
+
+	if node == nil {
+		node = Root_Node
+	}
 
 	var e *MouseButtonEvent
 

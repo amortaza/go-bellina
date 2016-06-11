@@ -52,3 +52,23 @@ func NewNode() *Node {
 	
 	return node
 }
+
+func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
+	if node.OnMouseMoveCallbacks != nil {
+		for element := node.OnMouseMoveCallbacks.Front(); element != nil; element = element.Next() {
+			cb := element.Value.(func(*MouseMoveEvent))
+
+			cb(e)
+		}
+	}
+}
+
+func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
+	if node.OnMouseButtonCallbacks != nil {
+		for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
+			cb := element.Value.(func(*MouseButtonEvent))
+
+			cb(e)
+		}
+	}
+}

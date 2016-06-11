@@ -10,6 +10,8 @@ func Root() {
 
 	Current_Node.ID = "ROOT"
 
+	g_nodeByID["ROOT"] = Current_Node
+
 	g_nodeStack.Push(Current_Node)
 
 	Root_Node = Current_Node
@@ -28,6 +30,7 @@ func Div() {
 
 func ID(id string) {
 	Current_Node.ID = id
+	g_nodeByID[id] = Current_Node
 }
 
 func End() {
@@ -134,7 +137,11 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 	Current_Node.OnMouseButtonCallbacks.PushBack(cb);
 }
 
+func GetNodeByID(id string ) *Node {
+	node, _ := g_nodeByID[id]
 
+	return node
+}
 
 
 
