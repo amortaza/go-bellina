@@ -72,3 +72,7 @@ func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
 		}
 	}
 }
+
+func (node *Node) Free() {
+	// free shadow node here!
+}

@@ -12,7 +12,7 @@ func IO_onKey(key xel.Key, action xel.Action) {
 }
 
 func IO_onMouseMove(x,y int32) {
-	Mouse_X, Mouse_y = x, y
+	Mouse_X, Mouse_Y = x, y
 
 	node := GetNodeAt(x,y)
 
@@ -46,7 +46,7 @@ func IO_onMouseMove(x,y int32) {
 }
 
 func IO_onMouseButton(button xel.MouseButton, action xel.Action) {
-	node := GetNodeAt(Mouse_X, Mouse_y)
+	node := GetNodeAt(Mouse_X, Mouse_Y)
 
 	if node == nil {
 		node = Root_Node

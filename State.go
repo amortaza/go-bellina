@@ -8,7 +8,7 @@ import (
 var Root_Node *Node
 var Current_Node *Node
 
-var Mouse_X, Mouse_y int32
+var Mouse_X, Mouse_Y int32
 
 var g_nodeByID map[string] *Node
 var g_nodeStack adt.Stack

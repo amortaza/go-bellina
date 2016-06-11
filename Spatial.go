@@ -30,3 +30,21 @@ func GetNodeAt(x, y int32) *Node {
 	return nil
 }
 
+func GetNodeAbsolutePos(node *Node)(absX, absY int32) {
+	if node == nil {
+		return 0, 0
+	}
+
+	absX, absY = node.Left, node.Top
+
+	node = node.Parent
+
+	for node != nil {
+		absX += node.Left;
+		absY += node.Top;
+		node = node.Parent
+	}
+
+	return absX, absY
+}
+

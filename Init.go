@@ -9,6 +9,7 @@ import (
 func Init() {
 	g4.Init()
 
+	g_shadowNodeByID = make(map[string] *ShadowNode)
 	g_textureByPartialName = make(map[string] *g4.Texture)
 
 	// initial resize fire
