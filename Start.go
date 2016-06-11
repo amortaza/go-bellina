@@ -38,6 +38,11 @@ func onLoop() {
 	canvas.Free()
 
 	g4.PopView()
+
+	// #ifdef nonprod
+	if g_nodeStack.Size > 0 {
+		panic("Node stack memory leak")
+	}
 }
 
 func Start(width, height int32, title string, init func(), tick func(), uninit func()) {

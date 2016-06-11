@@ -108,6 +108,7 @@ func renderLabel(node *Node) {
 	g4font := core.GetG4Font(node.FontName, node.FontSize)
 
 	stringTexture := g4.NewStringTexture(node.Label, g4font)
+	defer stringTexture.Free()
 
 	fontColor := []float32{node.FontRed, node.FontGreen, node.FontBlue}
 	bgColor := []float32{node.Red1, node.Green1, node.Blue1}
