@@ -12,6 +12,7 @@ type PlugIn interface {
 	Uninit()
 
 	On(cb func(interface{}))
+	On2(cb func(interface{}), start func(interface{}), end func(interface{}))
 }
 
 func Plugin(p PlugIn) {
@@ -31,4 +32,14 @@ func On(pluginName string, cb func(interface{})) {
 	}
 
 	plugin.On(cb)
+}
+
+func On2(pluginName string, cb func(interface{}), start func(interface{}), end func(interface{})) {
+	plugin, ok := g_pluginByName[pluginName]
+
+	if !ok {
+		panic( "On2() cannot find unregistered plugin named " + pluginName)
+	}
+
+	plugin.On2(cb, start, end)
 }
