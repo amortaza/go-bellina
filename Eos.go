@@ -15,7 +15,7 @@ func renderCanvas(node *Node) *g4.Canvas {
 		if node.Texture == nil {
 			renderBody(node)
 		} else {
-			g4.DrawTextureRect(node.Texture, 0,0, node.Width, node.Height, FourOnes)
+			g4.DrawTextureRect(node.Texture, 0,0, node.Width, node.Height, FourOnesFloat)
 		}
 
 		renderLabel(node)

@@ -46,7 +46,7 @@ func NewNode() *Node {
 
 	node.Flags = COLOR_SOLID
 	node.LabelOpacity = 1
-	node.NodeOpacity = FourOnes
+	node.NodeOpacity = FourOnesFloat
 
 	node.Kids = list.New()
 	

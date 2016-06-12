@@ -14,4 +14,5 @@ var g_nodeByID map[string] *Node
 var g_nodeStack adt.Stack
 var g_textureByPartialName map[string] *g4.Texture
 
-var FourOnes = []float32{1,1,1,1}
+var FourOnesFloat = []float32{1,1,1,1}
+var FourOnesInt = []int32{1,1,1,1}
