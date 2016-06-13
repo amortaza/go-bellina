@@ -29,6 +29,10 @@ func onBeforeDelete() {
 
 func onLoop() {
 
+	for _, plugin := range g_pluginByName {
+		plugin.Tick()
+	}
+
 	g_nodeByID = make(map[string] *Node)
 	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
 

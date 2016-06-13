@@ -5,8 +5,8 @@ import (
 	"bellina/event"
 )
 
-func IO_onKey(key xel.Key, action xel.Action) {
-	keyEvent := NewKeyEvent(key, action)
+func IO_onKey(key xel.Key, action xel.Action, alt, ctrl, shift bool) {
+	keyEvent := NewKeyEvent(key, action, alt, ctrl, shift)
 
 	event.Fire(keyEvent)
 }

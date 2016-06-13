@@ -3,6 +3,7 @@ package bl
 import (
 	"g4"
 	"container/list"
+	"bellina/core"
 )
 
 func Root() {
@@ -141,6 +142,15 @@ func GetNodeByID(id string ) *Node {
 	node, _ := g_nodeByID[id]
 
 	return node
+}
+
+func GetFontHeight() int32 {
+
+	fontname, fontsize := Current_Node.FontName, Current_Node.FontSize
+
+	g4font := core.GetG4Font(fontname, fontsize)
+
+	return g4font.Height
 }
 
 

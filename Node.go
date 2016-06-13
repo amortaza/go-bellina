@@ -44,7 +44,7 @@ type Node struct {
 func NewNode() *Node {
 	node := &Node{}
 
-	node.Flags = COLOR_SOLID
+	node.Flags = Z_COLOR_SOLID
 	node.LabelOpacity = 1
 	node.NodeOpacity = FourOnesFloat
 

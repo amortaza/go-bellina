@@ -9,6 +9,7 @@ func init() {
 type PlugIn interface {
 	Name() string
 	Init()
+	Tick()
 	Uninit()
 
 	On(cb func(interface{}))
