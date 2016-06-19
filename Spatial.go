@@ -10,7 +10,7 @@ func getNodeAt(root *Node, x, y int32) *Node {
 	x -= root.Left
 	y -= root.Top
 
-	for e := root.Kids.Front(); e != nil; e = e.Next() {
+	for e := root.Kids.Back(); e != nil; e = e.Prev() {
 		kid := e.Value.(*Node)
 
 		if contains(kid, x, y) {
