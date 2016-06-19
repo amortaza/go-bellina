@@ -33,10 +33,13 @@ func onLoop() {
 		plugin.Tick()
 	}
 
+	g_nodeByID_Previous = g_nodeByID
 	g_nodeByID = make(map[string] *Node)
 	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
 
 	g_tick()
+
+	detectDifferences(g_nodeByID_Previous, g_nodeByID)
 
 	g4.Clear(.4,.6,.6,1)
 
