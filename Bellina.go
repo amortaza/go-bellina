@@ -123,19 +123,27 @@ func Texture(partialname string) {
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
-	if Current_Node.OnMouseMoveCallbacks == nil {
-		Current_Node.OnMouseMoveCallbacks = list.New()
+	OnMouseMoveOnNode(Current_Node, cb)
+}
+
+func OnMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
+	if node.OnMouseMoveCallbacks == nil {
+		node.OnMouseMoveCallbacks = list.New()
 	}
 
-	Current_Node.OnMouseMoveCallbacks.PushBack(cb);
+	node.OnMouseMoveCallbacks.PushBack(cb);
 }
 
 func OnMouseButton(cb func(*MouseButtonEvent)) {
-	if Current_Node.OnMouseButtonCallbacks == nil {
-		Current_Node.OnMouseButtonCallbacks = list.New()
+	OnMouseButtonOnNode(Current_Node, cb)
+}
+
+func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
+	if node.OnMouseButtonCallbacks == nil {
+		node.OnMouseButtonCallbacks = list.New()
 	}
 
-	Current_Node.OnMouseButtonCallbacks.PushBack(cb);
+	node.OnMouseButtonCallbacks.PushBack(cb);
 }
 
 func GetNodeByID(id string ) *Node {
