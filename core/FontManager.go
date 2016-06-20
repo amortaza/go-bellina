@@ -6,17 +6,13 @@ import (
 	"strconv"
 )
 
-var g_filenameByFontName map[string]string
 var g_truetypeFontByFontName map[string] *truetype.Font
 var g_g4fontByKey map[string] *g4.G4Font
 
 func init() {
 
-	g_filenameByFontName = make(map[string]string)
 	g_truetypeFontByFontName = make(map[string] *truetype.Font)
 	g_g4fontByKey = make(map[string] *g4.G4Font)
-
-	g_filenameByFontName["arial"] = "assets/fonts/arial.ttf"
 }
 
 func GetG4Font(fontName string, fontSize int32) *g4.G4Font {
@@ -28,11 +24,7 @@ func GetG4Font(fontName string, fontSize int32) *g4.G4Font {
 		truetypeFont, ok2 := g_truetypeFontByFontName[fontName]
 
 		if !ok2 {
-			filename, foundFilename := g_filenameByFontName[fontName]
-
-			if !foundFilename {
-				panic("Was not able to find font filename for " + fontName)
-			}
+			filename := "assets/fonts/" + fontName + ".ttf"
 
 			truetypeFont = g4.LoadTrueTypeFromFile(filename)
 

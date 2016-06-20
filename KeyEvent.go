@@ -2,7 +2,7 @@ package bl
 
 import "xel"
 
-var Key_Event_Type string = "key event"
+var EventType_Key string = "key event"
 
 type KeyEvent struct {
 	Key xel.Key
@@ -11,7 +11,7 @@ type KeyEvent struct {
 }
 
 func (k *KeyEvent) Type() string {
-	return Key_Event_Type
+	return EventType_Key
 }
 
 func NewKeyEvent(key xel.Key, action xel.Action, alt, ctrl, shift bool) *KeyEvent {

@@ -1,6 +1,6 @@
 package bl
 
-var Mouse_Move_Event_Type string = "mouse move event"
+var EventType_Mouse_Move string = "mouse move event"
 
 type MouseMoveEvent struct {
 	X, Y int32
@@ -10,7 +10,7 @@ type MouseMoveEvent struct {
 }
 
 func (m *MouseMoveEvent) Type() string {
-	return Mouse_Move_Event_Type
+	return EventType_Mouse_Move
 }
 
 func NewMouseMoveEvent(x, y int32, target *Node) *MouseMoveEvent {

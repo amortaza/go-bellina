@@ -2,7 +2,7 @@ package bl
 
 import "xel"
 
-var Mouse_Button_Event_Type string = "mouse button event"
+var EventType_Mouse_Button string = "mouse button event"
 
 type MouseButtonEvent struct {
 	Button xel.MouseButton
@@ -13,7 +13,7 @@ type MouseButtonEvent struct {
 }
 
 func (m *MouseButtonEvent) Type() string {
-	return Mouse_Button_Event_Type
+	return EventType_Mouse_Button
 }
 
 func NewMouseButtonEvent(button xel.MouseButton, action xel.Action, target *Node) *MouseButtonEvent {

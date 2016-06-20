@@ -12,22 +12,22 @@ type NodeCreateEvent struct {
 	node *Node
 }
 
-var NodeDelete_Event_Type string = "node delete event"
-var NodeCreate_Event_Type string = "node create event"
+var EventType_NodeDelete string = "node delete event"
+var EventType_NodeCreate string = "node create event"
 
 func (k *NodeDeleteEvent) Type() string {
-	return NodeDelete_Event_Type
+	return EventType_NodeDelete
 }
 
 func (k *NodeCreateEvent) Type() string {
-	return NodeCreate_Event_Type
+	return EventType_NodeCreate
 }
 
-func NewNodeDeleteEvent(node *Node) *NodeDeleteEvent {
+func NewNodeRemoveEvent(node *Node) *NodeDeleteEvent {
 	return &NodeDeleteEvent{node}
 }
 
-func NewNodeCreateEvent(node *Node) *NodeCreateEvent {
+func NewNodeAddEvent(node *Node) *NodeCreateEvent {
 	return &NodeCreateEvent{node}
 }
 
@@ -37,9 +37,13 @@ func detectDifferences(prev, now map[string] *Node) {
 
 		if !ok {
 			// node was deleted
-			deleteEvent := NewNodeDeleteEvent(node)
+			removeEvent := NewNodeRemoveEvent(node)
 
-			event.Fire(deleteEvent)
+			for _, plugin := range g_pluginByName {
+				plugin.OnNodeRemoved(node)
+			}
+
+			event.Fire(removeEvent)
 		}
 	}
 
@@ -48,9 +52,13 @@ func detectDifferences(prev, now map[string] *Node) {
 
 		if !ok {
 			// node was created
-			createEvent := NewNodeCreateEvent(node)
+			addEvent := NewNodeAddEvent(node)
 
-			event.Fire(createEvent)
+			for _, plugin := range g_pluginByName {
+				plugin.OnNodeAdded(node)
+			}
+
+			event.Fire(addEvent)
 		}
 	}
 }

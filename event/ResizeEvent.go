@@ -1,13 +1,13 @@
 package event
 
-var Resize_Event_Type string = "resize event"
+var EventType_Resize string = "resize event"
 
 type ResizeEvent struct {
 	Width, Height int32
 }
 
 func (k *ResizeEvent) Type() string {
-	return Resize_Event_Type
+	return EventType_Resize
 }
 
 func NewResizeEvent(width, height int32) *ResizeEvent {
