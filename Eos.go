@@ -1,13 +1,8 @@
 package bl
 
 import (
-<<<<<<< HEAD
 	"github.com/amortaza/go-g4"
 	"github.com/amortaza/go-bellina/core"
-=======
-	"g4"
-	"bellina/core"
->>>>>>> 457139a89938fb2b2ae6a239356e9473e6b022ec
 	"fmt"
 )
 

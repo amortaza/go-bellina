@@ -1,11 +1,7 @@
 package core
 
 import (
-<<<<<<< HEAD
 	"github.com/amortaza/go-g4"
-=======
-	"g4"
->>>>>>> 457139a89938fb2b2ae6a239356e9473e6b022ec
 	"github.com/golang/freetype/truetype"
 	"strconv"
 )

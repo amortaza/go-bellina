@@ -1,15 +1,9 @@
 package bl
 
 import (
-<<<<<<< HEAD
 	"github.com/amortaza/go-g4"
 	"github.com/amortaza/go-bellina/event"
 	"github.com/amortaza/go-xel"
-=======
-	"g4"
-	"bellina/event"
-	"xel"
->>>>>>> 457139a89938fb2b2ae6a239356e9473e6b022ec
 )
 
 func Init() {
