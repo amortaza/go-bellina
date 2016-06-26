@@ -5,10 +5,10 @@ import "github.com/amortaza/go-xel"
 var EventType_Mouse_Button string = "mouse button event"
 
 type MouseButtonEvent struct {
-	Button xel.MouseButton
-	Action xel.ButtonAction
-	Target *Node // the node the event originated on
-	CurrentTarget *Node
+	Button         xel.MouseButton
+	ButtonAction   xel.ButtonAction
+	Target         *Node // the node the event originated on
+	CurrentTarget  *Node
 	BubbleToParent bool
 }
 

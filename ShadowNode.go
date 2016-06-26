@@ -4,6 +4,7 @@ import "github.com/amortaza/go-g4"
 
 type ShadowNode struct {
 	ID string
+	ParentID string
 
 	Left, Top, Width, Height int32
 
@@ -35,6 +36,7 @@ type ShadowNode struct {
 func NewShadowNode(node *Node) *ShadowNode {
 	shadow := &ShadowNode{
 		node.ID,
+		node.Parent.ID,
 		node.Left, node.Top, node.Width, node.Height,
 		node.Red1, node.Green1,node.Blue1,
 		node.Red2, node.Green2,node.Blue2,
