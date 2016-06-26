@@ -34,9 +34,15 @@ type ShadowNode struct {
 }
 
 func NewShadowNode(node *Node) *ShadowNode {
+	var parentId string
+
+	if node.Parent != nil {
+		parentId = node.Parent.ID
+	}
+
 	shadow := &ShadowNode{
 		node.ID,
-		node.Parent.ID,
+		parentId,
 		node.Left, node.Top, node.Width, node.Height,
 		node.Red1, node.Green1,node.Blue1,
 		node.Red2, node.Green2,node.Blue2,

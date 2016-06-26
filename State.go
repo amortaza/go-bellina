@@ -15,5 +15,8 @@ var g_nodeByID_Previous map[string] *Node
 var g_nodeStack adt.Stack
 var g_textureByPartialName map[string] *g4.Texture
 
+var g_pluginParamsNodeId_int32 map[string] (map[string] int32)
+var g_pluginParamsNodeId_string map[string] (map[string] string)
+
 var FourOnesFloat = []float32{1,1,1,1}
 var FourOnesInt = []int32{1,1,1,1}

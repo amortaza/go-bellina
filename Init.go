@@ -12,6 +12,9 @@ func Init() {
 	g_shadowNodeByID = make(map[string] *ShadowNode)
 	g_textureByPartialName = make(map[string] *g4.Texture)
 
+	g_pluginParamsNodeId_int32 = make(map[string] (map[string] int32))
+	g_pluginParamsNodeId_string = make(map[string] (map[string] string))
+
 	// initial resize fire
 	resizeEvent := event.NewResizeEvent(xel.WinWidth, xel.WinHeight)
 	event.Fire(resizeEvent)

@@ -161,50 +161,35 @@ func GetFontHeight() int32 {
 	return g4font.Height
 }
 
+func SetI(pluginName, param string, value int32) {
+	paramByPlugin, ok := g_pluginParamsNodeId_int32[Current_Node.ID]
 
+	if !ok {
+		paramByPlugin = make(map[string] int32)
 
+		g_pluginParamsNodeId_int32[Current_Node.ID] = paramByPlugin
+	}
 
+	paramByPlugin[ pluginName + ":" + param] = value
+}
 
+func GetI(pluginName, param string) int32 {
+	return GetI_fromNodeID(Current_Node.ID, pluginName, param)
+}
 
+func GetI_fromNodeID(nodeID, pluginName, param string) int32 {
+	paramByPlugin, ok := g_pluginParamsNodeId_int32[nodeID]
 
+	if !ok {
+		return 0
+	}
 
+	value, ok2 := paramByPlugin[ pluginName + ":" + param]
 
+	if !ok2 {
+		return 0
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return value
+}
 
