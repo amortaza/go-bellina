@@ -4,6 +4,7 @@ import (
 	"github.com/amortaza/go-g4"
 	"github.com/amortaza/go-bellina/event"
 	"github.com/amortaza/go-xel"
+	"container/list"
 )
 
 func Init() {
@@ -11,6 +12,8 @@ func Init() {
 
 	g_shadowNodeByID = make(map[string] *ShadowNode)
 	g_textureByPartialName = make(map[string] *g4.Texture)
+
+	g_pluginTicks = list.New()
 
 	g_pluginParamsNodeId_int32 = make(map[string] (map[string] int32))
 	g_pluginParamsNodeId_string = make(map[string] (map[string] string))

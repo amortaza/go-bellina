@@ -29,15 +29,22 @@ func onBeforeDelete() {
 
 func onLoop() {
 
-	for _, plugin := range g_pluginByName {
-		plugin.Tick()
-	}
-
 	g_nodeByID_Previous = g_nodeByID
 	g_nodeByID = make(map[string] *Node)
+	g_pluginTicks = list.New()
 	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
 
 	g_tick()
+
+	for e := g_pluginsInOrder.Front(); e != nil; e = e.Next() {
+	        plugin := e.Value.(PlugIn)
+		plugin.Tick()
+	}
+
+	for e := g_pluginTicks.Front(); e != nil; e = e.Next() {
+	    	cb := e.Value.(func())
+		cb()
+	}
 
 	detectDifferences(g_nodeByID_Previous, g_nodeByID)
 

@@ -1,9 +1,13 @@
 package bl
 
+import "container/list"
+
 var g_pluginByName map[string] PlugIn
+var g_pluginsInOrder *list.List
 
 func init() {
 	g_pluginByName = make(map[string] PlugIn)
+	g_pluginsInOrder = list.New()
 }
 
 type PlugIn interface {
@@ -25,6 +29,7 @@ func Plugin(p PlugIn) {
 		p.Init()
 
 		g_pluginByName[p.Name()] = p
+		g_pluginsInOrder.PushBack(p)
 	}
 }
 
@@ -60,4 +65,8 @@ func On2(pluginName string, cb func(interface{}), start func(interface{}), end f
 	}
 
 	plugin.On2(cb, start, end)
+}
+
+func AddPluginOnTick(cb func()) {
+	g_pluginTicks.PushBack(cb)
 }
