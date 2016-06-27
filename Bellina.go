@@ -76,6 +76,10 @@ func Font(fontName string, fontSize int32) {
 	Current_Node.FontName, Current_Node.FontSize = fontName, fontSize
 }
 
+func GetFont() (string, int32) {
+	return Current_Node.FontName, Current_Node.FontSize
+}
+
 func FontColor(red, green, blue float32) {
 	Current_Node.FontRed, Current_Node.FontGreen, Current_Node.FontBlue = red, green, blue
 }
@@ -193,3 +197,8 @@ func GetI_fromNodeID(nodeID, pluginName, param string) int32 {
 	return value
 }
 
+func Rect1(left, top, width, height int32, red, green, blue, opacity float32, topsLabel bool) {
+	Current_Node.Rect1_LTWH = []int32{left,top,width,height}
+	Current_Node.Rect1_TopsLabel = topsLabel
+	Current_Node.Rect1_RGBA = []float32{red, green, blue, opacity}
+}

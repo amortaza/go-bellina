@@ -38,7 +38,11 @@ type Node struct {
 	Kids                               *list.List
 
 	OnMouseMoveCallbacks               *list.List
-	OnMouseButtonCallbacks *list.List
+	OnMouseButtonCallbacks             *list.List
+
+	Rect1_LTWH                         [] int32
+	Rect1_RGBA                         [] float32
+	Rect1_TopsLabel                    bool
 }
 
 func NewNode() *Node {

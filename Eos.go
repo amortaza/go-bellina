@@ -18,7 +18,15 @@ func renderCanvas(node *Node) *g4.Canvas {
 			g4.DrawTextureRect(node.Texture, 0,0, node.Width, node.Height, FourOnesFloat)
 		}
 
+		if node.Rect1_LTWH != nil && !node.Rect1_TopsLabel {
+			renderRect1(node)
+		}
+
 		renderLabel(node)
+
+		if node.Rect1_LTWH != nil && node.Rect1_TopsLabel {
+			renderRect1(node)
+		}
 
 		for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
 
@@ -42,6 +50,13 @@ func renderCanvas(node *Node) *g4.Canvas {
 	canvas.End()
 
 	return canvas
+}
+
+func renderRect1(node *Node) {
+	coords := node.Rect1_LTWH
+	color := node.Rect1_RGBA
+
+	g4.DrawColorRect(coords[0], coords[1], coords[2], coords[3], color, color, color, color)
 }
 
 func renderBorders(x, y int32, node *Node) {
