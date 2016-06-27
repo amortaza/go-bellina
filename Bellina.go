@@ -9,7 +9,7 @@ import (
 func Root() {
 	Current_Node = NewNode()
 
-	Current_Node.ID = "ROOT"
+	Current_Node.Id = "ROOT"
 
 	g_nodeByID["ROOT"] = Current_Node
 
@@ -30,7 +30,7 @@ func Div() {
 }
 
 func ID(id string) {
-	Current_Node.ID = id
+	Current_Node.Id = id
 	g_nodeByID[id] = Current_Node
 }
 
@@ -109,7 +109,7 @@ func Texture(partialname string) {
 
 	if !ok {
 		texture = g4.NewTexture()
-		texture.LoadImage("assets/images/" + partialname + ".png")
+		texture.LoadImage("github.com/amortaza/go-bellina-examples/assets/images/" + partialname + ".png")
 
 		g_textureByPartialName[partialname] = texture
 	}
@@ -162,19 +162,19 @@ func GetFontHeight() int32 {
 }
 
 func SetI(pluginName, param string, value int32) {
-	paramByPlugin, ok := g_pluginParamsNodeId_int32[Current_Node.ID]
+	paramByPlugin, ok := g_pluginParamsNodeId_int32[Current_Node.Id]
 
 	if !ok {
 		paramByPlugin = make(map[string] int32)
 
-		g_pluginParamsNodeId_int32[Current_Node.ID] = paramByPlugin
+		g_pluginParamsNodeId_int32[Current_Node.Id] = paramByPlugin
 	}
 
 	paramByPlugin[ pluginName + ":" + param] = value
 }
 
 func GetI(pluginName, param string) int32 {
-	return GetI_fromNodeID(Current_Node.ID, pluginName, param)
+	return GetI_fromNodeID(Current_Node.Id, pluginName, param)
 }
 
 func GetI_fromNodeID(nodeID, pluginName, param string) int32 {

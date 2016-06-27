@@ -3,45 +3,45 @@ package bl
 import "github.com/amortaza/go-g4"
 
 type ShadowNode struct {
-	ID string
-	ParentID string
+	Id                                 string
+	ParentID                           string
 
-	Left, Top, Width, Height int32
+	Left, Top, Width, Height           int32
 
-	Red1, Green1, Blue1 float32
-	Red2, Green2, Blue2 float32
+	Red1, Green1, Blue1                float32
+	Red2, Green2, Blue2                float32
 
-	NodeOpacity []float32
+	NodeOpacity                        []float32
 
-	Flags uint32
+	Flags                              uint32
 
-	Label string
-	LabelOpacity float32
+	Label                              string
+	LabelOpacity                       float32
 
-	FontName string
-	FontSize int32
-	FontRed, FontGreen, FontBlue float32
-	FontNudgeX, FontNudgeY int32
+	FontName                           string
+	FontSize                           int32
+	FontRed, FontGreen, FontBlue       float32
+	FontNudgeX, FontNudgeY             int32
 
-	BorderThickness []int32
+	BorderThickness                    []int32
 	BorderRed, BorderGreen, BorderBlue float32
-	BorderTopsCanvas bool
+	BorderTopsCanvas                   bool
 
 	// no need to free this - this is globally managed
-	Texture *g4.Texture
+	Texture                            *g4.Texture
 
-	SeeThru bool
+	SeeThru                            bool
 }
 
 func NewShadowNode(node *Node) *ShadowNode {
 	var parentId string
 
 	if node.Parent != nil {
-		parentId = node.Parent.ID
+		parentId = node.Parent.Id
 	}
 
 	shadow := &ShadowNode{
-		node.ID,
+		node.Id,
 		parentId,
 		node.Left, node.Top, node.Width, node.Height,
 		node.Red1, node.Green1,node.Blue1,

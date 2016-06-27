@@ -6,38 +6,38 @@ import (
 )
 
 type Node struct {
-	ID string
+	Id                                 string
 
-	Left, Top, Width, Height int32
+	Left, Top, Width, Height           int32
 
-	Red1, Green1, Blue1 float32
-	Red2, Green2, Blue2 float32
+	Red1, Green1, Blue1                float32
+	Red2, Green2, Blue2                float32
 
-	NodeOpacity []float32
+	NodeOpacity                        []float32
 
-	Flags uint32
+	Flags                              uint32
 
-	Label string
-	LabelOpacity float32
+	Label                              string
+	LabelOpacity                       float32
 
-	FontName string
-	FontSize int32
-	FontRed, FontGreen, FontBlue float32
-	FontNudgeX, FontNudgeY int32
+	FontName                           string
+	FontSize                           int32
+	FontRed, FontGreen, FontBlue       float32
+	FontNudgeX, FontNudgeY             int32
 
-	BorderThickness []int32
+	BorderThickness                    []int32
 	BorderRed, BorderGreen, BorderBlue float32
-	BorderTopsCanvas bool
+	BorderTopsCanvas                   bool
 
 	// no need to free this - this is globally managed
-	Texture *g4.Texture
+	Texture                            *g4.Texture
 
-	SeeThru bool
+	SeeThru                            bool
 
-	Parent *Node
-	Kids *list.List
+	Parent                             *Node
+	Kids                               *list.List
 
-	OnMouseMoveCallbacks *list.List
+	OnMouseMoveCallbacks               *list.List
 	OnMouseButtonCallbacks *list.List
 }
 

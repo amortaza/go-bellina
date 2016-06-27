@@ -23,3 +23,4 @@ var g_pluginTicks *list.List
 
 var FourOnesFloat = []float32{1,1,1,1}
 var FourOnesInt = []int32{1,1,1,1}
+var FourTwosInt = []int32{2,2,2,2}

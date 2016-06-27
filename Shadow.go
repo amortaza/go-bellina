@@ -3,7 +3,7 @@ package bl
 var g_shadowNodeByID map[string] *ShadowNode
 
 func EnsureShadow() (*ShadowNode) {
-	return EnsureShadowByID(Current_Node.ID)
+	return EnsureShadowByID(Current_Node.Id)
 }
 
 func EnsureShadowByID(id string) (*ShadowNode) {
@@ -19,8 +19,12 @@ func EnsureShadowByID(id string) (*ShadowNode) {
 	return shadow
 }
 
-func GetShadow(nodeid string) (*ShadowNode, bool) {
+func GetShadowById(nodeid string) (*ShadowNode, bool) {
 	shadow, ok := g_shadowNodeByID[nodeid]
 
 	return shadow, ok
+}
+
+func GetShadow() (*ShadowNode, bool) {
+	return GetShadowById(Current_Node.Id)
 }

@@ -24,7 +24,7 @@ func GetG4Font(fontName string, fontSize int32) *g4.G4Font {
 		truetypeFont, ok2 := g_truetypeFontByFontName[fontName]
 
 		if !ok2 {
-			filename := "assets/fonts/" + fontName + ".ttf"
+			filename := "github.com/amortaza/go-bellina-examples/assets/fonts/" + fontName + ".ttf"
 
 			truetypeFont = g4.LoadTrueTypeFromFile(filename)
 
