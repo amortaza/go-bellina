@@ -33,10 +33,6 @@ func Plugin(p PlugIn) {
 	}
 }
 
-func Use(pluginName string) {
-	On(pluginName, nil)
-}
-
 func GetPluginState(pluginName string) interface{} {
 	plugin, ok := g_pluginByName[pluginName]
 
@@ -45,26 +41,6 @@ func GetPluginState(pluginName string) interface{} {
 	}
 
 	return plugin.GetState()
-}
-
-func On(pluginName string, cb func(interface{})) {
-	plugin, ok := g_pluginByName[pluginName]
-
-	if !ok {
-		panic( "On() cannot find unregistered plugin named " + pluginName)
-	}
-
-	plugin.On(cb)
-}
-
-func On2(pluginName string, cb func(interface{}), start func(interface{}), end func(interface{})) {
-	plugin, ok := g_pluginByName[pluginName]
-
-	if !ok {
-		panic( "On2() cannot find unregistered plugin named " + pluginName)
-	}
-
-	plugin.On2(cb, start, end)
 }
 
 func AddPluginOnTick(cb func()) {
