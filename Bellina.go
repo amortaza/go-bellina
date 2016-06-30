@@ -150,7 +150,7 @@ func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
 	node.OnMouseButtonCallbacks.PushBack(cb);
 }
 
-func GetNodeByID(id string ) *Node {
+func GetNodeById(id string ) *Node {
 	node, _ := g_nodeByID[id]
 
 	return node
@@ -178,11 +178,11 @@ func SetI(pluginName, param string, value int32) {
 }
 
 func GetI(pluginName, param string) int32 {
-	return GetI_fromNodeID(Current_Node.Id, pluginName, param)
+	return GetI_fromNodeId(Current_Node.Id, pluginName, param)
 }
 
-func GetI_fromNodeID(nodeID, pluginName, param string) int32 {
-	paramByPlugin, ok := g_pluginParamsNodeId_int32[nodeID]
+func GetI_fromNodeId(nodeId, pluginName, param string) int32 {
+	paramByPlugin, ok := g_pluginParamsNodeId_int32[nodeId]
 
 	if !ok {
 		return 0
