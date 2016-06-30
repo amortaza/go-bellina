@@ -33,6 +33,10 @@ func onLoop() {
 	g_nodeByID = make(map[string] *Node)
 	g_pluginTicks = list.New()
 	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
+	for e := g_pluginsInOrder.Front(); e != nil; e = e.Next() {
+		plugin := e.Value.(PlugIn)
+		plugin.Reset()
+	}
 
 	g_tick()
 

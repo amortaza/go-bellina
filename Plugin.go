@@ -14,6 +14,7 @@ type PlugIn interface {
 	Name() string
 	Init()
 	Tick()
+	Reset()
 	Uninit()
 	OnNodeAdded(node *Node)
 	OnNodeRemoved(node *Node)
