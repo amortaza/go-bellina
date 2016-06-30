@@ -3,28 +3,51 @@ package bl
 var g_shadowNodeByID map[string] *ShadowNode
 
 func EnsureShadow() (*ShadowNode) {
-	return EnsureShadowByID(Current_Node.Id)
-}
 
-func EnsureShadowByID(id string) (*ShadowNode) {
-
-	shadow, ok := g_shadowNodeByID[id]
+	shadow, ok := g_shadowNodeByID[Current_Node.Id]
 
 	if !ok {
-		node := GetNodeByID(id)
-		shadow = NewShadowNode(node)
-		g_shadowNodeByID[id] = shadow
+
+		shadow = NewShadowNode(Current_Node)
+
+		g_shadowNodeByID[Current_Node.Id] = shadow
 	}
+
+	shadow._backingNode = Current_Node
 
 	return shadow
 }
 
-func GetShadowById(nodeid string) (*ShadowNode, bool) {
-	shadow, ok := g_shadowNodeByID[nodeid]
+func EnsureShadowById(id string) (*ShadowNode) {
 
-	return shadow, ok
+	shadow, ok := g_shadowNodeByID[id]
+
+	node := GetNodeById(id)
+
+	if !ok {
+
+		shadow = NewShadowNode(node)
+
+		g_shadowNodeByID[id] = shadow
+	}
+
+	shadow._backingNode = node
+
+	return shadow
 }
 
-func GetShadow() (*ShadowNode, bool) {
-	return GetShadowById(Current_Node.Id)
+func EnsureShadowByNode(node *Node) (*ShadowNode) {
+
+	shadow, ok := g_shadowNodeByID[node.Id]
+
+	if !ok {
+
+		shadow = NewShadowNode(node)
+
+		g_shadowNodeByID[node.Id] = shadow
+	}
+
+	shadow._backingNode = node
+
+	return shadow
 }
