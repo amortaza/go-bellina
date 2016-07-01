@@ -18,6 +18,12 @@ func Root() {
 	Root_Node = Current_Node
 }
 
+func DivId(id string) {
+	g_nodeStack.Push(Current_Node)
+
+	Current_Node = GetNodeById(id)
+}
+
 func Div() {
 	parent := Current_Node
 
@@ -197,8 +203,40 @@ func GetI_fromNodeId(nodeId, pluginName, param string) int {
 	return value
 }
 
-func Rect1(left, top, width, height int32, red, green, blue, opacity float32, topsLabel bool) {
-	Current_Node.Rect1_LTWH = []int32{left,top,width,height}
-	Current_Node.Rect1_TopsLabel = topsLabel
-	Current_Node.Rect1_RGBA = []float32{red, green, blue, opacity}
+func SetF(pluginName, param string, value func()) {
+	paramByPlugin, ok := g_pluginParamsNodeId_func[Current_Node.Id]
+
+	if !ok {
+		paramByPlugin = make(map[string] func())
+
+		g_pluginParamsNodeId_func[Current_Node.Id] = paramByPlugin
+	}
+
+	paramByPlugin[ pluginName + ":" + param] = value
+}
+
+func GetF(pluginName, param string) func() {
+	return GetF_fromNodeId(Current_Node.Id, pluginName, param)
+}
+
+func GetF_fromNodeId(nodeId, pluginName, param string) func() {
+
+	paramByPlugin, ok := g_pluginParamsNodeId_func[nodeId]
+
+	if !ok {
+		return nil
+	}
+
+	value, ok2 := paramByPlugin[ pluginName + ":" + param]
+
+	if !ok2 {
+		return nil
+	}
+
+	return value
+}
+
+func CustomRenderer1(f func(), topsLabel bool) {
+	Current_Node.CustomRender1_Hook = f
+	Current_Node.CustomRender1_TopsLabel = topsLabel
 }

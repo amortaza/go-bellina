@@ -18,14 +18,14 @@ func renderCanvas(node *Node) *g4.Canvas {
 			g4.DrawTextureRect(node.Texture, 0,0, node.Width, node.Height, FourOnesFloat)
 		}
 
-		if node.Rect1_LTWH != nil && !node.Rect1_TopsLabel {
-			renderRect1(node)
+		if node.CustomRender1_Hook != nil && !node.CustomRender1_TopsLabel {
+			node.CustomRender1_Hook()
 		}
 
 		renderLabel(node)
 
-		if node.Rect1_LTWH != nil && node.Rect1_TopsLabel {
-			renderRect1(node)
+		if node.CustomRender1_Hook != nil && node.CustomRender1_TopsLabel {
+			node.CustomRender1_Hook()
 		}
 
 		for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
