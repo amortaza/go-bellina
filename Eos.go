@@ -52,21 +52,14 @@ func renderCanvas(node *Node) *g4.Canvas {
 	return canvas
 }
 
-func renderRect1(node *Node) {
-	coords := node.Rect1_LTWH
-	color := node.Rect1_RGBA
-
-	g4.DrawColorRect(coords[0], coords[1], coords[2], coords[3], color, color, color, color)
-}
-
-func renderBorders(x, y int32, node *Node) {
+func renderBorders(x, y int, node *Node) {
 	//#ifdef nonprod
 	if node.BorderThickness == nil {
 		fmt.Println("Border flag is set, but border thickness was not defined.")
 		return
 	}
 
-	var thickness int32
+	var thickness int
 
 	color := []float32{node.BorderRed, node.BorderGreen, node.BorderBlue, 1 }
 
@@ -129,7 +122,7 @@ func renderLabel(node *Node) {
 	bgColor := []float32{node.Red1, node.Green1, node.Blue1}
 
 	// defaults to 0 which is LABEL_ALIGN_LEFT / LABEL_ALIGN_TOP
-	var left, top int32
+	var left, top int
 
 	if node.Flags & Z_LABEL_ALIGN_HCENTER != 0 {
 		left = (node.Width - stringTexture.Texture.Width) / 2

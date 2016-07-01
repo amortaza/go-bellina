@@ -15,8 +15,8 @@ func init() {
 	g_g4fontByKey = make(map[string] *g4.G4Font)
 }
 
-func GetG4Font(fontName string, fontSize int32) *g4.G4Font {
-	key := fontName + strconv.Itoa(int(fontSize))
+func GetG4Font(fontName string, fontSize int) *g4.G4Font {
+	key := fontName + strconv.Itoa(fontSize)
 
 	g4font, ok := g_g4fontByKey[key]
 

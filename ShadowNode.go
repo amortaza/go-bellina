@@ -6,7 +6,7 @@ type ShadowNode struct {
 	Id                                 string
 	ParentID                           string
 
-	Left, Top, Width, Height           int32
+	Left, Top, Width, Height           int
 
 	Red1, Green1, Blue1                float32
 	Red2, Green2, Blue2                float32
@@ -19,11 +19,11 @@ type ShadowNode struct {
 	LabelOpacity                       float32
 
 	FontName                           string
-	FontSize                           int32
+	FontSize                           int
 	FontRed, FontGreen, FontBlue       float32
-	FontNudgeX, FontNudgeY             int32
+	FontNudgeX, FontNudgeY             int
 
-	BorderThickness                    []int32
+	BorderThickness                    []int
 	BorderRed, BorderGreen, BorderBlue float32
 	BorderTopsCanvas                   bool
 
@@ -84,7 +84,7 @@ func NewShadowNode(node *Node) *ShadowNode {
 		node.FontSize,
 		node.FontRed,node.FontGreen,node.FontBlue,
 		node.FontNudgeX, node.FontNudgeY,
-		make([]int32, 4),
+		make([]int, 4),
 		node.BorderRed,node.BorderGreen,node.BorderBlue,
 		node.BorderTopsCanvas,
 		node.Texture,

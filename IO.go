@@ -11,7 +11,7 @@ func IO_onKey(key xel.KeyboardKey, action xel.ButtonAction, alt, ctrl, shift boo
 	event.Fire(keyEvent)
 }
 
-func IO_onMouseMove(x,y int32) {
+func IO_onMouseMove(x,y int) {
 	Mouse_X, Mouse_Y = x, y
 
 	node := GetNodeAt(x,y)
@@ -83,7 +83,7 @@ func IO_onMouseButton(button xel.MouseButton, action xel.ButtonAction) {
 	event.Fire(e)
 }
 
-func IO_onResize(width, height int32) {
+func IO_onResize(width, height int) {
 	resizeEvent := event.NewResizeEvent(width, height)
 
 	event.Fire(resizeEvent)

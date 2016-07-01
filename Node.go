@@ -8,7 +8,7 @@ import (
 type Node struct {
 	Id                                 string
 
-	Left, Top, Width, Height           int32
+	Left, Top, Width, Height           int
 
 	Red1, Green1, Blue1                float32
 	Red2, Green2, Blue2                float32
@@ -21,11 +21,11 @@ type Node struct {
 	LabelOpacity                       float32
 
 	FontName                           string
-	FontSize                           int32
+	FontSize                           int
 	FontRed, FontGreen, FontBlue       float32
-	FontNudgeX, FontNudgeY             int32
+	FontNudgeX, FontNudgeY             int
 
-	BorderThickness                    []int32
+	BorderThickness                    []int
 	BorderRed, BorderGreen, BorderBlue float32
 	BorderTopsCanvas                   bool
 
@@ -40,9 +40,8 @@ type Node struct {
 	OnMouseMoveCallbacks               *list.List
 	OnMouseButtonCallbacks             *list.List
 
-	Rect1_LTWH                         [] int32
-	Rect1_RGBA                         [] float32
-	Rect1_TopsLabel                    bool
+	CustomRender1_Hook		   func()
+	CustomRender1_TopsLabel            bool
 }
 
 func NewNode() *Node {

@@ -29,7 +29,7 @@ func Div() {
 	g_nodeStack.Push(Current_Node)
 }
 
-func ID(id string) {
+func Id(id string) {
 	Current_Node.Id = id
 	g_nodeByID[id] = Current_Node
 }
@@ -44,11 +44,11 @@ func End() {
 	}
 }
 
-func Pos(left, top int32) {
+func Pos(left, top int) {
 	Current_Node.Left, Current_Node.Top = left, top
 }
 
-func Dim(width, height int32) {
+func Dim(width, height int) {
 	Current_Node.Width, Current_Node.Height = width, height
 }
 
@@ -72,11 +72,11 @@ func LabelOpacity(opacity float32) {
 	Current_Node.LabelOpacity = opacity
 }
 
-func Font(fontName string, fontSize int32) {
+func Font(fontName string, fontSize int) {
 	Current_Node.FontName, Current_Node.FontSize = fontName, fontSize
 }
 
-func GetFont() (string, int32) {
+func GetFont() (string, int) {
 	return Current_Node.FontName, Current_Node.FontSize
 }
 
@@ -84,11 +84,11 @@ func FontColor(red, green, blue float32) {
 	Current_Node.FontRed, Current_Node.FontGreen, Current_Node.FontBlue = red, green, blue
 }
 
-func FontNudge(x, y int32) {
+func FontNudge(x, y int) {
 	Current_Node.FontNudgeX, Current_Node.FontNudgeY = x, y
 }
 
-func BorderThickness(thickness []int32) {
+func BorderThickness(thickness []int) {
 	Current_Node.BorderThickness = thickness
 }
 
@@ -156,7 +156,7 @@ func GetNodeById(id string ) *Node {
 	return node
 }
 
-func GetFontHeight() int32 {
+func GetFontHeight() int {
 
 	fontname, fontsize := Current_Node.FontName, Current_Node.FontSize
 
@@ -165,24 +165,24 @@ func GetFontHeight() int32 {
 	return g4font.Height
 }
 
-func SetI(pluginName, param string, value int32) {
-	paramByPlugin, ok := g_pluginParamsNodeId_int32[Current_Node.Id]
+func SetI(pluginName, param string, value int) {
+	paramByPlugin, ok := g_pluginParamsNodeId_int[Current_Node.Id]
 
 	if !ok {
-		paramByPlugin = make(map[string] int32)
+		paramByPlugin = make(map[string] int)
 
-		g_pluginParamsNodeId_int32[Current_Node.Id] = paramByPlugin
+		g_pluginParamsNodeId_int[Current_Node.Id] = paramByPlugin
 	}
 
 	paramByPlugin[ pluginName + ":" + param] = value
 }
 
-func GetI(pluginName, param string) int32 {
+func GetI(pluginName, param string) int {
 	return GetI_fromNodeId(Current_Node.Id, pluginName, param)
 }
 
-func GetI_fromNodeId(nodeId, pluginName, param string) int32 {
-	paramByPlugin, ok := g_pluginParamsNodeId_int32[nodeId]
+func GetI_fromNodeId(nodeId, pluginName, param string) int {
+	paramByPlugin, ok := g_pluginParamsNodeId_int[nodeId]
 
 	if !ok {
 		return 0

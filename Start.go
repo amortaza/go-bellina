@@ -68,7 +68,7 @@ func onLoop() {
 	}
 }
 
-func Start(width, height int32, title string, init func(), tick func(), uninit func()) {
+func Start(width, height int, title string, init func(), tick func(), uninit func()) {
 
 	g_tick = tick
 	g_init = init
