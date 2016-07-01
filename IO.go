@@ -33,7 +33,7 @@ func IO_onMouseMove(x,y int) {
 
 		node.CallMouseMoveCallbacks(e)
 
-		if !e.BubbleToParent {
+		if !e.BubbleToParent || node.PreventBubbling {
 			break
 		}
 
@@ -71,7 +71,7 @@ func IO_onMouseButton(button xel.MouseButton, action xel.ButtonAction) {
 			}
 		}
 
-		if !e.BubbleToParent {
+		if !e.BubbleToParent || node.PreventBubbling {
 			break
 		}
 

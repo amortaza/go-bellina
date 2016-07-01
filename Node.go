@@ -42,6 +42,8 @@ type Node struct {
 
 	CustomRender1_Hook		   func()
 	CustomRender1_TopsLabel            bool
+
+	PreventBubbling bool
 }
 
 func NewNode() *Node {

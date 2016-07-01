@@ -132,6 +132,10 @@ func Texture(partialname string) {
 	Current_Node.SeeThru = true
 }
 
+func PreventBubbling() {
+	Current_Node.PreventBubbling = true
+}
+
 func OnMouseMove(cb func(*MouseMoveEvent)) {
 	OnMouseMoveOnNode(Current_Node, cb)
 }
@@ -240,3 +244,4 @@ func CustomRenderer1(f func(), topsLabel bool) {
 	Current_Node.CustomRender1_Hook = f
 	Current_Node.CustomRender1_TopsLabel = topsLabel
 }
+

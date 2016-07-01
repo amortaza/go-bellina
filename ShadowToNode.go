@@ -1,7 +1,5 @@
 package bl
 
-import "fmt"
-
 func (s *ShadowNode) Dim(width, height int) *ShadowNode {
 	s.Width = width
 	s.Height = height
@@ -9,13 +7,10 @@ func (s *ShadowNode) Dim(width, height int) *ShadowNode {
 	s._backingNode.Width = s.Width
 	s._backingNode.Height = s.Height
 
-	//fmt.Println("set shadow width ", s.Id, s.Width)
-
 	return s
 }
 
 func (s *ShadowNode) Dim_to_Node() *ShadowNode {
-	//fmt.Println("shadow width ", s.Id, s.Width)
 	s._backingNode.Width = s.Width
 	s._backingNode.Height = s.Height
 
@@ -23,7 +18,6 @@ func (s *ShadowNode) Dim_to_Node() *ShadowNode {
 }
 
 func (s *ShadowNode) PosLeft(left int) *ShadowNode {
-	fmt.Println("wth")
 	s.Left = left
 
 	s._backingNode.Left = s.Left
