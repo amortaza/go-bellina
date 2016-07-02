@@ -15,10 +15,6 @@ func Init() {
 
 	g_pluginTicks = list.New()
 
-	g_pluginParamsNodeId_int = make(map[string] (map[string] int))
-	g_pluginParamsNodeId_string = make(map[string] (map[string] string))
-	g_pluginParamsNodeId_func = make(map[string] (map[string] func()))
-
 	// initial resize fire
 	resizeEvent := event.NewResizeEvent(xel.WinWidth, xel.WinHeight)
 	event.Fire(resizeEvent)

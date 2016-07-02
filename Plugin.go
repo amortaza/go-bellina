@@ -18,9 +18,6 @@ type PlugIn interface {
 	Uninit()
 	OnNodeAdded(node *Node)
 	OnNodeRemoved(node *Node)
-
-	On(cb func(interface{}))
-	On2(cb func(interface{}), start func(interface{}), end func(interface{}))
 }
 
 func Plugin(p PlugIn) {
