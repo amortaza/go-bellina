@@ -6,25 +6,29 @@ func contains(node *Node, x, y int) (ans bool) {
 	return ans
 }
 
-func getNodeAt(root *Node, x, y int) *Node {
+func getNodeAt_VisibleToEvents(root *Node, x, y int) *Node {
 	x -= root.Left
 	y -= root.Top
 
 	for e := root.Kids.Back(); e != nil; e = e.Prev() {
 		kid := e.Value.(*Node)
 
+		if kid.InvisibleToEvents {
+			continue
+		}
+
 		if contains(kid, x, y) {
-			return getNodeAt(kid, x, y)
+			return getNodeAt_VisibleToEvents(kid, x, y)
 		}
 	}
 
 	return root
 }
 
-func GetNodeAt(x, y int) *Node {
+func GetNodeAt_VisibleToEvents(x, y int) *Node {
 
 	if contains(Root_Node, x, y) {
-		return getNodeAt(Root_Node, x, y)
+		return getNodeAt_VisibleToEvents(Root_Node, x, y)
 	}
 
 	return nil

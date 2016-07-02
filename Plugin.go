@@ -19,7 +19,6 @@ type PlugIn interface {
 	OnNodeAdded(node *Node)
 	OnNodeRemoved(node *Node)
 
-	GetState() interface{}
 	On(cb func(interface{}))
 	On2(cb func(interface{}), start func(interface{}), end func(interface{}))
 }
@@ -32,16 +31,6 @@ func Plugin(p PlugIn) {
 		g_pluginByName[p.Name()] = p
 		g_pluginsInOrder.PushBack(p)
 	}
-}
-
-func GetPluginState(pluginName string) interface{} {
-	plugin, ok := g_pluginByName[pluginName]
-
-	if !ok {
-		panic( "GetPluginState() cannot find unregistered plugin named " + pluginName)
-	}
-
-	return plugin.GetState()
 }
 
 func AddPluginOnTick(cb func()) {

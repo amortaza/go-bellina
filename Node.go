@@ -44,6 +44,7 @@ type Node struct {
 	CustomRender1_TopsLabel            bool
 
 	PreventBubbling bool
+	InvisibleToEvents bool
 }
 
 func NewNode() *Node {

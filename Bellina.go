@@ -136,6 +136,10 @@ func PreventBubbling() {
 	Current_Node.PreventBubbling = true
 }
 
+func InvisibleToEvents() {
+	Current_Node.InvisibleToEvents = true
+}
+
 func OnMouseMove(cb func(*MouseMoveEvent)) {
 	OnMouseMoveOnNode(Current_Node, cb)
 }
