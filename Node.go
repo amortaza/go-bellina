@@ -2,7 +2,7 @@ package bl
 
 import (
 	"container/list"
-	"github.com/amortaza/go-g4"
+	"github.com/amortaza/go-g5"
 )
 
 type Node struct {
@@ -30,7 +30,7 @@ type Node struct {
 	BorderTopsCanvas                   bool
 
 	// no need to free this - this is globally managed
-	Texture                            *g4.Texture
+	Texture                            *g5.Texture
 
 	SeeThru                            bool
 
@@ -40,7 +40,7 @@ type Node struct {
 	OnMouseMoveCallbacks               *list.List
 	OnMouseButtonCallbacks             *list.List
 
-	CustomRender1_Hook		   func()
+	CustomRender1_Hook		   func(*Node)
 	CustomRender1_TopsLabel            bool
 
 	PreventBubbling bool
@@ -50,7 +50,7 @@ type Node struct {
 func NewNode() *Node {
 	node := &Node{}
 
-	node.Flags = Z_COLOR_SOLID
+	node.Flags = flag_COLOR_SOLID
 	node.LabelOpacity = 1
 	node.NodeOpacity = FourOnesFloat
 

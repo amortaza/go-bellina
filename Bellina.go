@@ -1,7 +1,7 @@
 package bl
 
 import (
-	"github.com/amortaza/go-g4"
+	"github.com/amortaza/go-g5"
 	"container/list"
 	"github.com/amortaza/go-bellina/core"
 )
@@ -62,12 +62,28 @@ func Color(red,green,blue float32) {
 	Current_Node.Red1, Current_Node.Green1, Current_Node.Blue1 = red, green, blue
 }
 
+func Colorv(color []float32) {
+	Current_Node.Red1, Current_Node.Green1, Current_Node.Blue1 = color[0],color[1],color[2]
+}
+
 func Color2(red,green,blue float32) {
 	Current_Node.Red2, Current_Node.Green2, Current_Node.Blue2 = red, green, blue
 }
 
-func Flag(flag uint32) {
-	Current_Node.Flags = flag
+func FlagBorderAll() {
+	Current_Node.Flags |= flag_BORDER_ALL
+}
+
+func FlagSkipRectDraw() {
+	Current_Node.Flags |= flag_SKIP_NODE_RECT_DRAW
+}
+
+func FlagLabelCenterHorizontally() {
+	Current_Node.Flags |= flag_LABEL_ALIGN_HCENTER
+}
+
+func FlagLabelCenterVertically() {
+	Current_Node.Flags |= flag_LABEL_ALIGN_VCENTER
 }
 
 func Label(label string) {
@@ -88,6 +104,10 @@ func GetFont() (string, int) {
 
 func FontColor(red, green, blue float32) {
 	Current_Node.FontRed, Current_Node.FontGreen, Current_Node.FontBlue = red, green, blue
+}
+
+func FontColorv(c []float32) {
+	Current_Node.FontRed, Current_Node.FontGreen, Current_Node.FontBlue = c[0],c[1],c[2]
 }
 
 func FontNudge(x, y int) {
@@ -118,7 +138,7 @@ func Texture(partialname string) {
  	texture, ok := g_textureByPartialName[partialname]
 
 	if !ok {
-		texture = g4.NewTexture()
+		texture = g5.NewTexture()
 		texture.LoadImage("github.com/amortaza/go-bellina-examples/assets/images/" + partialname + ".png")
 
 		g_textureByPartialName[partialname] = texture
@@ -179,7 +199,7 @@ func GetFontHeight() int {
 	return g4font.Height
 }
 
-func CustomRenderer1(f func(), topsLabel bool) {
+func CustomRenderer1(f func(node *Node), topsLabel bool) {
 	Current_Node.CustomRender1_Hook = f
 	Current_Node.CustomRender1_TopsLabel = topsLabel
 }

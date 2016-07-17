@@ -1,22 +1,21 @@
 package bl
 
 import (
-	"github.com/amortaza/go-g4"
+	"github.com/amortaza/go-g5"
 	"github.com/amortaza/go-bellina/event"
-	"github.com/amortaza/go-xel"
 	"container/list"
 )
 
 func Init() {
-	g4.Init()
+	g5.Init()
 
 	g_shadowNodeByID = make(map[string] *ShadowNode)
-	g_textureByPartialName = make(map[string] *g4.Texture)
+	g_textureByPartialName = make(map[string] *g5.Texture)
 
 	g_pluginTicks = list.New()
 
 	// initial resize fire
-	resizeEvent := event.NewResizeEvent(xel.WinWidth, xel.WinHeight)
+	resizeEvent := event.NewResizeEvent(g_hal.GetWindowDim())
 	event.Fire(resizeEvent)
 }
 
@@ -32,6 +31,6 @@ func Uninit() {
 		value.Free()
 	}
 
-	g4.Uninit()
+	g5.Uninit()
 }
 

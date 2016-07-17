@@ -1,6 +1,6 @@
 package bl
 
-import "github.com/amortaza/go-g4"
+import "github.com/amortaza/go-g5"
 
 type ShadowNode struct {
 	Id                                 string
@@ -28,7 +28,7 @@ type ShadowNode struct {
 	BorderTopsCanvas                   bool
 
 	// no need to free this - this is globally managed
-	Texture                            *g4.Texture
+	Texture                            *g5.Texture
 
 	SeeThru                            bool
 

@@ -1,11 +1,11 @@
 package bl
 
 import (
-	"github.com/amortaza/go-xel"
 	"github.com/amortaza/go-bellina/event"
+	"github.com/amortaza/go-bellina/constants"
 )
 
-func IO_onKey(key xel.KeyboardKey, action xel.ButtonAction, alt, ctrl, shift bool) {
+func IO_onKey(key bl.KeyboardKey, action bl.ButtonAction, alt, ctrl, shift bool) {
 	keyEvent := NewKeyEvent(key, action, alt, ctrl, shift)
 
 	event.Fire(keyEvent)
@@ -45,7 +45,7 @@ func IO_onMouseMove(x,y int) {
 	event.Fire(e)
 }
 
-func IO_onMouseButton(button xel.MouseButton, action xel.ButtonAction) {
+func IO_onMouseButton(button bl.MouseButton, action bl.ButtonAction) {
 	node := GetNodeAt_VisibleToEvents(Mouse_X, Mouse_Y)
 
 	if node == nil {

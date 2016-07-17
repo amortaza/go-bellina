@@ -27,6 +27,10 @@ func getNodeAt_VisibleToEvents(root *Node, x, y int) *Node {
 
 func GetNodeAt_VisibleToEvents(x, y int) *Node {
 
+	if Root_Node == nil {
+		return nil
+	}
+
 	if contains(Root_Node, x, y) {
 		return getNodeAt_VisibleToEvents(Root_Node, x, y)
 	}

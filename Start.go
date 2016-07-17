@@ -1,15 +1,27 @@
 package bl
 
 import (
-	"github.com/amortaza/go-xel"
-	"github.com/amortaza/go-g4"
+	"github.com/amortaza/go-g5"
 	"container/list"
 	"github.com/amortaza/go-bellina/event"
+	"github.com/amortaza/go-bellina/constants"
 )
 
 var g_tick func()
 var g_init func()
 var g_uninit func()
+var g_hal Hal
+
+type Hal interface {
+	Start(	width, height int,
+		title string,
+		onAfterGL, onLoop, onBeforeDelete func(),
+		onResize, onMouseMove func(int,int),
+		onMouseButton func(bl.MouseButton, bl.ButtonAction),
+		onKey func(bl.KeyboardKey, bl.ButtonAction, bool, bool, bool))
+
+	GetWindowDim()(width, height int)
+}
 
 func onAfterGL() {
 	Init()
@@ -52,15 +64,19 @@ func onLoop() {
 
 	detectDifferences(g_nodeByID_Previous, g_nodeByID)
 
-	g4.Clear(.4,.6,.6,1)
+	g5.Clear(.4,.6,.6,1)
 
-	g4.PushView(xel.WinWidth, xel.WinHeight)
+	w, h := g_hal.GetWindowDim()
+	g5.PushView(w, h)
 
 	canvas := renderCanvas(Root_Node)
-	canvas.Paint(false, Root_Node.Left, Root_Node.Top, nil) // also modify spatial
-	canvas.Free()
 
-	g4.PopView()
+	if canvas != nil {
+		canvas.Paint(false, Root_Node.Left, Root_Node.Top, nil) // also modify spatial
+		canvas.Free()
+	}
+
+	g5.PopView()
 
 	// #ifdef nonprod
 	if g_nodeStack.Size > 0 {
@@ -68,17 +84,13 @@ func onLoop() {
 	}
 }
 
-func Start(width, height int, title string, init func(), tick func(), uninit func()) {
+func Start(hal Hal, width, height int, title string, init func(), tick func(), uninit func()) {
 
 	g_tick = tick
 	g_init = init
 	g_uninit = uninit
 
-	xel.Init(width, height)
+	g_hal = hal
 
-	xel.SetCallbacks(onAfterGL, onLoop, onBeforeDelete, IO_onResize, IO_onMouseMove, IO_onMouseButton, IO_onKey)
-
-	xel.Loop()
-
-	xel.Uninit()
+	hal.Start(width, height, title, onAfterGL, onLoop, onBeforeDelete, IO_onResize, IO_onMouseMove, IO_onMouseButton, IO_onKey)
 }
