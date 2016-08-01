@@ -5,6 +5,7 @@ import (
 	"container/list"
 	"github.com/amortaza/go-bellina/event"
 	"github.com/amortaza/go-bellina/constants"
+	"github.com/amortaza/go-ux"
 )
 
 var g_tick func()
@@ -26,6 +27,8 @@ type Hal interface {
 func onAfterGL() {
 	Init()
 
+	ux.Init()
+
 	if g_init != nil {
 		g_init()
 	}
@@ -36,6 +39,8 @@ func onBeforeDelete() {
 		g_uninit()
 	}
 
+	ux.Uninit()
+
 	Uninit()
 }
 
@@ -44,7 +49,9 @@ func onLoop() {
 	g_nodeByID_Previous = g_nodeByID
 	g_nodeByID = make(map[string] *Node)
 	g_pluginTicks = list.New()
+
 	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
+
 	for e := g_pluginsInOrder.Front(); e != nil; e = e.Next() {
 		plugin := e.Value.(PlugIn)
 		plugin.Reset()
@@ -64,10 +71,13 @@ func onLoop() {
 
 	detectDifferences(g_nodeByID_Previous, g_nodeByID)
 
-	g5.Clear(.4,.6,.6,1)
+	g5.Clear(.33,.33,.33,1)
 
 	w, h := g_hal.GetWindowDim()
 	g5.PushView(w, h)
+
+	//ux.Ctx.BeginFrame(w, h, 1)
+	//ux.Ctx.BeginFrame(w/2, h/2, 2)
 
 	canvas := renderCanvas(Root_Node)
 
@@ -75,6 +85,8 @@ func onLoop() {
 		canvas.Paint(false, Root_Node.Left, Root_Node.Top, nil) // also modify spatial
 		canvas.Free()
 	}
+
+	//ux.Ctx.EndFrame()
 
 	g5.PopView()
 

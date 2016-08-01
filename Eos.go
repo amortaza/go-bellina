@@ -12,6 +12,8 @@ func renderCanvas(node *Node) *g5.Canvas {
 		return nil
 	}
 
+	fmt.Println(node.Id)
+
 	canvas := g5.NewCanvas(node.Width, node.Height)
 
 	canvas.Begin()
@@ -118,6 +120,10 @@ func renderBody(node *Node) {
 
 func renderLabel(node *Node) {
  	if node.Label == "" {
+		return
+	}
+
+	if node.FontName == "" {
 		return
 	}
 
