@@ -94,7 +94,7 @@ func GetNodeById(id string ) *Node {
 	return node
 }
 
-func CustomRenderer(f func(parentGlobalLeft, parentGlobalTop int, node *Node), topsLabel bool) {
+func CustomRenderer(f func(node *Node), topsLabel bool) {
 	Current_Node.CustomRender_Hook = f
 }
 

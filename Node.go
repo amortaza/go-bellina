@@ -15,7 +15,7 @@ type Node struct {
 	OnMouseMoveCallbacks               *list.List
 	OnMouseButtonCallbacks             *list.List
 
-	CustomRender_Hook		   func(parentGlobalX, parentGlobalY int, node *Node)
+	CustomRender_Hook		   func(node *Node)
 
 	PreventBubbling bool
 	InvisibleToEvents bool

@@ -80,7 +80,9 @@ func onLoop() {
 
 	ux.Ctx.BeginFrame(w/DevicePixelRatio, h/DevicePixelRatio, float32(DevicePixelRatio))
 
-	render(0, 0, Root_Node)
+	canvas := renderCanvas(Root_Node)
+	canvas.Paint(false, 0, 0, g5.FourOnesFloat32)
+	canvas.Free()
 
 	ux.Ctx.EndFrame()
 
