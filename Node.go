@@ -2,7 +2,6 @@ package bl
 
 import (
 	"container/list"
-	"github.com/amortaza/go-g5"
 )
 
 type Node struct {
@@ -10,38 +9,13 @@ type Node struct {
 
 	Left, Top, Width, Height           int
 
-	Red1, Green1, Blue1                float32
-	Red2, Green2, Blue2                float32
-
-	NodeOpacity                        []float32
-
-	Flags                              uint32
-
-	Label                              string
-	LabelOpacity                       float32
-
-	FontName                           string
-	FontSize                           int
-	FontRed, FontGreen, FontBlue       float32
-	FontNudgeX, FontNudgeY             int
-
-	BorderThickness                    []int
-	BorderRed, BorderGreen, BorderBlue float32
-	BorderTopsCanvas                   bool
-
-	// no need to free this - this is globally managed
-	Texture                            *g5.Texture
-
-	SeeThru                            bool
-
 	Parent                             *Node
 	Kids                               *list.List
 
 	OnMouseMoveCallbacks               *list.List
 	OnMouseButtonCallbacks             *list.List
 
-	CustomRender1_Hook		   func(*Node)
-	CustomRender1_TopsLabel            bool
+	CustomRender_Hook		   func(parentGlobalX, parentGlobalY int, node *Node)
 
 	PreventBubbling bool
 	InvisibleToEvents bool
@@ -49,10 +23,6 @@ type Node struct {
 
 func NewNode() *Node {
 	node := &Node{}
-
-	node.Flags = flag_COLOR_SOLID
-	node.LabelOpacity = 1
-	node.NodeOpacity = FourOnesFloat
 
 	node.Kids = list.New()
 	

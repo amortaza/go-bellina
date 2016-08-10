@@ -12,9 +12,12 @@ func IO_onKey(key bl.KeyboardKey, action bl.ButtonAction, alt, ctrl, shift bool)
 }
 
 func IO_onMouseMove(x,y int) {
-	Mouse_X, Mouse_Y = x, y
+	x /= DevicePixelRatio
+	y /= DevicePixelRatio
 
-	node := GetNodeAt_VisibleToEvents(x,y)
+	Mouse_X_Scaled, Mouse_Y_Scaled = x, y
+
+	node := GetNodeAt_VisibleToEvents(x, y)
 
 	if node == nil {
 		node = Root_Node
@@ -46,7 +49,7 @@ func IO_onMouseMove(x,y int) {
 }
 
 func IO_onMouseButton(button bl.MouseButton, action bl.ButtonAction) {
-	node := GetNodeAt_VisibleToEvents(Mouse_X, Mouse_Y)
+	node := GetNodeAt_VisibleToEvents(Mouse_X_Scaled, Mouse_Y_Scaled)
 
 	if node == nil {
 		node = Root_Node

@@ -45,32 +45,5 @@ func (s *ShadowNode) PosTop_to_Node() *ShadowNode {
 	return s
 }
 
-func (s *ShadowNode) Color1(r,g,b float32) *ShadowNode {
-	s.Red1, s.Green1, s.Blue1 = r, g, b
-
-	s._backingNode.Red1, s._backingNode.Green1, s._backingNode.Blue1 = r, g, b
-
-	return s
-}
-
-func (s *ShadowNode) Color1_to_Node() *ShadowNode {
-	s._backingNode.Red1, s._backingNode.Green1, s._backingNode.Blue1 = s.Red1, s.Green1, s.Blue1
-
-	return s
-}
-
-func (s *ShadowNode) FontColor(r,g,b float32) *ShadowNode {
-	s.FontRed, s.FontGreen, s.FontBlue = r, g, b
-
-	s._backingNode.FontRed, s._backingNode.FontGreen, s._backingNode.FontBlue = s.FontRed, s.FontGreen, s.FontBlue
-
-	return s
-}
-
-func (s *ShadowNode) FontColor_to_Node() *ShadowNode {
-	s._backingNode.FontRed, s._backingNode.FontGreen, s._backingNode.FontBlue = s.FontRed, s.FontGreen, s.FontBlue
-
-	return s
-}
 
 
