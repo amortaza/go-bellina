@@ -12,8 +12,8 @@ func IO_onKey(key bl.KeyboardKey, action bl.ButtonAction, alt, ctrl, shift bool)
 }
 
 func IO_onMouseMove(x,y int) {
-	x /= DevicePixelRatio
-	y /= DevicePixelRatio
+	//x /= DevicePixelRatio
+	//y /= DevicePixelRatio
 
 	Mouse_X_Scaled, Mouse_Y_Scaled = x, y
 

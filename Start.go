@@ -13,7 +13,7 @@ var g_init func()
 var g_uninit func()
 var g_hal Hal
 
-var DevicePixelRatio = 2
+//var DevicePixelRatio = 2
 
 type Hal interface {
 	Start(	width, height int,
@@ -78,13 +78,17 @@ func onLoop() {
 	w, h := g_hal.GetWindowDim()
 	g5.PushView(w, h)
 
-	ux.Ctx.BeginFrame(w/DevicePixelRatio, h/DevicePixelRatio, float32(DevicePixelRatio))
+	//ux.Ctx.BeginFrame(w/DevicePixelRatio, h/DevicePixelRatio, float32(DevicePixelRatio))
+	//ux.Ctx.BeginFrame(w, h, 1)
 
 	canvas := renderCanvas(Root_Node)
-	canvas.Paint(false, 0, 0, g5.FourOnesFloat32)
-	canvas.Free()
 
-	ux.Ctx.EndFrame()
+	if canvas != nil {
+		canvas.Paint(false, 0, 0, g5.FourOnesFloat32)
+		canvas.Free()
+	}
+
+	//ux.Ctx.EndFrame()
 
 	g5.PopView()
 
