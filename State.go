@@ -9,7 +9,7 @@ import (
 var Root_Node *Node
 var Current_Node *Node
 
-var Mouse_X_Scaled, Mouse_Y_Scaled int
+var Mouse_X, Mouse_Y int
 
 var g_nodeByID map[string] *Node
 var g_nodeByID_Previous map[string] *Node

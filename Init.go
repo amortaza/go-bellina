@@ -7,7 +7,7 @@ import (
 )
 
 func Init() {
-	g5.Init(/*DevicePixelRatio*/)
+	g5.Init()
 
 	g_shadowNodeByID = make(map[string] *ShadowNode)
 	g_textureByPartialName = make(map[string] *g5.Texture)
