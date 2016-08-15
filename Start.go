@@ -71,7 +71,8 @@ func onLoop() {
 
 	detectDifferences(g_nodeByID_Previous, g_nodeByID)
 
-	g5.Clear(.33,.33,.33,1)
+	g5.Clear(.13,.0,.0,1)
+	g5.Clear(.3,.3,.3,1)
 
 	w, h := g_hal.GetWindowDim()
 	g5.PushView(w, h)
