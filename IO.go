@@ -1,14 +1,9 @@
 package bl
 
-import (
-	"github.com/amortaza/go-bellina/event"
-	"github.com/amortaza/go-bellina/constants"
-)
-
-func IO_onKey(key bl.KeyboardKey, action bl.ButtonAction, alt, ctrl, shift bool) {
+func IO_onKey(key KeyboardKey, action ButtonAction, alt, ctrl, shift bool) {
 	keyEvent := NewKeyEvent(key, action, alt, ctrl, shift)
 
-	event.Fire(keyEvent)
+	FireEvent(keyEvent)
 }
 
 func IO_onMouseMove(x,y int) {
@@ -42,10 +37,10 @@ func IO_onMouseMove(x,y int) {
 		e.CurrentTarget = node
 	}
 
-	event.Fire(e)
+	FireEvent(e)
 }
 
-func IO_onMouseButton(button bl.MouseButton, action bl.ButtonAction) {
+func IO_onMouseButton(button MouseButton, action ButtonAction) {
 	node := GetNodeAt_VisibleToEvents(Mouse_X, Mouse_Y)
 
 	if node == nil {
@@ -80,13 +75,13 @@ func IO_onMouseButton(button bl.MouseButton, action bl.ButtonAction) {
 		e.CurrentTarget = node
 	}
 
-	event.Fire(e)
+	FireEvent(e)
 }
 
 func IO_onResize(width, height int) {
-	resizeEvent := event.NewResizeEvent(width, height)
+	resizeEvent := NewResizeEvent(width, height)
 
-	event.Fire(resizeEvent)
+	FireEvent(resizeEvent)
 }
 
 

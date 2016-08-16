@@ -1,4 +1,4 @@
-package event
+package bl
 
 var EventType_Resize string = "resize event"
 

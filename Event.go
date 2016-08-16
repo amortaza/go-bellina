@@ -1,4 +1,4 @@
-package event
+package bl
 
 import "container/list"
 
@@ -37,7 +37,7 @@ func RegisterShortTerm(eventType string, callback func(Event)) {
 	callbacks.PushBack(callback)
 }
 
-func Fire(event Event) {
+func FireEvent(event Event) {
 	callbacks, found := g_registerLongTermCallbacksByEventType[event.Type()]
 
 	if found {

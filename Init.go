@@ -2,7 +2,6 @@ package bl
 
 import (
 	"github.com/amortaza/go-g5"
-	"github.com/amortaza/go-bellina/event"
 	"container/list"
 )
 
@@ -15,8 +14,8 @@ func Init() {
 	g_pluginTicks = list.New()
 
 	// initial resize fire
-	resizeEvent := event.NewResizeEvent(g_hal.GetWindowDim())
-	event.Fire(resizeEvent)
+	resizeEvent := NewResizeEvent(g_hal.GetWindowDim())
+	FireEvent(resizeEvent)
 }
 
 func Uninit() {

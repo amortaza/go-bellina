@@ -3,8 +3,6 @@ package bl
 import (
 	"github.com/amortaza/go-g5"
 	"container/list"
-	"github.com/amortaza/go-bellina/event"
-	"github.com/amortaza/go-bellina/constants"
 	"github.com/amortaza/go-ux"
 )
 
@@ -18,8 +16,8 @@ type Hal interface {
 		title string,
 		onAfterGL, onLoop, onBeforeDelete func(),
 		onResize, onMouseMove func(int,int),
-		onMouseButton func(bl.MouseButton, bl.ButtonAction),
-		onKey func(bl.KeyboardKey, bl.ButtonAction, bool, bool, bool))
+		onMouseButton func(MouseButton, ButtonAction),
+		onKey func(KeyboardKey, ButtonAction, bool, bool, bool))
 
 	GetWindowDim()(width, height int)
 }
@@ -50,7 +48,7 @@ func onLoop() {
 	g_nodeByID = make(map[string] *Node)
 	g_pluginTicks = list.New()
 
-	event.G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
+	G_registerShortTermCallbacksByEventType = make(map[string] *list.List)
 
 	for e := g_pluginsInOrder.Front(); e != nil; e = e.Next() {
 		plugin := e.Value.(PlugIn)
@@ -68,8 +66,6 @@ func onLoop() {
 	    	cb := e.Value.(func())
 		cb()
 	}
-
-	detectDifferences(g_nodeByID_Previous, g_nodeByID)
 
 	g5.Clear(.13,.0,.0,1)
 	g5.Clear(.3,.3,.3,1)
