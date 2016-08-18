@@ -2,6 +2,10 @@ package bl
 
 var g_shadowNodeByID map[string] *ShadowNode
 
+func init() {
+	g_shadowNodeByID = make(map[string] *ShadowNode)
+}
+
 // MUST return sing value cause fluent
 func EnsureShadow() *ShadowNode {
 

@@ -2,23 +2,27 @@ package bl
 
 import (
 	"container/list"
+	"github.com/amortaza/go-adt"
 )
 
+var g_nodeByID map[string] *Node
+var g_nodeStack adt.Stack
+
 type Node struct {
-	Id                                 string
+	Id                       string
 
-	Left, Top, Width, Height           int
+	Left, Top, Width, Height int
 
-	Parent                             *Node
-	Kids                               *list.List
+	Parent                   *Node
+	Kids                     *list.List
 
-	OnMouseMoveCallbacks               *list.List
-	OnMouseButtonCallbacks             *list.List
+	OnMouseMoveCallbacks     *list.List
+	OnMouseButtonCallbacks   *list.List
 
-	CustomRender_Hook		   func(node *Node)
+	CustomRender             func(node *Node)
 
-	PreventBubbling bool
-	InvisibleToEvents bool
+	PreventBubbling          bool
+	InvisibleToEvents        bool
 }
 
 func NewNode() *Node {
@@ -51,4 +55,5 @@ func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
 
 func (node *Node) Free() {
 	// free shadow node here!
+	// todo
 }

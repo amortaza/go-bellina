@@ -1,5 +1,9 @@
 package bl
 
+type ButtonAction int
+type MouseButton int
+type KeyboardKey int
+
 func IO_onKey(key KeyboardKey, action ButtonAction, alt, ctrl, shift bool) {
 	keyEvent := NewKeyEvent(key, action, alt, ctrl, shift)
 
@@ -9,7 +13,7 @@ func IO_onKey(key KeyboardKey, action ButtonAction, alt, ctrl, shift bool) {
 func IO_onMouseMove(x,y int) {
 	Mouse_X, Mouse_Y = x, y
 
-	node := GetNodeAt_VisibleToEvents(x, y)
+	node := GetNodeAt__VisibleToEvents(x, y)
 
 	if node == nil {
 		node = Root_Node
@@ -41,7 +45,7 @@ func IO_onMouseMove(x,y int) {
 }
 
 func IO_onMouseButton(button MouseButton, action ButtonAction) {
-	node := GetNodeAt_VisibleToEvents(Mouse_X, Mouse_Y)
+	node := GetNodeAt__VisibleToEvents(Mouse_X, Mouse_Y)
 
 	if node == nil {
 		node = Root_Node

@@ -1,8 +1,6 @@
 package bl
 
-import (
-	"container/list"
-)
+import "container/list"
 
 func Root() {
 	Current_Node = NewNode()
@@ -56,6 +54,10 @@ func Dim(width, height int) {
 	Current_Node.Width, Current_Node.Height = width, height
 }
 
+func CustomRenderer(f func(node *Node), topsLabel bool) {
+	Current_Node.CustomRender = f
+}
+
 func PreventBubbling() {
 	Current_Node.PreventBubbling = true
 }
@@ -94,7 +96,4 @@ func GetNodeById(id string ) *Node {
 	return node
 }
 
-func CustomRenderer(f func(node *Node), topsLabel bool) {
-	Current_Node.CustomRender_Hook = f
-}
 

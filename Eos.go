@@ -1,8 +1,6 @@
 package bl
 
-import (
-	"github.com/amortaza/go-g5"
-)
+import "github.com/amortaza/go-g5"
 
 func renderCanvas(node *Node) *g5.Canvas {
 
@@ -14,8 +12,8 @@ func renderCanvas(node *Node) *g5.Canvas {
 
 	canvas.Begin()
 	{
-		if node.CustomRender_Hook != nil {
-			node.CustomRender_Hook(node)
+		if node.CustomRender != nil {
+			node.CustomRender(node)
 		}
 
 		for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
