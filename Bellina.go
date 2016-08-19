@@ -7,17 +7,11 @@ func Root() {
 
 	Current_Node.Id = "ROOT"
 
-	g_nodeByID["ROOT"] = Current_Node
+	g_nodeById["ROOT"] = Current_Node
 
 	g_nodeStack.Push(Current_Node)
 
 	Root_Node = Current_Node
-}
-
-func DivId(id string) {
-	g_nodeStack.Push(Current_Node)
-
-	Current_Node = GetNodeById(id)
 }
 
 func Div() {
@@ -31,9 +25,15 @@ func Div() {
 	g_nodeStack.Push(Current_Node)
 }
 
+func DivId(id string) {
+	Current_Node = GetNodeById(id)
+
+	g_nodeStack.Push(Current_Node)
+}
+
 func Id(id string) {
 	Current_Node.Id = id
-	g_nodeByID[id] = Current_Node
+	g_nodeById[id] = Current_Node
 }
 
 func End() {
@@ -67,10 +67,20 @@ func InvisibleToEvents() {
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
-	OnMouseMoveOnNode(Current_Node, cb)
+	onMouseMoveOnNode(Current_Node, cb)
 }
 
-func OnMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
+func OnMouseButton(cb func(*MouseButtonEvent)) {
+	onMouseButtonOnNode(Current_Node, cb)
+}
+
+func GetNodeById(id string ) *Node {
+	node, _ := g_nodeById[id]
+
+	return node
+}
+
+func onMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
 	if node.OnMouseMoveCallbacks == nil {
 		node.OnMouseMoveCallbacks = list.New()
 	}
@@ -78,22 +88,11 @@ func OnMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
 	node.OnMouseMoveCallbacks.PushBack(cb);
 }
 
-func OnMouseButton(cb func(*MouseButtonEvent)) {
-	OnMouseButtonOnNode(Current_Node, cb)
-}
-
-func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
+func onMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
 	if node.OnMouseButtonCallbacks == nil {
 		node.OnMouseButtonCallbacks = list.New()
 	}
 
 	node.OnMouseButtonCallbacks.PushBack(cb);
 }
-
-func GetNodeById(id string ) *Node {
-	node, _ := g_nodeByID[id]
-
-	return node
-}
-
 

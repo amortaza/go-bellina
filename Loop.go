@@ -8,7 +8,7 @@ import (
 func onLoop() {
 
 	// Clear Nodes
-	g_nodeByID = make(map[string] *Node)
+	g_nodeById = make(map[string] *Node)
 
 	// Clear Plugin On Tick
 	g_pluginTicks = list.New()

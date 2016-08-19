@@ -5,7 +5,7 @@ import (
 	"github.com/amortaza/go-adt"
 )
 
-var g_nodeByID map[string] *Node
+var g_nodeById map[string] *Node
 var g_nodeStack adt.Stack
 
 type Node struct {

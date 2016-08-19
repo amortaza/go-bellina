@@ -27,18 +27,29 @@ func NewShadowNode(node *Node) *ShadowNode {
 	return shadow
 }
 
-func (s *ShadowNode) Dim__Self_and_Node(width, height int) *ShadowNode {
+func (s *ShadowNode) DimWidth__Self_and_Node(width int) *ShadowNode {
 	s.Width = width
-	s.Height = height
 
 	s._backingNode.Width = s.Width
+
+	return s
+}
+
+func (s *ShadowNode) DimWidth__Node_Only() *ShadowNode {
+	s._backingNode.Width = s.Width
+
+	return s
+}
+
+func (s *ShadowNode) DimHeight__Self_and_Node(height int) *ShadowNode {
+	s.Height = height
+
 	s._backingNode.Height = s.Height
 
 	return s
 }
 
-func (s *ShadowNode) Dim__Node_Only() *ShadowNode {
-	s._backingNode.Width = s.Width
+func (s *ShadowNode) DimHeight__Node_Only() *ShadowNode {
 	s._backingNode.Height = s.Height
 
 	return s
