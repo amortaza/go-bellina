@@ -67,11 +67,11 @@ func InvisibleToEvents() {
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
-	onMouseMoveOnNode(Current_Node, cb)
+	OnMouseMoveOnNode(Current_Node, cb)
 }
 
 func OnMouseButton(cb func(*MouseButtonEvent)) {
-	onMouseButtonOnNode(Current_Node, cb)
+	OnMouseButtonOnNode(Current_Node, cb)
 }
 
 func GetNodeById(id string ) *Node {
@@ -80,7 +80,7 @@ func GetNodeById(id string ) *Node {
 	return node
 }
 
-func onMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
+func OnMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
 	if node.OnMouseMoveCallbacks == nil {
 		node.OnMouseMoveCallbacks = list.New()
 	}
@@ -88,7 +88,7 @@ func onMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
 	node.OnMouseMoveCallbacks.PushBack(cb);
 }
 
-func onMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
+func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
 	if node.OnMouseButtonCallbacks == nil {
 		node.OnMouseButtonCallbacks = list.New()
 	}
