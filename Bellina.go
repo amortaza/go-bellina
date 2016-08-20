@@ -54,8 +54,9 @@ func Dim(width, height int) {
 	Current_Node.Width, Current_Node.Height = width, height
 }
 
-func CustomRenderer(f func(node *Node), topsLabel bool) {
+func CustomRenderer(f func(node *Node), topsKids bool) {
 	Current_Node.CustomRender = f
+	Current_Node.CustomRenderTopsKids = topsKids
 }
 
 func PreventBubbling() {

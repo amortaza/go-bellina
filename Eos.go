@@ -12,7 +12,7 @@ func renderCanvas(node *Node) *g5.Canvas {
 
 	canvas.Begin()
 	{
-		if node.CustomRender != nil {
+		if node.CustomRender != nil && !node.CustomRenderTopsKids {
 			node.CustomRender(node)
 		}
 
@@ -25,6 +25,10 @@ func renderCanvas(node *Node) *g5.Canvas {
 			kidCanvas.Paint(false, kid.Left , kid.Top, g5.FourOnesFloat32)
 
 			kidCanvas.Free()
+		}
+
+		if node.CustomRender != nil && node.CustomRenderTopsKids {
+			node.CustomRender(node)
 		}
 	}
 	canvas.End()

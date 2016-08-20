@@ -20,6 +20,7 @@ type Node struct {
 	OnMouseButtonCallbacks   *list.List
 
 	CustomRender             func(node *Node)
+	CustomRenderTopsKids     bool
 
 	PreventBubbling          bool
 	InvisibleToEvents        bool
