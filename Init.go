@@ -13,12 +13,6 @@ func Init() {
 }
 
 func Uninit() {
-	// free plugins
-	for _, plugin := range g_pluginByName {
-
-		plugin.Uninit()
-	}
-
 	g5.Uninit()
 }
 

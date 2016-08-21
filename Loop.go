@@ -10,29 +10,11 @@ func onLoop() {
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
 
-	// Clear Plugin On Tick
-	g_pluginTicks = list.New()
-
 	// Clear Short Term
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
 	g_shortTerm_LifeCycleTicks = list.New()
 
-	for e := g_plugins_inOrder.Front(); e != nil; e = e.Next() {
-		plugin := e.Value.(PlugIn)
-		plugin.Reset_ShortTerm()
-	}
-
 	g_tick()
-
-	for e := g_plugins_inOrder.Front(); e != nil; e = e.Next() {
-		plugin := e.Value.(PlugIn)
-		plugin.Tick()
-	}
-
-	for e := g_pluginTicks.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
 
 	for e := g_shortTerm_LifeCycleTicks.Front(); e != nil; e = e.Next() {
 		cb := e.Value.(func())
