@@ -1,5 +1,7 @@
 package bl
 
+import "fmt"
+
 var g_tick func()
 var g_init func()
 var g_uninit func()
@@ -21,12 +23,16 @@ type Hal interface {
 func onAfterGL() {
 	Init()
 
+	fmt.Println("+ user init callback")
 	if g_init != nil {
 		g_init()
 	}
+
+
 }
 
 func onBeforeDelete() {
+	fmt.Println("- user uninit callback")
 	if g_uninit != nil {
 		g_uninit()
 	}

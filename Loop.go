@@ -12,11 +12,18 @@ func onLoop() {
 
 	// Clear Short Term
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
-	g_shortTerm_LifeCycleTicks = list.New()
+	g_LifeCycle_ShortTerm_Ticks = list.New()
 
 	g_tick()
 
-	for e := g_shortTerm_LifeCycleTicks.Front(); e != nil; e = e.Next() {
+	// long term ticks
+	for e := g_LifeCycle_LongTerm_Ticks.Front(); e != nil; e = e.Next() {
+		cb := e.Value.(func())
+		cb()
+	}
+
+	// short term ticks
+	for e := g_LifeCycle_ShortTerm_Ticks.Front(); e != nil; e = e.Next() {
 		cb := e.Value.(func())
 		cb()
 	}
