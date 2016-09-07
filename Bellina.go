@@ -117,6 +117,28 @@ func InvisibleToEvents() {
 	Current_Node.InvisibleToEvents = true
 }
 
+func RequireSettledBoundaries()  {
+	if !Current_Node.SettledBoundary {
+		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
+		panic("See print out - RequireSettledBoundaries error")
+	}
+}
+
+func RequireSettledKids() {
+	if !Current_Node.SettledKids {
+		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
+		panic("See print out - RequireSettledKids error")
+	}
+}
+
+func SettleBoundary() {
+	Current_Node.SettledBoundary = true
+}
+
+func SettleKids() {
+	Current_Node.SettledKids = true
+}
+
 func OnMouseMove(cb func(*MouseMoveEvent)) {
 	OnMouseMoveOnNode(Current_Node, cb)
 }
