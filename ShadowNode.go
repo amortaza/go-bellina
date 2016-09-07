@@ -1,5 +1,7 @@
 package bl
 
+import "fmt"
+
 type ShadowNode struct {
 	Id                       string
 	ParentId                 string

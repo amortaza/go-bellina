@@ -3,9 +3,16 @@ package bl
 import (
 	"container/list"
 	"github.com/amortaza/go-g5"
+	"fmt"	
 )
 
+func fake3() {
+    var _ = fmt.Println
+}
+
 func onLoop() {
+
+	//fmt.Println("START ********************************************************************** ", )
 
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
@@ -36,11 +43,16 @@ func onLoop() {
 		cb()
 	}
 
-	// short term ticks
-	for e := g_LifeCycle_AfterUser_Ticks_ShortTerm.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
+	// stabilize
+	for i := 0; i <= g_root_depth + 1; i++ {
+		for e := g_funcs.Front(); e != nil; e = e.Next() {
+			cb := e.Value.(func())
+			cb()
+		}
 	}
+
+	g_funcs.Init()
+	g_root_depth = 0
 
 	g5.Clear(.3,.3,.3,1)
 
@@ -60,5 +72,7 @@ func onLoop() {
 	if g_nodeStack.Size > 0 {
 		panic("Node stack memory leak")
 	}
+
+	//fmt.Println("END ********************************************************************** ", )
 }
 

@@ -1,8 +1,17 @@
 package bl
 
-import "container/list"
+import (
+	"container/list"
+	"fmt"
+)
+
+func fake() {
+	var _ = fmt.Println
+}
 
 func Root() {
+	g_root_depth++
+
 	Current_Node = NewNode()
 
 	Current_Node.Id = "ROOT"
@@ -15,6 +24,8 @@ func Root() {
 }
 
 func Div() {
+	g_root_depth++
+
 	parent := Current_Node
 
 	Current_Node = NewNode()
@@ -97,3 +108,10 @@ func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
 	node.OnMouseButtonCallbacks.PushBack(cb);
 }
 
+func AddFunc(f func()) {
+	g_funcs.PushBack(f)
+}
+
+func Disp(n *Node) {
+	fmt.Println("Node ", n.Id, "(", n.Left, ", ", n.Top, ") (", n.Width, " x ", n.Height, ")")
+}

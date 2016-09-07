@@ -7,8 +7,10 @@ import (
 
 var g_nodeById map[string] *Node
 var g_nodeStack adt.Stack
+var g_funcs list.List
 
 type Node struct {
+
 	Id                       string
 
 	Left, Top, Width, Height int
