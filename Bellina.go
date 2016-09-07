@@ -57,12 +57,51 @@ func End() {
 	}
 }
 
+func OwnLeft(owner string) {
+	if Current_Node.OwnerOfLeft == "" {
+		Current_Node.OwnerOfLeft = owner
+		
+	} else {
+		fmt.Println("Node \"", Current_Node.Id, "\" Left is already owned by \"", Current_Node.OwnerOfLeft, "\" and set to ", Current_Node.Left, ", it cannot be owned by ", owner)
+	}
+}
+
+func OwnTop(owner string) {
+	if Current_Node.OwnerOfTop == "" {
+		Current_Node.OwnerOfTop = owner
+
+	} else {
+		fmt.Println("Node \"", Current_Node.Id, "\" Top is already owned by \"", Current_Node.OwnerOfTop, "\" and set to ", Current_Node.Top, ", it cannot be owned by ", owner)
+	}
+}
+
+func OwnWidth(owner string) {
+	if Current_Node.OwnerOfWidth == "" {
+		Current_Node.OwnerOfWidth = owner
+		
+	} else {
+		fmt.Println("Node \"", Current_Node.Id, "\" Width is already owned by \"", Current_Node.OwnerOfWidth, "\" and set to ", Current_Node.Width, ", it cannot be owned by ", owner)
+	}
+}
+
+func OwnHeight(owner string) {
+	if Current_Node.OwnerOfHeight == "" {
+		Current_Node.OwnerOfHeight = owner
+
+	} else {
+		fmt.Println("Node \"", Current_Node.Id, "\" Height is already owned by \"", Current_Node.OwnerOfHeight, "\" and set to ", Current_Node.Height, ", it cannot be owned by ", owner)
+	}
+}
+
 func Pos(left, top int) {
-	Current_Node.Left, Current_Node.Top = left, top
+
+	Current_Node.Left = left
+	Current_Node.Top = top
 }
 
 func Dim(width, height int) {
-	Current_Node.Width, Current_Node.Height = width, height
+		Current_Node.Width = width
+		Current_Node.Height = height
 }
 
 func CustomRenderer(f func(node *Node), topsKids bool) {
@@ -87,7 +126,13 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 }
 
 func GetNodeById(id string ) *Node {
-	node, _ := g_nodeById[id]
+	node, ok := g_nodeById[id]
+
+	if !ok {
+		fmt.Println("Unable to find Node by Id ", id )
+
+		panic("See print out - GetNodeById error")
+	}
 
 	return node
 }

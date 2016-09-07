@@ -26,6 +26,11 @@ type Node struct {
 
 	PreventBubbling          bool
 	InvisibleToEvents        bool
+
+	OwnerOfLeft, OwnerOfTop, OwnerOfWidth, OwnerOfHeight string
+
+	SettledBoundary bool
+	SettledKids bool
 }
 
 func NewNode() *Node {
