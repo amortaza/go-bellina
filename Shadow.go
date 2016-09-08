@@ -18,7 +18,7 @@ func EnsureShadow() *ShadowNode {
 		g_shadowNodeById[Current_Node.Id] = shadow
 	}
 
-	shadow._backingNode = Current_Node
+	shadow.backingNode = Current_Node
 
 	return shadow
 }
@@ -37,7 +37,7 @@ func EnsureShadowById(id string) *ShadowNode {
 		g_shadowNodeById[id] = shadow
 	}
 
-	shadow._backingNode = node
+	shadow.backingNode = node
 
 	return shadow
 }
@@ -54,7 +54,7 @@ func EnsureShadowByNode(node *Node) *ShadowNode {
 		g_shadowNodeById[node.Id] = shadow
 	}
 
-	shadow._backingNode = node
+	shadow.backingNode = node
 
 	return shadow
 }

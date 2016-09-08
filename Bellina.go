@@ -57,40 +57,28 @@ func End() {
 	}
 }
 
-func OwnLeft(owner string) {
-	if Current_Node.OwnerOfLeft == "" {
-		Current_Node.OwnerOfLeft = owner
-		
-	} else {
-		fmt.Println("Node \"", Current_Node.Id, "\" Left is already owned by \"", Current_Node.OwnerOfLeft, "\" and set to ", Current_Node.Left, ", it cannot be owned by ", owner)
-	}
+func OwnPos(owner string) bool {
+	return Current_Node.OwnPos(owner)
 }
 
-func OwnTop(owner string) {
-	if Current_Node.OwnerOfTop == "" {
-		Current_Node.OwnerOfTop = owner
-
-	} else {
-		fmt.Println("Node \"", Current_Node.Id, "\" Top is already owned by \"", Current_Node.OwnerOfTop, "\" and set to ", Current_Node.Top, ", it cannot be owned by ", owner)
-	}
+func OwnDim(owner string) bool {
+	return Current_Node.OwnDim(owner)
 }
 
-func OwnWidth(owner string) {
-	if Current_Node.OwnerOfWidth == "" {
-		Current_Node.OwnerOfWidth = owner
-		
-	} else {
-		fmt.Println("Node \"", Current_Node.Id, "\" Width is already owned by \"", Current_Node.OwnerOfWidth, "\" and set to ", Current_Node.Width, ", it cannot be owned by ", owner)
-	}
+func OwnLeft(owner string) bool {
+	return Current_Node.OwnLeft(owner)
 }
 
-func OwnHeight(owner string) {
-	if Current_Node.OwnerOfHeight == "" {
-		Current_Node.OwnerOfHeight = owner
+func OwnTop(owner string) bool {
+	return Current_Node.OwnTop(owner)
+}
 
-	} else {
-		fmt.Println("Node \"", Current_Node.Id, "\" Height is already owned by \"", Current_Node.OwnerOfHeight, "\" and set to ", Current_Node.Height, ", it cannot be owned by ", owner)
-	}
+func OwnWidth(owner string) bool {
+	return Current_Node.OwnWidth(owner)
+}
+
+func OwnHeight(owner string) bool {
+	return Current_Node.OwnHeight(owner)
 }
 
 func Pos(left, top int) {

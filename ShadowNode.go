@@ -8,7 +8,11 @@ type ShadowNode struct {
 
 	Left, Top, Width, Height int
 
-	_backingNode             *Node // this is the node that the shadow is backing!!
+	backingNode              *Node // this is the node that the shadow is backing!!
+}
+
+func fake4() {
+	var _ = fmt.Print
 }
 
 func NewShadowNode(node *Node) *ShadowNode {
@@ -29,143 +33,109 @@ func NewShadowNode(node *Node) *ShadowNode {
 	return shadow
 }
 
-func hasWidthOwner(s *ShadowNode, owner string) bool {
-	if owner == "self" && (s._backingNode.OwnerOfWidth != "" && s._backingNode.OwnerOfWidth != "self") {
-		fmt.Println("\"", owner, "\" tried to set Width, but Node \"", s._backingNode.Id, "\" width is already owned by \"", s._backingNode.OwnerOfWidth, "\"")
-
-		return true
+func (shadow *ShadowNode) Width__Self_and_Node(width int, owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnWidth(owner) {
+		shadow.Width = width
+		shadow.backingNode.Width = shadow.Width
 	}
 
-	return false
+	return shadow
 }
 
-func hasHeightOwner(s *ShadowNode, owner string) bool {
-	if owner == "self" && (s._backingNode.OwnerOfHeight != "" && s._backingNode.OwnerOfHeight != "self") {
-		fmt.Println("\"", owner, "\" tried to set Height, but Node \"", s._backingNode.Id, "\" height is already owned by \"", s._backingNode.OwnerOfHeight, "\"")
-
-		return true
+func (shadow *ShadowNode) Width__Node_Only(owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnWidth(owner) {
+		shadow.backingNode.Width = shadow.Width
 	}
 
-	return false
-
+	return shadow
 }
 
-func hasLeftOwner(s *ShadowNode, owner string) bool {
-	if owner == "self" && (s._backingNode.OwnerOfLeft != "" && s._backingNode.OwnerOfLeft != "self") {
-		fmt.Println("\"", owner, "\" tried to set Left, but Node \"", s._backingNode.Id, "\" left is already owned by \"", s._backingNode.OwnerOfLeft, "\"")
-
-		return true
+func (shadow *ShadowNode) Height__Self_and_Node(height int, owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnHeight(owner) {
+		shadow.Height = height
+		shadow.backingNode.Height = shadow.Height
 	}
 
-	return false
+	return shadow
 }
 
-func hasTopOwner(s *ShadowNode, owner string) bool {
-	if owner == "self" && (s._backingNode.OwnerOfTop != "" && s._backingNode.OwnerOfTop != "self") {
-		fmt.Println("\"", owner, "\" tried to set Top, but Node \"", s._backingNode.Id, "\" top is already owned by \"", s._backingNode.OwnerOfTop, "\"")
-
-		return true
+func (shadow *ShadowNode) Dim__Self_and_Node(width, height int, owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnDim(owner) {
+		shadow.Width, shadow.Height = width, height
+		shadow.backingNode.Width, shadow.backingNode.Height = width, height
 	}
 
-	return false
+	return shadow
 }
 
-func (s *ShadowNode) DimWidth__Self_and_Node(width int, owner string) *ShadowNode {
-	if !hasWidthOwner(s, owner) {
-		s.Width = width
-
-		s._backingNode.Width = s.Width
-		s._backingNode.OwnerOfWidth = owner
-	} else {
-		fmt.Println("DimWidth__Self_and_Node ", )
+func (shadow *ShadowNode) Height__Node_Only(owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnHeight(owner) {
+		shadow.backingNode.Height = shadow.Height
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) DimWidth__Node_Only(owner string) *ShadowNode {
-	if !hasWidthOwner(s, owner) {
-
-		s._backingNode.Width = s.Width
-		s._backingNode.OwnerOfWidth = owner
-	} else {
-		fmt.Println("DimWidth__Node_Only ", )
+func (shadow *ShadowNode) Dim__Node_Only(owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnDim(owner) {
+		shadow.backingNode.Width = shadow.Width
+		shadow.backingNode.Height = shadow.Height
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) DimHeight__Self_and_Node(height int, owner string) *ShadowNode {
-	if !hasHeightOwner(s, owner) {
-		s.Height = height
-
-		s._backingNode.Height = s.Height
-		s._backingNode.OwnerOfHeight = owner
-	} else {
-		fmt.Println("DimHeight__Self_and_Node ", )
+func (shadow *ShadowNode) Left__Self_and_Node(left int, owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnLeft(owner) {
+		shadow.Left = left
+		shadow.backingNode.Left = shadow.Left
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) DimHeight__Node_Only(owner string) *ShadowNode {
-	if !hasHeightOwner(s, owner) {
-		s._backingNode.Height = s.Height
-		s._backingNode.OwnerOfHeight = owner
-	} else {
-		fmt.Println("DimHeight__Node_Only ", )
+func (shadow *ShadowNode) Left__Node_Only(owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnLeft(owner) {
+		shadow.backingNode.Left = shadow.Left
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) PosLeft__Self_and_Node(left int, owner string) *ShadowNode {
-	if !hasLeftOwner(s, owner) {
-		s.Left = left
-
-		s._backingNode.Left = s.Left
-		s._backingNode.OwnerOfLeft = owner
-	} else {
-		fmt.Println("PosLeft__Self_and_Node ", )
+func (shadow *ShadowNode) Top__Self_and_Node(top int, owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnTop(owner) {
+		shadow.Top = top
+		shadow.backingNode.Top = shadow.Top
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) PosLeft__Node_Only(owner string) *ShadowNode {
-	if !hasLeftOwner(s, owner) {
+func (shadow *ShadowNode) Pos__Self_and_Node(left, top int, owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnPos(owner) {
+		shadow.Left, shadow.Top = left, top
 
-		s._backingNode.Left = s.Left
-		s._backingNode.OwnerOfLeft = owner
-	} else {
-		fmt.Println("PosLeft__Node_Only ", )
+		shadow.backingNode.Left, shadow.backingNode.Top = left, top
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) PosTop__Self_and_Node(top int, owner string) *ShadowNode {
-	if !hasTopOwner(s, owner) {
-		s.Top = top
-
-		s._backingNode.Top = s.Top
-		s._backingNode.OwnerOfTop = owner
-	} else {
-		fmt.Println("PosTop__Self_and_Node ", )
+func (shadow *ShadowNode) Top__Node_Only(owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnTop(owner) {
+		shadow.backingNode.Top = shadow.Top
 	}
 
-	return s
+	return shadow
 }
 
-func (s *ShadowNode) PosTop__Node_Only(owner string) *ShadowNode {
-	if !hasTopOwner(s, owner) {
-		s._backingNode.Top = s.Top
-		s._backingNode.OwnerOfTop = owner
-	} else {
-		fmt.Println("PosTop__Node_Only ", )
+func (shadow *ShadowNode) Pos__Node_Only(owner string) *ShadowNode {
+	if owner == "*" || shadow.backingNode.OwnPos(owner) {
+		shadow.backingNode.Left = shadow.Left
+		shadow.backingNode.Top = shadow.Top
 	}
 
-	return s
+	return shadow
 }
 
 
