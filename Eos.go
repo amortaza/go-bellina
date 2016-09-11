@@ -15,7 +15,6 @@ func renderCanvas(node *Node) *g5.Canvas {
 		return nil
 	}
 
-	//fmt.Println("Eos")
 	//Disp(node)
 
 	canvas := g5.NewCanvas(node.Width, node.Height)

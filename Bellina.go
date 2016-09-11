@@ -97,10 +97,6 @@ func CustomRenderer(f func(node *Node), topsKids bool) {
 	Current_Node.CustomRenderTopsKids = topsKids
 }
 
-func PreventBubbling() {
-	Current_Node.PreventBubbling = true
-}
-
 func InvisibleToEvents() {
 	Current_Node.InvisibleToEvents = true
 }

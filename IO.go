@@ -19,27 +19,9 @@ func IO_onMouseMove(x,y int) {
 		node = Root_Node
 	}
 
-	var e *MouseMoveEvent
+	e:= NewMouseMoveEvent(x, y, node)
 
-	if node != nil {
-		e = NewMouseMoveEvent(x, y, node)
-	}
-
-	for {
-		if node == nil {
-			break
-		}
-
-		node.CallMouseMoveCallbacks(e)
-
-		if !e.BubbleToParent || node.PreventBubbling {
-			break
-		}
-
-		node = node.Parent
-
-		e.CurrentTarget = node
-	}
+	node.CallMouseMoveCallbacks(e)
 
 	FireEvent(e)
 }
@@ -51,32 +33,14 @@ func IO_onMouseButton(button MouseButton, action ButtonAction) {
 		node = Root_Node
 	}
 
-	var e *MouseButtonEvent
+	e := NewMouseButtonEvent(button, action, node)
 
-	if node != nil {
-		e = NewMouseButtonEvent(button, action, node)
-	}
+	if node.OnMouseButtonCallbacks != nil {
+		for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
+			cb := element.Value.(func(*MouseButtonEvent))
 
-	for {
-		if node == nil {
-			break
+			cb(e)
 		}
-
-		if node.OnMouseButtonCallbacks != nil {
-			for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
-				cb := element.Value.(func(*MouseButtonEvent))
-
-				cb(e)
-			}
-		}
-
-		if !e.BubbleToParent || node.PreventBubbling {
-			break
-		}
-
-		node = node.Parent
-
-		e.CurrentTarget = node
 	}
 
 	FireEvent(e)
