@@ -11,8 +11,11 @@ func fake3() {
 }
 
 func onLoop() {
+	debug := false
 
-	//fmt.Println("START ********************************************************************** ", )
+	if debug {
+		fmt.Println("START ********************************************************************** ", )
+	}
 
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
@@ -59,6 +62,10 @@ func onLoop() {
 	w, h := g_hal.GetWindowDim()
 	g5.PushView(w, h)
 
+	if debug {
+		fmt.Println("**** CANVAS")
+	}
+
 	canvas := renderCanvas(Root_Node)
 
 	if canvas != nil {
@@ -73,6 +80,8 @@ func onLoop() {
 		panic("Node stack memory leak")
 	}
 
-	//fmt.Println("END ********************************************************************** ", )
+	if debug {
+		fmt.Println("END ********************************************************************** ", )
+	}
 }
 

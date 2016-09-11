@@ -25,7 +25,6 @@ type Node struct {
 	CustomRender             func(node *Node)
 	CustomRenderTopsKids     bool
 
-	PreventBubbling          bool
 	InvisibleToEvents        bool
 
 	OwnerOfLeft, OwnerOfTop, OwnerOfWidth, OwnerOfHeight string
@@ -66,8 +65,8 @@ func (node *Node) OwnLeft(owner string) bool {
 	if node.OwnerOfLeft == "" {
 		node.OwnerOfLeft = owner
 
-	} else if node.OwnerOfLeft != owner {
-		fmt.Println("Node \"", node.Id, "\" Left is already owned by \"", node.OwnerOfLeft, "\" and set to ", node.Left, ", it cannot be owned by ", owner)
+	} else if owner != "*" && node.OwnerOfLeft != owner {
+		fmt.Println("Node \"", node.Id, "\" Left is already owned by \"", node.OwnerOfLeft, "\" and set to ", node.Left, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -78,8 +77,8 @@ func (node *Node) OwnTop(owner string) bool {
 	if node.OwnerOfTop == "" {
 		node.OwnerOfTop = owner
 
-	} else if node.OwnerOfTop != owner {
-		fmt.Println("Node \"", node.Id, "\" Top is already owned by \"", node.OwnerOfTop, "\" and set to ", node.Top, ", it cannot be owned by ", owner)
+	} else if owner != "*" && node.OwnerOfTop != owner {
+		fmt.Println("Node \"", node.Id, "\" Top is already owned by \"", node.OwnerOfTop, "\" and set to ", node.Top, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -90,8 +89,8 @@ func (node *Node) OwnWidth(owner string) bool {
 	if node.OwnerOfWidth == "" {
 		node.OwnerOfWidth = owner
 		
-	} else if node.OwnerOfWidth != owner {
-		fmt.Println("Node \"", node.Id, "\" Width is already owned by \"", node.OwnerOfWidth, "\" and set to ", node.Width, ", it cannot be owned by ", owner)
+	} else if owner != "*" && node.OwnerOfWidth != owner {
+		fmt.Println("Node \"", node.Id, "\" Width is already owned by \"", node.OwnerOfWidth, "\" and set to ", node.Width, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -102,8 +101,8 @@ func (node *Node) OwnHeight(owner string) bool {
 	if node.OwnerOfHeight == "" {
 		node.OwnerOfHeight = owner
 
-	} else if node.OwnerOfHeight != owner {
-		fmt.Println("Node \"", node.Id, "\" Height is already owned by \"", node.OwnerOfHeight, "\" and set to ", node.Height, ", it cannot be owned by ", owner)
+	} else if owner != "*" && node.OwnerOfHeight != owner {
+		fmt.Println("Node \"", node.Id, "\" Height is already owned by \"", node.OwnerOfHeight, "\" and set to ", node.Height, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
