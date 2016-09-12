@@ -62,7 +62,7 @@ func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
 }
 
 func (node *Node) OwnLeft(owner string) bool {
-	if node.OwnerOfLeft == "" {
+	if node.OwnerOfLeft == "" || node.OwnerOfLeft == "*" {
 		node.OwnerOfLeft = owner
 
 	} else if owner != "*" && node.OwnerOfLeft != owner {
@@ -74,7 +74,7 @@ func (node *Node) OwnLeft(owner string) bool {
 }
 
 func (node *Node) OwnTop(owner string) bool {
-	if node.OwnerOfTop == "" {
+	if node.OwnerOfTop == "" || node.OwnerOfTop == "*" {
 		node.OwnerOfTop = owner
 
 	} else if owner != "*" && node.OwnerOfTop != owner {
@@ -86,7 +86,7 @@ func (node *Node) OwnTop(owner string) bool {
 }
 
 func (node *Node) OwnWidth(owner string) bool {
-	if node.OwnerOfWidth == "" {
+	if node.OwnerOfWidth == ""  || node.OwnerOfWidth == "*" {
 		node.OwnerOfWidth = owner
 		
 	} else if owner != "*" && node.OwnerOfWidth != owner {
@@ -98,7 +98,7 @@ func (node *Node) OwnWidth(owner string) bool {
 }
 
 func (node *Node) OwnHeight(owner string) bool {
-	if node.OwnerOfHeight == "" {
+	if node.OwnerOfHeight == "" || node.OwnerOfHeight == "*" {
 		node.OwnerOfHeight = owner
 
 	} else if owner != "*" && node.OwnerOfHeight != owner {
