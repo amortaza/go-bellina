@@ -3,14 +3,18 @@ package bl
 import (
 	"container/list"
 	"github.com/amortaza/go-g5"
-	"fmt"	
+	"fmt"
+	"time"
 )
 
 func fake3() {
     var _ = fmt.Println
 }
 
+
 func onLoop() {
+	fps()
+
 	debug := false
 
 	if debug {
@@ -46,16 +50,7 @@ func onLoop() {
 		cb()
 	}
 
-	// stabilize
-	for i := 0; i <= g_root_depth + 1; i++ {
-		for e := g_funcs.Front(); e != nil; e = e.Next() {
-			cb := e.Value.(func())
-			cb()
-		}
-	}
-
-	g_funcs.Init()
-	g_root_depth = 0
+	Stabilize(Root_Node)
 
 	g5.Clear(.3,.3,.3,1)
 
@@ -85,3 +80,14 @@ func onLoop() {
 	}
 }
 
+var start = time.Now().Unix()
+var frame int64 = 0
+
+func fps() {
+	frame++
+
+	if frame % 60 == 0 {
+		var now = time.Now().Unix()
+		fmt.Println("FPS ", frame / (now - start))
+	}
+}

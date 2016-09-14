@@ -10,8 +10,6 @@ func fake() {
 }
 
 func Root() {
-	g_root_depth++
-
 	Current_Node = NewNode()
 
 	Current_Node.Id = "ROOT"
@@ -24,8 +22,6 @@ func Root() {
 }
 
 func Div() {
-	g_root_depth++
-
 	parent := Current_Node
 
 	Current_Node = NewNode()
@@ -159,8 +155,33 @@ func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
 	node.OnMouseButtonCallbacks.PushBack(cb);
 }
 
-func AddFunc(f func()) {
-	g_funcs.PushBack(f)
+func AddFunc(cb func()) {
+	if Current_Node.Kids == nil || Current_Node.Kids.Len() == 0 {
+		Current_Node.funcs_pre.PushBack(cb)
+	} else {
+		Current_Node.funcs_post.PushBack(cb)
+	}
+}
+
+func Stabilize(node *Node) {
+	for e := node.funcs_pre.Front(); e != nil; e = e.Next() {
+		cb := e.Value.(func())
+		cb()
+	}
+
+	for k := node.Kids.Front(); k != nil; k = k.Next() {
+		kid := k.Value.(*Node)
+		Stabilize(kid)
+	}
+
+	for e := node.funcs_post.Front(); e != nil; e = e.Next() {
+		cb := e.Value.(func())
+		cb()
+	}
+}
+
+func Dirty() {
+	Current_Node.Dirty = true
 }
 
 func Disp(n *Node) {

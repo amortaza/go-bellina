@@ -8,7 +8,6 @@ import (
 
 var g_nodeById map[string] *Node
 var g_nodeStack adt.Stack
-var g_funcs list.List
 
 type Node struct {
 
@@ -31,13 +30,19 @@ type Node struct {
 
 	SettledBoundary bool
 	SettledKids bool
+
+	funcs_pre, funcs_post *list.List
+
+	Dirty bool
 }
 
 func NewNode() *Node {
 	node := &Node{}
 
 	node.Kids = list.New()
-	
+	node.funcs_pre = list.New()
+	node.funcs_post = list.New()
+
 	return node
 }
 
