@@ -1,13 +1,8 @@
 package bl
 
-import (
-	"github.com/amortaza/go-g5"
-	"fmt"
-)
+import "fmt"
 
 func init_bl() {
-	fmt.Println("(+) g5.Init()")
-	g5.Init()
 
 	// initial resize fire
 	fmt.Println("(+) initial Resize fire event")
@@ -29,8 +24,5 @@ func uninit_bl() {
 		cb := e.Value.(func())
 		cb()
 	}
-
-	fmt.Println("(-) g5.Uninit()")
-	g5.Uninit()
 }
 

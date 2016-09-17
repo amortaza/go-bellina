@@ -2,6 +2,8 @@ package bl
 
 import "fmt"
 
+var FourOnesFloat32 = []float32{1,1,1,1}
+
 func DivId(id string) {
 	Current_Node = GetNodeById(id)
 

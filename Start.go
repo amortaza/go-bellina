@@ -6,6 +6,8 @@ var g_tick func()
 var g_init func()
 var g_uninit func()
 
+var g_graphics Graphics
+
 type ButtonAction int
 type MouseButton int
 type KeyboardKey int
@@ -14,18 +16,20 @@ type MouseCursor int
 var Hal HAL
 
 func onAfterGL() {
+	g_graphics = Hal.GetGraphics()
+
 	init_bl()
 
 	fmt.Println("+ user init callback")
+
 	if g_init != nil {
 		g_init()
 	}
-
-
 }
 
 func onBeforeDelete() {
 	fmt.Println("- user uninit callback")
+
 	if g_uninit != nil {
 		g_uninit()
 	}

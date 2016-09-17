@@ -1,9 +1,6 @@
 package bl
 
-import (
-	"container/list"
-	"github.com/amortaza/go-g5"
-)
+import "container/list"
 
 func onLoop() {
 	// todo remove for PROD
@@ -40,10 +37,10 @@ func onLoop() {
 	}
 
 	// todo
-	g5.Clear(.3,.3,.3,1)
+	g_graphics.Clear(.3, .3, .3, 1)
 
 	w, h := Hal.GetWindowDim()
-	g5.PushView(w, h)
+	g_graphics.PushView(w, h)
 
 	debug("**** CANVAS")
 
@@ -54,10 +51,10 @@ func onLoop() {
 
 		canvas := renderCanvas(Root_Node)
 
-		canvas.Paint(false, 0, 0, g5.FourOnesFloat32)
+		canvas.Paint(false, 0, 0, FourOnesFloat32)
 	}
 
-	g5.PopView()
+	g_graphics.PopView()
 
 	// todo prod
 	if g_nodeStack.Size > 0 {

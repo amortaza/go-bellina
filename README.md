@@ -6,10 +6,15 @@ Refer to this document for the specification of the public API for Bellina.
 
 High-level explanations, Tutorials, Setups, and Examples can be found at the following links:
 
- * [Introduction to Bellina (Presentation)](https://todo.com/presentation)
- * [Bellina Programming (PDF)](https://todo.com/pdf)
+ * ~~[Introduction to Bellina (Presentation)](https://todo.com/presentation)~~
+ * ~~[Bellina Programming Guide (PDF)](https://todo.com/pdf)~~
+ * [Bellina Public API Specification (Github)](https://github.com/amortaza/go-bellina)
  * [Bellina Tutorials (Github)](https://github.com/amortaza/go-bellina-tutorials)
- * [Bellina Series (Youtube)](https://todo.com/youtube)
+ * ~~[Bellina Series (Youtube)](https://todo.com/youtube)~~
+
+&nbsp;
+
+Some of the concepts referred to in this document (e.g. current node context) will not make sense without an introduction to the Bellina model.  Refer to the links above for basic introductions and tutorials.
 
 &nbsp;
 
@@ -145,6 +150,11 @@ bl.Disp(node *Node)</a>
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
 bl.SetMouseCursor(cursor MouseCursor)</a>
+
+### HAL API (Hardware Abstraction Layer)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
+bl.Start(...)</a>
 
 &nbsp;
 
@@ -1431,13 +1441,93 @@ bl.SetMouseCursor(bl.MouseCursor_IBeam)
 
 &nbsp;
 
+## HAL API (Hardware Abstraction Layer)
 
+```
+type Canvas interface {
+	Begin()
+	End()
+	GetWidth() int
+	GetHeight() int
+	Clear(red, green, blue float32)
+	Paint(seeThru bool, left, top int, alphas []float32)
+	Free()
+}
 
+type Graphics interface {
+	Clear(red, green, blue, alpha float32)
+	PushView(width, height int)
+	PopView()
+	NewCanvas(width, height int) Canvas
+}
 
+type HAL interface {
 
+	Start(	width, height int,
+		title string,
+		onAfterGL, onLoop, onBeforeDelete func(),
+		onResize, onMouseMove func(int,int),
+		onMouseButton func(MouseButton, ButtonAction),
+		onKey func(KeyboardKey, ButtonAction, bool, bool, bool))
 
+	GetWindowDim()(width, height int)
 
+	GetMousePos()(x,y int)
 
+	SetMouseCursor(cursor MouseCursor)
+
+	GetGraphics() Graphics
+}
+```
+
+#### Definition
+
+```
+bl.Start(	hal HAL,
+			width, height int,
+			title string,
+			init func(),
+			tick func(),
+			uninit func())
+```
+
+- This is how to start a Bellina application
+
+#### Example
+
+A minimum Bellina application
+
+```
+package main
+
+import (
+	"runtime"
+	"github.com/amortaza/go-bellina"
+	"github.com/amortaza/go-hal-g5"
+)
+
+func initialize() {
+}
+
+func tick() {
+
+	bl.Root()
+	{
+		bl.Pos(0,0)
+		bl.Dim(1024, 768)
+	}
+	bl.End()
+}
+
+func init() {
+	runtime.LockOSThread()
+}
+
+func main() {
+	bl.Start( hal_g5.New(), 1280, 1024, "Bellina v0.9", initialize, tick, nil )
+}
+
+```
 
 
 

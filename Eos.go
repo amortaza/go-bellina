@@ -1,28 +1,24 @@
 package bl
 
-import (
-	"github.com/amortaza/go-g5"
-)
-
-var g_canvas map[string] *g5.Canvas
+var g_canvas map[string] Canvas
 
 func init() {
-	g_canvas = make(map[string] *g5.Canvas)
+	g_canvas = make(map[string] Canvas)
 }
 
-func getCanvas(node *Node) *g5.Canvas {
+func getCanvas(node *Node) Canvas {
 	canvas, ok := g_canvas[node.Id]
 
 	if !ok {
-		canvas = g5.NewCanvas(node.Width, node.Height)
+		canvas = g_graphics.NewCanvas(node.Width, node.Height)
 
 		g_canvas[node.Id] = canvas
 
 	} else if node.Dirty {
-		if canvas.Width != node.Width || canvas.Height != node.Height {
+		if canvas.GetWidth() != node.Width || canvas.GetHeight() != node.Height {
 			canvas.Free()
 
-			canvas = g5.NewCanvas(node.Width, node.Height)
+			canvas = g_graphics.NewCanvas(node.Width, node.Height)
 
 			g_canvas[node.Id] = canvas
 		}
@@ -31,7 +27,7 @@ func getCanvas(node *Node) *g5.Canvas {
 	return canvas
 }
 
-func renderCanvas(node *Node) *g5.Canvas {
+func renderCanvas(node *Node) Canvas {
 	canvas := getCanvas(node)
 
 	if (!node.Dirty) {
@@ -40,7 +36,7 @@ func renderCanvas(node *Node) *g5.Canvas {
 
 	canvas.Begin()
 	{
-		canvas.Clear(.3,.3,.3)
+		canvas.Clear(.3, .3, .3)
 
 		if !node.CustomRenderTopsKids {
 			renderCustom(node)
@@ -52,7 +48,7 @@ func renderCanvas(node *Node) *g5.Canvas {
 
 			kidCanvas := renderCanvas(kid)
 
-			kidCanvas.Paint(false, kid.Left , kid.Top, g5.FourOnesFloat32)
+			kidCanvas.Paint(false, kid.Left , kid.Top, FourOnesFloat32)
 		}
 
 		if node.CustomRenderTopsKids {
