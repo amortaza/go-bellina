@@ -5,26 +5,23 @@ import "container/list"
 var g_LifeCycle_Inits = list.New()
 var g_LifeCycle_Uninits = list.New()
 
-var g_LifeCycle_AfterUser_Ticks_ShortTerm *list.List
-var g_LifeCycle_AfterUser_Ticks = list.New()
+var g_LifeCycle_AfterUser_Ticks_ShortTerm = list.New()
+var g_LifeCycle_AfterUser_Ticks_LongTerm = list.New()
 
-var g_LifeCycle_BeforeUser_Ticks_ShortTerm *list.List
-var g_LifeCycle_BeforeUser_Ticks = list.New()
+// Note: g_LifeCycle_BeforeUser_Ticks_ShortTerm does not make sense.
+// ShortTerm can ONLY exist after user ticks!!
+var g_LifeCycle_BeforeUser_Ticks_LongTerm = list.New()
 
-func Register_LifeCycle_AfterUser_Tick_ShortTerm(cb func()) {
+func Register_LifeCycle_After_UserTick_ShortTerm(cb func()) {
 	g_LifeCycle_AfterUser_Ticks_ShortTerm.PushBack(cb)
 }
 
-func Register_LifeCycle_BeforeUser_Tick_ShortTerm(cb func()) {
-	g_LifeCycle_BeforeUser_Ticks_ShortTerm.PushBack(cb)
+func Register_LifeCycle_After_UserTick_LongTerm(cb func()) {
+	g_LifeCycle_AfterUser_Ticks_LongTerm.PushBack(cb)
 }
 
-func Register_LifeCycle_AfterUser_Tick(cb func()) {
-	g_LifeCycle_AfterUser_Ticks.PushBack(cb)
-}
-
-func Register_LifeCycle_BeforeUser_Tick(cb func()) {
-	g_LifeCycle_BeforeUser_Ticks.PushBack(cb)
+func Register_LifeCycle_Before_UserTick_LongTerm(cb func()) {
+	g_LifeCycle_BeforeUser_Ticks_LongTerm.PushBack(cb)
 }
 
 func Register_LifeCycle_Init(cb func()) {

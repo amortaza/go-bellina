@@ -1,19 +1,15 @@
 package bl
 
-type ButtonAction int
-type MouseButton int
-type KeyboardKey int
-
-func IO_onKey(key KeyboardKey, action ButtonAction, alt, ctrl, shift bool) {
+func io_onKey(key KeyboardKey, action ButtonAction, alt, ctrl, shift bool) {
 	keyEvent := NewKeyEvent(key, action, alt, ctrl, shift)
 
 	FireEvent(keyEvent)
 }
 
-func IO_onMouseMove(x,y int) {
+func io_onMouseMove(x,y int) {
 	Mouse_X, Mouse_Y = x, y
 
-	node := GetNodeAt__VisibleToEvents(x, y)
+	node := getNodeAt__VisibleToMouseEvents(x, y)
 
 	if node == nil {
 		node = Root_Node
@@ -26,8 +22,8 @@ func IO_onMouseMove(x,y int) {
 	FireEvent(e)
 }
 
-func IO_onMouseButton(button MouseButton, action ButtonAction) {
-	node := GetNodeAt__VisibleToEvents(Mouse_X, Mouse_Y)
+func io_onMouseButton(button MouseButton, action ButtonAction) {
+	node := getNodeAt__VisibleToMouseEvents(Mouse_X, Mouse_Y)
 
 	if node == nil {
 		node = Root_Node
@@ -46,8 +42,8 @@ func IO_onMouseButton(button MouseButton, action ButtonAction) {
 	FireEvent(e)
 }
 
-func IO_onResize(width, height int) {
-	resizeEvent := NewResizeEvent(width, height)
+func io_onWindowResize(width, height int) {
+	resizeEvent := NewWindowResizeEvent(width, height)
 
 	FireEvent(resizeEvent)
 }

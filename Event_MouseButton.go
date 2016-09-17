@@ -1,13 +1,13 @@
 package bl
 
-var EventType_Mouse_Button string = "mouse button event"
+import "container/list"
+
+var EventType_Mouse_Button string = "mouse-button-event"
 
 type MouseButtonEvent struct {
 	Button         MouseButton
 	ButtonAction   ButtonAction
-	Target         *Node // the node the event originated on
-	CurrentTarget  *Node
-	BubbleToParent bool
+	Target         *Node
 }
 
 func (m *MouseButtonEvent) Type() string {
@@ -15,7 +15,16 @@ func (m *MouseButtonEvent) Type() string {
 }
 
 func NewMouseButtonEvent(button MouseButton, action ButtonAction, target *Node) *MouseButtonEvent {
-	e := &MouseButtonEvent{button, action, target, target, true}
+	e := &MouseButtonEvent{button, action, target}
 
 	return e
 }
+
+func onMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
+	if node.OnMouseButtonCallbacks == nil {
+		node.OnMouseButtonCallbacks = list.New()
+	}
+
+	node.OnMouseButtonCallbacks.PushBack(cb);
+}
+

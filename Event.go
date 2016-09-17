@@ -13,7 +13,7 @@ type Event interface {
 	Type() string
 }
 
-func RegisterLongTerm(eventType string, callback func(Event)) {
+func RegisterLongTerm(eventType string, cb func(Event)) {
 	callbacks, found := g_longTerm_callbacksByEventType[eventType]
 
 	if !found {
@@ -22,7 +22,7 @@ func RegisterLongTerm(eventType string, callback func(Event)) {
 		g_longTerm_callbacksByEventType[eventType] = callbacks
 	}
 
-	callbacks.PushBack(callback)
+	callbacks.PushBack(cb)
 }
 
 func RegisterShortTerm(eventType string, callback func(Event)) {

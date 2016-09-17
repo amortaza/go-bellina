@@ -3,23 +3,13 @@ package bl
 import (
 	"container/list"
 	"github.com/amortaza/go-g5"
-	"fmt"
-	"time"
 )
 
-func fake3() {
-    var _ = fmt.Println
-}
-
-
 func onLoop() {
+	// todo remove for PROD
 	fps()
 
-	debug := false
-
-	if debug {
-		fmt.Println("START ********************************************************************** ", )
-	}
+	debug("START ********************************************************************** " )
 
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
@@ -27,17 +17,10 @@ func onLoop() {
 	// Clear Short Term
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
 
-	g_LifeCycle_BeforeUser_Ticks_ShortTerm = list.New()
 	g_LifeCycle_AfterUser_Ticks_ShortTerm = list.New()
 
 	// long term ticks
-	for e := g_LifeCycle_BeforeUser_Ticks.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
-
-	// short term ticks
-	for e := g_LifeCycle_BeforeUser_Ticks_ShortTerm.Front(); e != nil; e = e.Next() {
+	for e := g_LifeCycle_BeforeUser_Ticks_LongTerm.Front(); e != nil; e = e.Next() {
 		cb := e.Value.(func())
 		cb()
 	}
@@ -45,49 +28,42 @@ func onLoop() {
 	g_tick()
 
 	// long term ticks
-	for e := g_LifeCycle_AfterUser_Ticks.Front(); e != nil; e = e.Next() {
+	for e := g_LifeCycle_AfterUser_Ticks_LongTerm.Front(); e != nil; e = e.Next() {
 		cb := e.Value.(func())
 		cb()
 	}
 
-	Stabilize(Root_Node)
-
-	g5.Clear(.3,.3,.3,1)
-
-	w, h := g_hal.GetWindowDim()
-	g5.PushView(w, h)
-
-	if debug {
-		fmt.Println("**** CANVAS")
+	// short term ticks
+	for e := g_LifeCycle_AfterUser_Ticks_ShortTerm.Front(); e != nil; e = e.Next() {
+		cb := e.Value.(func())
+		cb()
 	}
 
-	canvas := renderCanvas(Root_Node)
+	// todo
+	g5.Clear(.3,.3,.3,1)
 
-	if canvas != nil {
+	w, h := Hal.GetWindowDim()
+	g5.PushView(w, h)
+
+	debug("**** CANVAS")
+
+	if Root_Node != nil {
+		Stabilize(Root_Node)
+
+		setDirty_IncludeKids(Root_Node)
+
+		canvas := renderCanvas(Root_Node)
+
 		canvas.Paint(false, 0, 0, g5.FourOnesFloat32)
-		canvas.Free()
 	}
 
 	g5.PopView()
 
-	// #ifdef nonprod
+	// todo prod
 	if g_nodeStack.Size > 0 {
 		panic("Node stack memory leak")
 	}
 
-	if debug {
-		fmt.Println("END ********************************************************************** ", )
-	}
+	debug("END ********************************************************************** ")
 }
 
-var start = time.Now().Unix()
-var frame int64 = 0
-
-func fps() {
-	frame++
-
-	if frame % 60 == 0 {
-		var now = time.Now().Unix()
-		fmt.Println("FPS ", frame / (now - start))
-	}
-}

@@ -1,16 +1,16 @@
 package bl
 
 import (
-	"container/list"
 	"fmt"
 )
 
-func fake() {
-	var _ = fmt.Println
-}
+var Root_Node    *Node
+var Current_Node *Node
+
+var Mouse_X, Mouse_Y int
 
 func Root() {
-	Current_Node = NewNode()
+	Current_Node = newNode()
 
 	Current_Node.Id = "ROOT"
 
@@ -24,16 +24,10 @@ func Root() {
 func Div() {
 	parent := Current_Node
 
-	Current_Node = NewNode()
+	Current_Node = newNode()
 
 	parent.Kids.PushBack(Current_Node)
 	Current_Node.Parent = parent
-
-	g_nodeStack.Push(Current_Node)
-}
-
-func DivId(id string) {
-	Current_Node = GetNodeById(id)
 
 	g_nodeStack.Push(Current_Node)
 }
@@ -53,12 +47,55 @@ func End() {
 	}
 }
 
-func OwnPos(owner string) bool {
-	return Current_Node.OwnPos(owner)
+func Pos(left, top int) {
+	Current_Node.Left = left
+	Current_Node.Top = top
 }
 
-func OwnDim(owner string) bool {
-	return Current_Node.OwnDim(owner)
+func Dim(width, height int) {
+	Current_Node.Width = width
+	Current_Node.Height = height
+}
+
+func InvisibleToMouseEvents() {
+	Current_Node.InvisibleToMouseEvents = true
+}
+
+func CustomRenderer(f func(node *Node), topsKids bool) {
+	if Current_Node.CustomRender_1 == nil {
+		Current_Node.CustomRender_1 = f
+
+	} else {
+		Current_Node.CustomRender_2 = f
+	}
+
+	Current_Node.CustomRenderTopsKids = topsKids
+}
+
+func Dirty() {
+	Current_Node.Dirty = true
+}
+
+func SettleBoundary() {
+	Current_Node.SettledBoundary = true
+}
+
+func SettleKids() {
+	Current_Node.SettledKids = true
+}
+
+func RequireSettledBoundary()  {
+	if !Current_Node.SettledBoundary {
+		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
+		panic("See print out - RequireSettledBoundary error")
+	}
+}
+
+func RequireSettledKids() {
+	if !Current_Node.SettledKids {
+		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
+		panic("See print out - RequireSettledKids error")
+	}
 }
 
 func OwnLeft(owner string) bool {
@@ -77,113 +114,27 @@ func OwnHeight(owner string) bool {
 	return Current_Node.OwnHeight(owner)
 }
 
-func Pos(left, top int) {
-
-	Current_Node.Left = left
-	Current_Node.Top = top
+func OwnPos(owner string) bool {
+	return Current_Node.OwnPos(owner)
 }
 
-func Dim(width, height int) {
-		Current_Node.Width = width
-		Current_Node.Height = height
-}
-
-func CustomRenderer(f func(node *Node), topsKids bool) {
-	Current_Node.CustomRender = f
-	Current_Node.CustomRenderTopsKids = topsKids
-}
-
-func InvisibleToEvents() {
-	Current_Node.InvisibleToEvents = true
-}
-
-func RequireSettledBoundaries()  {
-	if !Current_Node.SettledBoundary {
-		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
-		panic("See print out - RequireSettledBoundaries error")
-	}
-}
-
-func RequireSettledKids() {
-	if !Current_Node.SettledKids {
-		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
-		panic("See print out - RequireSettledKids error")
-	}
-}
-
-func SettleBoundary() {
-	Current_Node.SettledBoundary = true
-}
-
-func SettleKids() {
-	Current_Node.SettledKids = true
+func OwnDim(owner string) bool {
+	return Current_Node.OwnDim(owner)
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
-	OnMouseMoveOnNode(Current_Node, cb)
+	onMouseMoveOnNode(Current_Node, cb)
 }
 
 func OnMouseButton(cb func(*MouseButtonEvent)) {
-	OnMouseButtonOnNode(Current_Node, cb)
-}
-
-func GetNodeById(id string ) *Node {
-	node, ok := g_nodeById[id]
-
-	if !ok {
-		fmt.Println("Unable to find Node by Id ", id )
-
-		panic("See print out - GetNodeById error")
-	}
-
-	return node
-}
-
-func OnMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
-	if node.OnMouseMoveCallbacks == nil {
-		node.OnMouseMoveCallbacks = list.New()
-	}
-
-	node.OnMouseMoveCallbacks.PushBack(cb);
-}
-
-func OnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
-	if node.OnMouseButtonCallbacks == nil {
-		node.OnMouseButtonCallbacks = list.New()
-	}
-
-	node.OnMouseButtonCallbacks.PushBack(cb);
+	onMouseButtonOnNode(Current_Node, cb)
 }
 
 func AddFunc(cb func()) {
 	if Current_Node.Kids == nil || Current_Node.Kids.Len() == 0 {
-		Current_Node.funcs_pre.PushBack(cb)
+		Current_Node.funcs_pre_kids.PushBack(cb)
 	} else {
-		Current_Node.funcs_post.PushBack(cb)
+		Current_Node.funcs_post_kids.PushBack(cb)
 	}
 }
 
-func Stabilize(node *Node) {
-	for e := node.funcs_pre.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
-
-	for k := node.Kids.Front(); k != nil; k = k.Next() {
-		kid := k.Value.(*Node)
-		Stabilize(kid)
-	}
-
-	for e := node.funcs_post.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
-}
-
-func Dirty() {
-	Current_Node.Dirty = true
-}
-
-func Disp(n *Node) {
-	fmt.Println("Node ", n.Id, "(", n.Left, ", ", n.Top, ") (", n.Width, " x ", n.Height, ")")
-}

@@ -1,33 +1,20 @@
 package bl
 
-import "fmt"
-
 type ShadowNode struct {
 	Id                       string
-	ParentId                 string
 
 	Left, Top, Width, Height int
 
 	BackingNode              *Node // this is the node that the shadow is backing!!
 }
 
-func fake4() {
-	var _ = fmt.Print
-}
-
-func NewShadowNode(node *Node) *ShadowNode {
-	var parentId string
-
-	if node.Parent != nil {
-		parentId = node.Parent.Id
-	}
+func newShadowNode(node *Node) *ShadowNode {
 
 	shadow := &ShadowNode{
 		node.Id,
-		parentId,
 		node.Left, node.Top,
 		node.Width, node.Height,
-		nil,
+		nil, // this will get overwritten anyways, do not set to node
 	}
 
 	return shadow

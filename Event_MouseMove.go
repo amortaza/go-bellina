@@ -1,12 +1,12 @@
 package bl
 
-var EventType_Mouse_Move string = "mouse move event"
+import "container/list"
+
+var EventType_Mouse_Move string = "mouse-move-event"
 
 type MouseMoveEvent struct {
 	X, Y int
-	Target *Node // the node the event originated on
-	CurrentTarget *Node
-	BubbleToParent bool
+	Target *Node
 }
 
 func (m *MouseMoveEvent) Type() string {
@@ -14,7 +14,16 @@ func (m *MouseMoveEvent) Type() string {
 }
 
 func NewMouseMoveEvent(x, y int, target *Node) *MouseMoveEvent {
-	e := &MouseMoveEvent{x, y, target, target, true}
+	e := &MouseMoveEvent{x, y, target}
 
 	return e
 }
+
+func onMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
+	if node.OnMouseMoveCallbacks == nil {
+		node.OnMouseMoveCallbacks = list.New()
+	}
+
+	node.OnMouseMoveCallbacks.PushBack(cb);
+}
+

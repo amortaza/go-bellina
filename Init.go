@@ -5,13 +5,13 @@ import (
 	"fmt"
 )
 
-func Init() {
+func init_bl() {
 	fmt.Println("(+) g5.Init()")
 	g5.Init()
 
 	// initial resize fire
 	fmt.Println("(+) initial Resize fire event")
-	resizeEvent := NewResizeEvent(g_hal.GetWindowDim())
+	resizeEvent := NewWindowResizeEvent(Hal.GetWindowDim())
 	FireEvent(resizeEvent)
 
 	// life cycle init
@@ -22,7 +22,7 @@ func Init() {
 	}
 }
 
-func Uninit() {
+func uninit_bl() {
 	// life cycle uninit
 	fmt.Println("(-) life cycle uninit callbacks...")
 	for e := g_LifeCycle_Uninits.Front(); e != nil; e = e.Next() {

@@ -21,27 +21,32 @@ type Node struct {
 	OnMouseMoveCallbacks     *list.List
 	OnMouseButtonCallbacks   *list.List
 
-	CustomRender             func(node *Node)
+	CustomRender_1           func(node *Node)
+	CustomRender_2           func(node *Node)
 	CustomRenderTopsKids     bool
 
-	InvisibleToEvents        bool
+	InvisibleToMouseEvents   bool
 
-	OwnerOfLeft, OwnerOfTop, OwnerOfWidth, OwnerOfHeight string
+	OwnerOfLeft              string
+	OwnerOfTop               string
+	OwnerOfWidth             string
+	OwnerOfHeight            string
 
-	SettledBoundary bool
-	SettledKids bool
+	SettledBoundary          bool
+	SettledKids              bool
 
-	funcs_pre, funcs_post *list.List
+	Dirty                    bool
 
-	Dirty bool
+	funcs_pre_kids           *list.List
+	funcs_post_kids          *list.List
 }
 
-func NewNode() *Node {
+func newNode() *Node {
 	node := &Node{}
 
 	node.Kids = list.New()
-	node.funcs_pre = list.New()
-	node.funcs_post = list.New()
+	node.funcs_pre_kids = list.New()
+	node.funcs_post_kids = list.New()
 
 	return node
 }
@@ -115,11 +120,17 @@ func (node *Node) OwnHeight(owner string) bool {
 }
 
 func (node *Node) OwnPos(owner string) bool {
-	return node.OwnLeft(owner) && node.OwnTop(owner)
+	left := node.OwnLeft(owner)
+	top := node.OwnTop(owner)
+
+	return  left && top
 }
 
 func (node *Node) OwnDim(owner string) bool {
-	return node.OwnWidth(owner) && node.OwnHeight(owner)
+	width := node.OwnWidth(owner)
+	height := node.OwnHeight(owner)
+
+	return width && height
 }
 
 func (node *Node) Free() {

@@ -6,22 +6,15 @@ var g_tick func()
 var g_init func()
 var g_uninit func()
 
-var g_hal Hal
+type ButtonAction int
+type MouseButton int
+type KeyboardKey int
+type MouseCursor int
 
-type Hal interface {
-
-	Start(	width, height int,
-		title string,
-		onAfterGL, onLoop, onBeforeDelete func(),
-		onResize, onMouseMove func(int,int),
-		onMouseButton func(MouseButton, ButtonAction),
-		onKey func(KeyboardKey, ButtonAction, bool, bool, bool))
-
-	GetWindowDim()(width, height int)
-}
+var Hal HAL
 
 func onAfterGL() {
-	Init()
+	init_bl()
 
 	fmt.Println("+ user init callback")
 	if g_init != nil {
@@ -37,10 +30,10 @@ func onBeforeDelete() {
 		g_uninit()
 	}
 
-	Uninit()
+	uninit_bl()
 }
 
-func Start(	hal Hal,
+func Start(	hal HAL,
 		width, height int,
 		title string,
 		init func(),
@@ -51,15 +44,15 @@ func Start(	hal Hal,
 	g_init = init
 	g_uninit = uninit
 
-	g_hal = hal
+	Hal = hal
 
 	hal.Start(	width, height,
 			title,
 			onAfterGL,
 			onLoop,
 			onBeforeDelete,
-			IO_onResize,
-			IO_onMouseMove,
-			IO_onMouseButton,
-			IO_onKey)
+			io_onWindowResize,
+			io_onMouseMove,
+			io_onMouseButton,
+			io_onKey)
 }

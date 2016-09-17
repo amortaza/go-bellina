@@ -1,6 +1,6 @@
 package bl
 
-var EventType_Key string = "key event"
+var eventType_Key string = "key-event"
 
 type KeyEvent struct {
 	Key KeyboardKey
@@ -9,7 +9,7 @@ type KeyEvent struct {
 }
 
 func (k *KeyEvent) Type() string {
-	return EventType_Key
+	return eventType_Key
 }
 
 func NewKeyEvent(key KeyboardKey, action ButtonAction, alt, ctrl, shift bool) *KeyEvent {
