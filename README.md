@@ -6,12 +6,9 @@ Refer to this document for the specification of the public API for Bellina.
 
 High-level explanations, Tutorials, Setups, and Examples can be found at the following links:
 
- * ~~[Introduction to Bellina (Presentation)](https://todo.com/presentation)~~
- * ~~[Bellina Programming Guide (PDF)](https://todo.com/pdf)~~
  * [Bellina Public API Specification (Github)](https://github.com/amortaza/go-bellina)
  * [Bellina Tutorials (Github)](https://github.com/amortaza/go-bellina-tutorials)
- * ~~[Bellina Series (Youtube)](https://todo.com/youtube)~~
-
+ 
 &nbsp;
 
 Some of the concepts referred to in this document (e.g. current node context) will not make sense without an introduction to the Bellina model.  Refer to the links above for basic introductions and tutorials.
@@ -22,7 +19,7 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 
 ### Current Node Context API
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="root">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#root">
 bl.Root()</a>
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
@@ -203,7 +200,7 @@ type ShadowNode struct {
 #### Definition
 
 ```
-bl.Root()
+<a name="root">bl.Root()</a>
 ```
 
 - Starts a new Bellina node tree
