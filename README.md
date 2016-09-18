@@ -1159,22 +1159,46 @@ type Event interface {
 	Type() string
 }
 ```
+
+<div id="button-action" />
+
+#### ButtonAction values
+
+```
+const (
+	Button_Action_Down
+	Button_Action_Up
+)
+```
+
 <div id="key-event" />
 ```
 type KeyEvent struct {
 	Key KeyboardKey
-	Action ButtonAction
+	Action ButtonAction  // see ButtonAction values above for valid values
 	Alt, Ctrl, Shift bool
 }
 ```
+
+<div id="mouse-button" />
+
+#### MouseButton values
+```
+const (
+	Mouse_Button_Left
+	Mouse_Button_Right
+)
+```
+
 <div id="mouse-button-event" />
 ```
 type MouseButtonEvent struct {
-	Button         MouseButton
-	ButtonAction   ButtonAction
+	Button         MouseButton  // see MouseButton values above for valid values
+	ButtonAction   ButtonAction // see ButtonAction values above for valid values
 	Target         *Node
 }
 ```
+
 <div id="mouse-move-event" />
 ```
 type MouseMoveEvent struct {
