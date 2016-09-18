@@ -118,6 +118,18 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.FireEvent(event Event)](#blfireevent)
 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Keyboard Event](#key-event)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Mouse Move Event](#mouse-move-event)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Mouse Button Event](#mouse-button-event)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Window Resize Event](#window-resize-event)
+
 <div id="toc-lc" />
 ### Life-Cycle API
 
@@ -1141,33 +1153,40 @@ bl.HasShadowById(id string) (*ShadowNode, bool)
 
 
 ## Events API
-
+<div id="ievent" />
 ```
 type Event interface {
 	Type() string
 }
-
+```
+<div id="key-event" />
+```
 type KeyEvent struct {
 	Key KeyboardKey
 	Action ButtonAction
 	Alt, Ctrl, Shift bool
 }
-
+```
+<div id="mouse-button-event" />
+```
 type MouseButtonEvent struct {
 	Button         MouseButton
 	ButtonAction   ButtonAction
 	Target         *Node
 }
-
+```
+<div id="mouse-move-event" />
+```
 type MouseMoveEvent struct {
 	X, Y int
 	Target *Node
 }
-
+```
+<div id="window-resize-event" />
+```
 type WindowResizeEvent struct {
 	Width, Height int
 }
-
 ```
 
 &nbsp;
