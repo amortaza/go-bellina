@@ -151,6 +151,16 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 ### HAL API (Hardware Abstraction Layer)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Canvas Interface](#icanvas)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Graphics Interface](#igraphics)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[HAL Interface](#ihal)
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.Start(...)](#blstart)
 
 ### Global Variables
@@ -1457,6 +1467,7 @@ bl.SetMouseCursor(bl.MouseCursor_IBeam)
 
 ## HAL API (Hardware Abstraction Layer)
 
+<div id="icanvas" />
 ```
 type Canvas interface {
 	Begin()
@@ -1467,14 +1478,20 @@ type Canvas interface {
 	Paint(seeThru bool, left, top int, alphas []float32)
 	Free()
 }
+```
 
+<div id="igraphics" />
+```
 type Graphics interface {
 	Clear(red, green, blue, alpha float32)
 	PushView(width, height int)
 	PopView()
 	NewCanvas(width, height int) Canvas
 }
+```
 
+<div id="ihal" />
+```
 type HAL interface {
 
 	Start(	width, height int,
@@ -1493,6 +1510,7 @@ type HAL interface {
 	GetGraphics() Graphics
 }
 ```
+
 <div id="blstart" />
 #### Definition
 
