@@ -4,7 +4,7 @@ import (
 	"runtime"
 	"fmt"
 	"github.com/amortaza/go-bellina"
-	"github.com/amortaza/go-hal-oob"
+	"github.com/amortaza/go-hal-g5"
 )
 
 func initialize() {
@@ -28,7 +28,7 @@ func init() {
 }
 
 func main() {
-	bl.Start( haloob.New(), 1280, 1024, "Bellina v0.2", initialize, tick, uninit )
+	bl.Start( hal_g5.New(), 1280, 1024, "Bellina v0.2", initialize, tick, uninit )
 
 	fmt.Println("bye!")
 }

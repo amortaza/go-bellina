@@ -7,6 +7,7 @@ import (
 var Root_Node    *Node
 var Current_Node *Node
 
+var Window_Width, Window_Height int
 var Mouse_X, Mouse_Y int
 
 func Root() {

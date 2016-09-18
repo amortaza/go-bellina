@@ -29,7 +29,7 @@ func io_onMouseButton(button MouseButton, action ButtonAction) {
 		node = Root_Node
 	}
 
-	e := NewMouseButtonEvent(button, action, node)
+	e := NewMouseButtonEvent(button, Mouse_X, Mouse_Y, action, node)
 
 	if node.OnMouseButtonCallbacks != nil {
 		for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
@@ -44,6 +44,8 @@ func io_onMouseButton(button MouseButton, action ButtonAction) {
 
 func io_onWindowResize(width, height int) {
 	resizeEvent := NewWindowResizeEvent(width, height)
+
+	Window_Width, Window_Height = width, height
 
 	FireEvent(resizeEvent)
 }

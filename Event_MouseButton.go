@@ -5,17 +5,28 @@ import "container/list"
 var EventType_Mouse_Button string = "mouse-button-event"
 
 type MouseButtonEvent struct {
-	Button         MouseButton
-	ButtonAction   ButtonAction
-	Target         *Node
+	Button         	MouseButton
+	X, Y		int
+	ButtonAction   	ButtonAction
+	Target         	*Node
 }
 
 func (m *MouseButtonEvent) Type() string {
 	return EventType_Mouse_Button
 }
 
-func NewMouseButtonEvent(button MouseButton, action ButtonAction, target *Node) *MouseButtonEvent {
-	e := &MouseButtonEvent{button, action, target}
+const (
+	Mouse_Button_Left MouseButton = 1 + iota
+	Mouse_Button_Right
+)
+
+const (
+	Button_Action_Down ButtonAction = 1 + iota
+	Button_Action_Up
+)
+
+func NewMouseButtonEvent(button MouseButton, mouseX, mouseY int, action ButtonAction, target *Node) *MouseButtonEvent {
+	e := &MouseButtonEvent{button, mouseX, mouseY, action, target}
 
 	return e
 }

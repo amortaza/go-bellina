@@ -1551,6 +1551,13 @@ func main() {
 
 &nbsp;
 
+`bl.Window_Width`, `bl.Window_Height`
+
+- The current *application* Window width and height
+- Is always up to date
+
+&nbsp;
+
 `bl.Mouse_X`, `bl.Mouse_Y`
 
 - The current mouse (x, y) coordinates relative to the *application* Window
