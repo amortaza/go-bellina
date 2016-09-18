@@ -196,8 +196,10 @@ type ShadowNode struct {
 }
 
 ```
-<div id="blroot" />
 
+&nbsp;
+
+<div id="blroot" />
 #### Definition
 
 ```
@@ -239,7 +241,7 @@ The difference is `bl.Root()` sets the global variable `bl.Root_Node` to the new
 &nbsp;
 
 ---
-
+<div id="bldiv" />
 #### Definition
 
 ```
