@@ -119,6 +119,12 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 [bl.FireEvent(event Event)](#blfireevent)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Button Action](#button-action)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[Mouse Button](#mouse-button)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [Keyboard Event](#key-event)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -1146,14 +1152,14 @@ bl.HasShadowById(id string) (*ShadowNode, bool)
 
 - Returns `false` if the `ShadowNode`the `ShadowNode` for the node if it exists
 
-
 &nbsp;
 
 &nbsp;
-
 
 ## Events API
 <div id="ievent" />
+#### Event Interface
+
 ```
 type Event interface {
 	Type() string
@@ -1161,7 +1167,6 @@ type Event interface {
 ```
 
 <div id="button-action" />
-
 #### ButtonAction values
 
 ```
@@ -1171,6 +1176,17 @@ const (
 )
 ```
 
+<div id="mouse-button" />
+#### MouseButton values
+```
+const (
+	Mouse_Button_Left
+	Mouse_Button_Right
+)
+```
+
+#### Window/Keyboard/Mouse Events
+
 <div id="key-event" />
 ```
 type KeyEvent struct {
@@ -1178,16 +1194,6 @@ type KeyEvent struct {
 	Action ButtonAction  // see ButtonAction values above for valid values
 	Alt, Ctrl, Shift bool
 }
-```
-
-<div id="mouse-button" />
-
-#### MouseButton values
-```
-const (
-	Mouse_Button_Left
-	Mouse_Button_Right
-)
 ```
 
 <div id="mouse-button-event" />
