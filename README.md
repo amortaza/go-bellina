@@ -197,10 +197,10 @@ type ShadowNode struct {
 
 ```
 
-#### Definition
+#### Definition <a name="root"></a>
 
 ```
-<a name="root">bl.Root()</a>
+bl.Root()
 ```
 
 - Starts a new Bellina node tree
