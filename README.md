@@ -16,8 +16,14 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp;
 
 ## Public API
-
+<div id="toc-node" />
 ### Current Node Context API
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+[Node Struct](#node-struct)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+[Shadow Node Struct](#shadownode-struct)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 [bl.Root()](#blroot)
@@ -97,6 +103,7 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.HasShadowById(id string) (*ShadowNode, bool)](#blhasshadowbyid)
 
+<div id="toc-events" />
 ### Events API
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -111,6 +118,7 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.FireEvent(event Event)](#blfireevent)
 
+<div id="toc-lc" />
 ### Life-Cycle API
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -128,6 +136,7 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.Register_LifeCycle_Uninit(cb func())](#blregisterlifecycleuninit)
 
+<div id="toc-helper" />
 ### Helper API
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -148,6 +157,7 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.SetMouseCursor(cursor MouseCursor)](#blsetmousecursor)
 
+<div id="toc-hal" />
 ### HAL API (Hardware Abstraction Layer)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -159,10 +169,10 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [HAL Interface](#ihal)
 
-
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.Start(...)](#blstart)
 
+<div id="toc-globals" />
 ### Global Variables
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -181,6 +191,7 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 
 ## Current Node Context API
 
+<div id="node-struct" />
 ```
 type Node struct {
 
@@ -210,7 +221,10 @@ type Node struct {
 
 	Dirty                    bool
 }
+```
 
+<div id="shadownode-struct" />
+```
 type ShadowNode struct {
 	Id                       string
 
@@ -218,7 +232,6 @@ type ShadowNode struct {
 
 	BackingNode              *Node // this is the node that the shadow is backing!!
 }
-
 ```
 
 &nbsp;
