@@ -20,138 +20,138 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 ### Current Node Context API
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-[bl.Root()](#mylink)
+[bl.Root()](#blroot)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Div()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+[bl.Div()](#bldiv)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Id(id string)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Id(id string)](#blid)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.End()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.End()](#blend)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Pos(left, top int)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Pos(left, top int)](#blpos)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Dim(width, height int)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Dim(width, height int)](#bldim)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.InvisibleToMouseEvents()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.InvisibleToMouseEvents()](#blinvisibletomouseevents)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.CustomRenderer(f func(node *Node), topsKids bool))</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.CustomRenderer(f func(node *Node), topsKids bool))](#blcustomrenderer)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Dirty()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Dirty()](#bldirty)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.SettleBoundary()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.SettleBoundary()](#blsettleboundary)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.SettleKids()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.SettleKids()](#blsettlekids)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.RequireSettledBoundary()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.RequireSettledBoundary()](#blrequiresettledboundary)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.RequireSettledKids()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.RequireSettledKids()](#blrequiresettledkids)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OwnLeft(owner string) bool</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OwnLeft(owner string) bool](#blownleft)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OwnTop(owner string) bool</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OwnTop(owner string) bool](#blowntop)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OwnWidth(owner string) bool</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OwnWidth(owner string) bool](#blownwidth)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OwnHeight(owner string) bool</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OwnHeight(owner string) bool](#blownheight)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OwnPos(owner string) bool</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OwnPos(owner string) bool](#blownpos)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OwnDim(owner string) bool</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OwnDim(owner string) bool](#blowndim)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OnMouseMove(cb func(*MouseMoveEvent))</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OnMouseMove(cb func(*MouseMoveEvent))](#blonmousemove)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.OnMouseButton(cb func(*MouseButtonEvent))</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.OnMouseButton(cb func(*MouseButtonEvent))](#blonmousebutton)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.AddFunc(cb func())</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.AddFunc(cb func())](#bladdfunc)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.EnsureShadow() *ShadowNode</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.EnsureShadow() *ShadowNode](#blensureshadow)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.EnsureShadowById(id string) *ShadowNode</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.EnsureShadowById(id string) *ShadowNode](#blensureshadowbyid)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.EnsureShadowByNode(node *Node) *ShadowNode</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.EnsureShadowByNode(node *Node) *ShadowNode](#blensureshadowbynode)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.HasShadowById(id string) (*ShadowNode, bool)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.HasShadowById(id string) (*ShadowNode, bool)](#blhasshadowbyid)
 
 ### Events API
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Event interface</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Event interface](#blevent)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.RegisterLongTerm(eventType string, callback func(Event))</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.RegisterLongTerm(eventType string, callback func(Event))](#blregisterlongterm)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.RegisterShortTerm(eventType string, callback func(Event))</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.RegisterShortTerm(eventType string, callback func(Event))](#blregistershortterm)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.FireEvent(event Event)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.FireEvent(event Event)](#blfireevent)
 
 ### Life-Cycle API
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Register_LifeCycle_After_UserTick_ShortTerm(cb func())</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Register_LifeCycle_After_UserTick_ShortTerm(cb func())](#blregisterlifecycleafterusertickshortterm)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Register_LifeCycle_After_UserTick_LongTerm(cb func())</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Register_LifeCycle_After_UserTick_LongTerm(cb func())](#blregisterlifecycleafteruserticklongterm)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Register_LifeCycle_Before_UserTick_LongTerm(cb func())</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Register_LifeCycle_Before_UserTick_LongTerm(cb func())](#blregisterlifecyclebeforeuserticklongterm)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Register_LifeCycle_Init(cb func())</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Register_LifeCycle_Init(cb func())](#blregisterlifecycleinit)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Register_LifeCycle_Uninit(cb func())</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Register_LifeCycle_Uninit(cb func())](#blregisterlifecycleuninit)
 
 ### Helper API
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.GetNodeAbsolutePos(node *Node)(absX, absY int)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.GetNodeAbsolutePos(node *Node)(absX, absY int)](#blgetnodeabsolutepos)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.DivId(id string)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.DivId(id string)](#bldivid)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.GetNodeById(id string ) *Node</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.GetNodeById(id string ) *Node](#blgetnodebyid)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Stabilize(node *Node)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Stabilize(node *Node)](#blstabilize)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Disp(node *Node)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Disp(node *Node)](#bldisp)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.SetMouseCursor(cursor MouseCursor)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.SetMouseCursor(cursor MouseCursor)](#blsetmousecursor)
 
 ### HAL API (Hardware Abstraction Layer)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
-bl.Start(...)</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Start(...)](#blstart)
 
 &nbsp;
 
@@ -196,9 +196,10 @@ type ShadowNode struct {
 }
 
 ```
+<div id="blroot" />
 
-##root 
-<div id="mylink" /> 
+#### Definition
+
 ```
 bl.Root()
 ```
