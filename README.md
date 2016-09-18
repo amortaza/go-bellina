@@ -59,16 +59,16 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 [bl.RequireSettledKids()](#blrequiresettledkids)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-[bl.OwnLeft(owner string) bool](#blownleft)
+[bl.OwnLeft(owner string) bool](#blownltwh)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-[bl.OwnTop(owner string) bool](#blowntop)
+[bl.OwnTop(owner string) bool](#blownltwh)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-[bl.OwnWidth(owner string) bool](#blownwidth)
+[bl.OwnWidth(owner string) bool](#blownltwh)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-[bl.OwnHeight(owner string) bool](#blownheight)
+[bl.OwnHeight(owner string) bool](#blownltwh)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.OwnPos(owner string) bool](#blownpos)
@@ -152,6 +152,20 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 [bl.Start(...)](#blstart)
+
+### Global Variables
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Root_Node](#blrootnode)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Current_Node](#blcurrentnode)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Window_Width, bl.Window_Height](#blwindowwh)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+[bl.Mouse_X, bl.Mouse_Y](#blmousexy)
 
 &nbsp;
 
@@ -291,7 +305,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blid" />
 #### Definition
 
 ```
@@ -331,7 +345,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blend" />
 #### Definition
 
 ```
@@ -368,7 +382,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blpos" />
 #### Definition
 
 ```
@@ -403,7 +417,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="bldim" />
 #### Definition
 
 ```
@@ -436,7 +450,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blinvisibletomouseevents" />
 #### Definition
 
 ```
@@ -470,7 +484,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blcustomrenderer" />
 #### Definition
 
 ```
@@ -516,7 +530,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="bldirty" />
 #### Definition
 
 ```
@@ -557,7 +571,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blsettleboundary" />
 #### Definition
 
 ```
@@ -597,7 +611,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blsettlekids" />
 #### Definition
 
 ```
@@ -642,7 +656,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blrequiresettledboundary" />
 #### Definition
 
 ```
@@ -685,7 +699,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blrequiresettledkids" />
 #### Definition
 
 ```
@@ -733,7 +747,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blownltwh" />
 #### Definition
 
 ```
@@ -800,7 +814,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blownpos" />
 #### Definition
 
 ```
@@ -838,7 +852,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="bldim" />
 #### Definition
 
 ```
@@ -876,7 +890,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blonmousemove" />
 #### Definition
 
 ```
@@ -914,7 +928,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blonmousebutton" />
 #### Definition
 
 ```
@@ -952,7 +966,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="bladdfunc" />
 #### Definition
 
 ```
@@ -1030,7 +1044,7 @@ bl.End()
 &nbsp;
 
 ---
-
+<div id="blensureshadow" />
 #### Definition
 
 ```
@@ -1049,11 +1063,11 @@ bl.EnsureShadow() *ShadowNode
 &nbsp;
 
 ---
-
+<div id="blensureshadowbyid" />
 #### Definition
 
 ```
-EnsureShadowById(id string) *ShadowNode
+bl.EnsureShadowById(id string) *ShadowNode
 ```
 
 - Returns the `ShadowNode` for the node with given `id`, or creates one if it does not exist
@@ -1067,11 +1081,11 @@ EnsureShadowById(id string) *ShadowNode
 &nbsp;
 
 ---
-
+<div id="blensureshadowbynode" />
 #### Definition
 
 ```
-EnsureShadowByNode(node *Node) *ShadowNode
+bl.EnsureShadowByNode(node *Node) *ShadowNode
 ```
 
 - Returns the `ShadowNode` for the node or creates one if it does not exist
@@ -1085,11 +1099,11 @@ EnsureShadowByNode(node *Node) *ShadowNode
 &nbsp;
 
 ---
-
+<div id="blhasshadowbyid" />
 #### Definition
 
 ```
-HasShadowById(id string) (*ShadowNode, bool)
+bl.HasShadowById(id string) (*ShadowNode, bool)
 ```
 
 - Returns the `ShadowNode` for the node if it exists
@@ -1136,7 +1150,7 @@ type WindowResizeEvent struct {
 &nbsp;
 
 ---
-
+<div id="blregisterlongterm" />
 #### Definition
 
 ```
@@ -1172,7 +1186,7 @@ bl.RegisterLongTerm( bl.EventType_Mouse_Move, func(e bl.Event) {
 &nbsp;
 
 ---
-
+<div id="blregistershortterm" />
 #### Definition
 
 ```
@@ -1210,7 +1224,7 @@ Sometimes you have no choice but to use *long* term.  The tutorials cover these 
 &nbsp;
 
 ---
-
+<div id="blfireevent" />
 #### Definition
 
 ```
@@ -1239,7 +1253,7 @@ For an in-depth example, see github.com/amortaza/go-bellina-tutorials
 
 
 ## Life-Cycle API
-
+<div id="blregisterlifecycleafterusertickshortterm" />
 #### Definition
 
 ```
@@ -1259,7 +1273,7 @@ TODO - but see the tutorials
 &nbsp;
 
 ---
-
+<div id="blregisterlifecycleafteruserticklongterm" />
 #### Definition
 
 ```
@@ -1279,7 +1293,7 @@ TODO - but see the tutorials
 &nbsp;
 
 ---
-
+<div id="blregisterlifecyclebeforeusertickshortterm" />
 #### Definition
 
 ```
@@ -1299,7 +1313,7 @@ TODO - but see the tutorials
 &nbsp;
 
 ---
-
+<div id="blregisterlifecyclebeforeuserticklongterm" />
 #### Definition
 
 ```
@@ -1320,7 +1334,7 @@ TODO - but see the tutorials
 &nbsp;
 
 ---
-
+<div id="blregisterlifecycleinit" />
 #### Definition
 
 ```
@@ -1339,7 +1353,7 @@ TODO - but see the tutorials
 &nbsp;
 
 ---
-
+<div id="blregisterlifecycleuninit" />
 #### Definition
 
 ```
@@ -1361,7 +1375,7 @@ TODO - but see the tutorials
 
 
 ## Helper API
-
+<div id="blgetnodeabsolutepos" />
 #### Definition
 
 ```
@@ -1373,7 +1387,7 @@ bl.GetNodeAbsolutePos(node *Node)(absX, absY int)
 &nbsp;
 
 ---
-
+<div id="bldivid" />
 #### Definition
 
 ```
@@ -1385,7 +1399,7 @@ bl.DivId(id string)
 &nbsp;
 
 ---
-
+<div id="blgetnodebyid" />
 #### Definition
 
 ```
@@ -1399,7 +1413,7 @@ bl.GetNodeById(id string ) *Node
 &nbsp;
 
 ---
-
+<div id="bldisp" />
 #### Definition
 
 ```
@@ -1411,7 +1425,7 @@ bl.Disp(node *Node)
 &nbsp;
 
 ---
-
+<div id="blsetmousecursor" />
 #### Definition
 
 ```
@@ -1479,7 +1493,7 @@ type HAL interface {
 	GetGraphics() Graphics
 }
 ```
-
+<div id="blstart" />
 #### Definition
 
 ```
@@ -1534,7 +1548,7 @@ func main() {
 &nbsp;
 
 ## Global Variables
-
+<div id="blrootnode" />
 `bl.Root_Node`
 
 - Pointer to the root node of the Bellina tree
@@ -1542,7 +1556,7 @@ func main() {
 - Think of this tree as the DOM of a Bellina application
 
 &nbsp;
-
+<div id="blcurrentnode" />
 `bl.Current_Node`
 
 - While within a `bl.Div()` / `bl.End()` pair, `bl.Current_Node` points to the current active node
@@ -1550,14 +1564,14 @@ func main() {
 - Is set during call to `bl.Root()`, `bl.Div()`, and `bl.DivId(id string)`
 
 &nbsp;
-
+<div id="blwindowwh" />
 `bl.Window_Width`, `bl.Window_Height`
 
 - The current *application* Window width and height
 - Is always up to date
 
 &nbsp;
-
+<div id="blmousexy" />
 `bl.Mouse_X`, `bl.Mouse_Y`
 
 - The current mouse (x, y) coordinates relative to the *application* Window
