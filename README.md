@@ -19,8 +19,8 @@ Some of the concepts referred to in this document (e.g. current node context) wi
 
 ### Current Node Context API
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#root">
-bl.Root()</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+[bl.Root()](#root)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="div">
 bl.Div()</a>
@@ -197,8 +197,8 @@ type ShadowNode struct {
 
 ```
 
-#### Definition 
-<a name="root">.</a>
+####Root 
+
 ```
 bl.Root()
 ```
