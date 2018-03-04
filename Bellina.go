@@ -11,6 +11,7 @@ var Window_Width, Window_Height int
 var Mouse_X, Mouse_Y int
 
 func Root() {
+
 	Current_Node = newNode()
 
 	Current_Node.Id = "ROOT"
