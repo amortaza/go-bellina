@@ -8,11 +8,6 @@ var g_uninit func()
 
 var g_graphics Graphics
 
-type ButtonAction int
-type MouseButton int
-type KeyboardKey int
-type MouseCursor int
-
 var Hal HAL
 
 func onAfterGL() {
