@@ -2,6 +2,7 @@ package bl
 
 import (
 	"fmt"
+	"container/list"
 )
 
 var Root_Node    *Node
@@ -134,13 +135,12 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 	registerOnMouseButtonOnNode(Current_Node, cb)
 }
 
-func AddFunc(cb func()) {
+func AddStabilizeFunc_PreKids(cb func()) {
 
-	if Current_Node.Kids == nil || Current_Node.Kids.Len() == 0 {
-		Current_Node.stabilize_funcs_pre_kids.PushBack(cb)
-
-	} else {
-		Current_Node.stabilize_funcs_post_kids.PushBack(cb)
+	if Current_Node.stabilize_funcs_pre_kids == nil {
+		Current_Node.stabilize_funcs_pre_kids = list.New()
 	}
+
+	Current_Node.stabilize_funcs_pre_kids.PushBack(cb)
 }
 

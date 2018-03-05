@@ -3,6 +3,7 @@ package bl
 var g_shadowNodeById map[string] *ShadowNode
 
 func init() {
+
 	g_shadowNodeById = make(map[string] *ShadowNode)
 }
 
@@ -57,6 +58,7 @@ func EnsureShadowByNode(node *Node) *ShadowNode {
 }
 
 func HasShadowById(id string) (*ShadowNode, bool) {
+
 	shadow, ok := g_shadowNodeById[id]
 
 	return shadow, ok

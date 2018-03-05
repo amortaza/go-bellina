@@ -65,6 +65,4 @@ func stabilize(node *Node) {
 		kid := k.Value.(*Node)
 		stabilize(kid)
 	}
-
-	callAllCallbacks(node.stabilize_funcs_post_kids)
 }

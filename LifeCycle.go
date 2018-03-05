@@ -34,6 +34,10 @@ func Register_LifeCycle_Uninit(cb func()) {
 
 func callAllCallbacks( callbacks *list.List) {
 
+	if callbacks == nil {
+		return
+	}
+
 	for e := callbacks.Front(); e != nil; e = e.Next() {
 		cb := e.Value.(func())
 		cb()
