@@ -2,7 +2,8 @@ package bl
 
 import "container/list"
 
-func onLoop() {
+func bl_onLoop() {
+
 	// todo remove for PROD
 	fps()
 
@@ -22,7 +23,7 @@ func onLoop() {
 		cb()
 	}
 
-	g_tick()
+	g_user_tick()
 
 	// long term ticks
 	for e := g_LifeCycle_AfterUser_Ticks_LongTerm.Front(); e != nil; e = e.Next() {
@@ -37,7 +38,7 @@ func onLoop() {
 	}
 
 	// todo
-	g_graphics.Clear(.3, .3, .3, 1)
+	g_graphics.Clear(.3, .3, .3)
 
 	w, h := Hal.GetWindowDim()
 	g_graphics.PushView(w, h)

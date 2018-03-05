@@ -1,55 +1,67 @@
 package bl
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/amortaza/go-hal"
+)
 
-var g_tick func()
-var g_init func()
-var g_uninit func()
+var g_user_tick func()
+var g_user_init func()
+var g_user_uninit func()
 
-var g_graphics Graphics
+var g_graphics hal.Graphics
 
-var Hal HAL
+var Hal hal.HAL
 
-func onAfterGL() {
+func bl_onAfterGL() {
+
 	g_graphics = Hal.GetGraphics()
 
 	init_bl()
 
-	fmt.Println("+ user init callback")
+	fmt.Println("Bellina User Init Callback")
 
-	if g_init != nil {
-		g_init()
+	if g_user_init != nil {
+		g_user_init()
 	}
 }
 
-func onBeforeDelete() {
+func bl_onBeforeDeleteWindow() {
+
 	fmt.Println("- user uninit callback")
 
-	if g_uninit != nil {
-		g_uninit()
+	if g_user_uninit != nil {
+		g_user_uninit()
 	}
 
 	uninit_bl()
 }
 
-func Start(	hal HAL,
-		width, height int,
-		title string,
-		init func(),
-		tick func(),
-		uninit func()) {
+func Start(
+		hal hal.HAL,
 
-	g_tick = tick
-	g_init = init
-	g_uninit = uninit
+		title string,
+
+		width, height int,
+
+		user_init func(),
+		user_tick func(),
+		user_uninit func()) {
+
+	g_user_tick = user_tick
+	g_user_init = user_init
+	g_user_uninit = user_uninit
 
 	Hal = hal
 
-	hal.Start(	width, height,
+	hal.Start(
 			title,
-			onAfterGL,
-			onLoop,
-			onBeforeDelete,
+			width, height,
+
+			bl_onAfterGL,
+			bl_onLoop,
+			bl_onBeforeDeleteWindow,
+
 			io_onWindowResize,
 			io_onMouseMove,
 			io_onMouseButton,

@@ -133,8 +133,10 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 }
 
 func AddFunc(cb func()) {
+
 	if Current_Node.Kids == nil || Current_Node.Kids.Len() == 0 {
 		Current_Node.funcs_pre_kids.PushBack(cb)
+
 	} else {
 		Current_Node.funcs_post_kids.PushBack(cb)
 	}

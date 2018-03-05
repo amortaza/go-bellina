@@ -28,7 +28,7 @@ func init() {
 }
 
 func main() {
-	bl.Start( hal_g5.New(), 1280, 1024, "Bellina v0.2", initialize, tick, uninit )
+	bl.Start( hal_g5.NewHal(), "Bellina v0.2", 1280, 1024, initialize, tick, uninit )
 
 	fmt.Println("bye!")
 }

@@ -1,13 +1,16 @@
 package bl
 
-import "container/list"
+import (
+	"container/list"
+	"github.com/amortaza/go-hal"
+)
 
 var EventType_Mouse_Button string = "mouse-button-event"
 
 type MouseButtonEvent struct {
-	Button         	MouseButton
-	X, Y		int
-	ButtonAction   	ButtonAction
+	Button         	hal.MouseButton
+	X, Y			int
+	ButtonAction   	hal.ButtonAction
 	Target         	*Node
 }
 
@@ -15,23 +18,19 @@ func (m *MouseButtonEvent) Type() string {
 	return EventType_Mouse_Button
 }
 
-const (
-	Mouse_Button_Left MouseButton = 1 + iota
-	Mouse_Button_Right
-)
+func NewMouseButtonEvent(
+		button hal.MouseButton,
+		mouseX, mouseY int,
+		action hal.ButtonAction,
+		target *Node) *MouseButtonEvent {
 
-const (
-	Button_Action_Down ButtonAction = 1 + iota
-	Button_Action_Up
-)
-
-func NewMouseButtonEvent(button MouseButton, mouseX, mouseY int, action ButtonAction, target *Node) *MouseButtonEvent {
 	e := &MouseButtonEvent{button, mouseX, mouseY, action, target}
 
 	return e
 }
 
 func onMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
+
 	if node.OnMouseButtonCallbacks == nil {
 		node.OnMouseButtonCallbacks = list.New()
 	}

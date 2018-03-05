@@ -42,9 +42,11 @@ type Node struct {
 }
 
 func newNode() *Node {
+
 	node := &Node{}
 
 	node.Kids = list.New()
+
 	node.funcs_pre_kids = list.New()
 	node.funcs_post_kids = list.New()
 
@@ -52,8 +54,11 @@ func newNode() *Node {
 }
 
 func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
+
 	if node.OnMouseMoveCallbacks != nil {
+
 		for element := node.OnMouseMoveCallbacks.Front(); element != nil; element = element.Next() {
+
 			cb := element.Value.(func(*MouseMoveEvent))
 
 			cb(e)
@@ -62,8 +67,11 @@ func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
 }
 
 func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
+
 	if node.OnMouseButtonCallbacks != nil {
+
 		for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
+
 			cb := element.Value.(func(*MouseButtonEvent))
 
 			cb(e)
@@ -72,6 +80,7 @@ func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
 }
 
 func (node *Node) OwnLeft(owner string) bool {
+
 	if node.OwnerOfLeft == "" || node.OwnerOfLeft == "*" {
 		node.OwnerOfLeft = owner
 
@@ -84,6 +93,7 @@ func (node *Node) OwnLeft(owner string) bool {
 }
 
 func (node *Node) OwnTop(owner string) bool {
+
 	if node.OwnerOfTop == "" || node.OwnerOfTop == "*" {
 		node.OwnerOfTop = owner
 
@@ -96,6 +106,7 @@ func (node *Node) OwnTop(owner string) bool {
 }
 
 func (node *Node) OwnWidth(owner string) bool {
+
 	if node.OwnerOfWidth == ""  || node.OwnerOfWidth == "*" {
 		node.OwnerOfWidth = owner
 		
@@ -108,6 +119,7 @@ func (node *Node) OwnWidth(owner string) bool {
 }
 
 func (node *Node) OwnHeight(owner string) bool {
+
 	if node.OwnerOfHeight == "" || node.OwnerOfHeight == "*" {
 		node.OwnerOfHeight = owner
 
@@ -120,6 +132,7 @@ func (node *Node) OwnHeight(owner string) bool {
 }
 
 func (node *Node) OwnPos(owner string) bool {
+
 	left := node.OwnLeft(owner)
 	top := node.OwnTop(owner)
 
@@ -127,6 +140,7 @@ func (node *Node) OwnPos(owner string) bool {
 }
 
 func (node *Node) OwnDim(owner string) bool {
+
 	width := node.OwnWidth(owner)
 	height := node.OwnHeight(owner)
 

@@ -1,6 +1,9 @@
 package bl
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/amortaza/go-hal"
+)
 
 var FourOnesFloat32 = []float32{1,1,1,1}
 
@@ -23,6 +26,7 @@ func GetNodeById(id string ) *Node {
 }
 
 func Stabilize(node *Node) {
+
 	for e := node.funcs_pre_kids.Front(); e != nil; e = e.Next() {
 		cb := e.Value.(func())
 		cb()
@@ -43,15 +47,6 @@ func Disp(node *Node) {
 	fmt.Println("Node ", node.Id, "(", node.Dirty, node.Left, ", ", node.Top, ") (", node.Width, " x ", node.Height, ")")
 }
 
-const (
-	MouseCursor_Arrow MouseCursor = 1 + iota
-	MouseCursor_Horiz_Resize
-	MouseCursor_Vert_Resize
-	MouseCursor_IBeam
-	MouseCursor_CrossHair
-	MouseCursor_Hand
-)
-
-func SetMouseCursor(cursor MouseCursor) {
+func SetMouseCursor(cursor hal.MouseCursor) {
 	Hal.SetMouseCursor(cursor)
 }

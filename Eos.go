@@ -1,21 +1,28 @@
 package bl
 
-var g_canvas map[string] Canvas
+import "github.com/amortaza/go-hal"
+
+var g_canvas map[string] hal.Canvas
 
 func init() {
-	g_canvas = make(map[string] Canvas)
+
+	g_canvas = make(map[string] hal.Canvas)
 }
 
-func getCanvas(node *Node) Canvas {
+func getCanvas(node *Node) hal.Canvas {
+
 	canvas, ok := g_canvas[node.Id]
 
 	if !ok {
+
 		canvas = g_graphics.NewCanvas(node.Width, node.Height)
 
 		g_canvas[node.Id] = canvas
 
 	} else if node.Dirty {
+
 		if canvas.GetWidth() != node.Width || canvas.GetHeight() != node.Height {
+
 			canvas.Free()
 
 			canvas = g_graphics.NewCanvas(node.Width, node.Height)
@@ -27,7 +34,8 @@ func getCanvas(node *Node) Canvas {
 	return canvas
 }
 
-func renderCanvas(node *Node) Canvas {
+func renderCanvas(node *Node) hal.Canvas {
+
 	canvas := getCanvas(node)
 
 	if (!node.Dirty) {
@@ -55,12 +63,14 @@ func renderCanvas(node *Node) Canvas {
 			renderCustom(node)
 		}
 	}
+
 	canvas.End()
 
 	return canvas
 }
 
 func renderCustom(node *Node) {
+
 	if node.CustomRender_1 != nil {
 		node.CustomRender_1(node)
 	}
