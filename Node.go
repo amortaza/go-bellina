@@ -143,8 +143,3 @@ func (node *Node) OwnsDim(owner string) bool {
 
 	return width && height
 }
-
-func (node *Node) Free() {
-	// free shadow node here!
-	// todo
-}

@@ -49,7 +49,6 @@ func bl_onLoop() {
 
 	g_graphics.PopView()
 
-	// todo prod
 	if g_nodeStack.Size > 0 {
 		panic("Node stack memory leak")
 	}

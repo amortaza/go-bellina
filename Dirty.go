@@ -11,6 +11,7 @@ func setDirty_IncludeKids(node *Node) *Node {
 	lastFrameNode, ok := g_lastFrameNodes[node.Id]
 	
 	if !ok {
+
 		lastFrameNode = &Node{}
 		g_lastFrameNodes[node.Id] = lastFrameNode
 		
