@@ -2,7 +2,7 @@ package bl
 
 import "github.com/amortaza/go-hal"
 
-var EventType_Key string = "key-event"
+var EventType_Key = "key-event"
 
 type KeyEvent struct {
 
@@ -19,8 +19,11 @@ func (k *KeyEvent) Type() string {
 }
 
 func NewKeyEvent(
+
 		key hal.KeyboardKey,
+
 		action hal.ButtonAction,
+
 		alt, ctrl, shift bool) *KeyEvent {
 
 	keyEvent := &KeyEvent{key, action, alt, ctrl, shift}

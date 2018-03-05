@@ -125,11 +125,11 @@ func OwnDim(owner string) bool {
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
-	onMouseMoveOnNode(Current_Node, cb)
+	registerOnMouseMoveOnNode(Current_Node, cb)
 }
 
 func OnMouseButton(cb func(*MouseButtonEvent)) {
-	onMouseButtonOnNode(Current_Node, cb)
+	registerOnMouseButtonOnNode(Current_Node, cb)
 }
 
 func AddFunc(cb func()) {
