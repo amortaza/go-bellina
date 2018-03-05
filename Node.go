@@ -21,10 +21,11 @@ type Node struct {
 	OnMouseMoveCallbacks     *list.List
 	OnMouseButtonCallbacks   *list.List
 
-	CustomRender_1           func(node *Node)
-	CustomRender_2           func(node *Node)
-	CustomRenderTopsKids     bool
+	CustomRender_1                func(node *Node)
+	CustomRender_2                func(node *Node)
+	CustomsShouldRendersAfterKids bool
 
+	// if true, then mouse events do not fire on this node
 	InvisibleToMouseEvents   bool
 
 	OwnerOfLeft              string
@@ -37,8 +38,8 @@ type Node struct {
 
 	Dirty                    bool
 
-	funcs_pre_kids           *list.List
-	funcs_post_kids          *list.List
+	stabilize_funcs_pre_kids  *list.List
+	stabilize_funcs_post_kids *list.List
 }
 
 func newNode() *Node {
@@ -47,8 +48,8 @@ func newNode() *Node {
 
 	node.Kids = list.New()
 
-	node.funcs_pre_kids = list.New()
-	node.funcs_post_kids = list.New()
+	node.stabilize_funcs_pre_kids = list.New()
+	node.stabilize_funcs_post_kids = list.New()
 
 	return node
 }
@@ -79,7 +80,7 @@ func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
 	}
 }
 
-func (node *Node) OwnLeft(owner string) bool {
+func (node *Node) OwnsLeft(owner string) bool {
 
 	if node.OwnerOfLeft == "" || node.OwnerOfLeft == "*" {
 		node.OwnerOfLeft = owner
@@ -92,7 +93,7 @@ func (node *Node) OwnLeft(owner string) bool {
 	return true
 }
 
-func (node *Node) OwnTop(owner string) bool {
+func (node *Node) OwnsTop(owner string) bool {
 
 	if node.OwnerOfTop == "" || node.OwnerOfTop == "*" {
 		node.OwnerOfTop = owner
@@ -105,7 +106,7 @@ func (node *Node) OwnTop(owner string) bool {
 	return true
 }
 
-func (node *Node) OwnWidth(owner string) bool {
+func (node *Node) OwnsWidth(owner string) bool {
 
 	if node.OwnerOfWidth == ""  || node.OwnerOfWidth == "*" {
 		node.OwnerOfWidth = owner
@@ -118,7 +119,7 @@ func (node *Node) OwnWidth(owner string) bool {
 	return true
 }
 
-func (node *Node) OwnHeight(owner string) bool {
+func (node *Node) OwnsHeight(owner string) bool {
 
 	if node.OwnerOfHeight == "" || node.OwnerOfHeight == "*" {
 		node.OwnerOfHeight = owner
@@ -131,18 +132,18 @@ func (node *Node) OwnHeight(owner string) bool {
 	return true
 }
 
-func (node *Node) OwnPos(owner string) bool {
+func (node *Node) OwnsPos(owner string) bool {
 
-	left := node.OwnLeft(owner)
-	top := node.OwnTop(owner)
+	left := node.OwnsLeft(owner)
+	top := node.OwnsTop(owner)
 
 	return  left && top
 }
 
-func (node *Node) OwnDim(owner string) bool {
+func (node *Node) OwnsDim(owner string) bool {
 
-	width := node.OwnWidth(owner)
-	height := node.OwnHeight(owner)
+	width := node.OwnsWidth(owner)
+	height := node.OwnsHeight(owner)
 
 	return width && height
 }

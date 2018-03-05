@@ -7,6 +7,7 @@ func init() {
 }
 
 func setDirty_IncludeKids(node *Node) *Node {
+
 	lastFrameNode, ok := g_lastFrameNodes[node.Id]
 	
 	if !ok {
@@ -29,6 +30,7 @@ func setDirty_IncludeKids(node *Node) *Node {
 	}
 	
 	for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
+
 		kid := kide.Value.(*Node)
 		
 		lastFrameKid := setDirty_IncludeKids(kid)
@@ -38,6 +40,7 @@ func setDirty_IncludeKids(node *Node) *Node {
 		}
 
 		if lastFrameKid.Left != kid.Left || lastFrameKid.Top != kid.Top {
+
 			node.Dirty = true
 
 			lastFrameKid.Left = kid.Left

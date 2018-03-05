@@ -31,3 +31,11 @@ func Register_LifeCycle_Init(cb func()) {
 func Register_LifeCycle_Uninit(cb func()) {
 	g_LifeCycle_Uninits.PushBack(cb)
 }
+
+func callAllCallbacks( callbacks *list.List) {
+
+	for e := callbacks.Front(); e != nil; e = e.Next() {
+		cb := e.Value.(func())
+		cb()
+	}
+}

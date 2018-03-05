@@ -1,11 +1,12 @@
 package bl
 
 type ShadowNode struct {
-	Id                       string
+
+	Id string
 
 	Left, Top, Width, Height int
 
-	BackingNode              *Node // this is the node that the shadow is backing!!
+	BackingNode *Node // this is the node that the shadow is backing!!
 }
 
 func newShadowNode(node *Node) *ShadowNode {
@@ -20,8 +21,10 @@ func newShadowNode(node *Node) *ShadowNode {
 	return shadow
 }
 
-func (shadow *ShadowNode) Width__Self_and_Node(width int, owner string) *ShadowNode {
-	if shadow.BackingNode.OwnWidth(owner) {
+func (shadow *ShadowNode) SetWidth_on_Self_and_Node(width int, owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsWidth(owner) {
+
 		shadow.Width = width
 		shadow.BackingNode.Width = shadow.Width
 	}
@@ -29,16 +32,18 @@ func (shadow *ShadowNode) Width__Self_and_Node(width int, owner string) *ShadowN
 	return shadow
 }
 
-func (shadow *ShadowNode) Width__Node_Only(owner string) *ShadowNode {
-	if shadow.BackingNode.OwnWidth(owner) {
+func (shadow *ShadowNode) SetWidth_on_Node_Only(owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsWidth(owner) {
 		shadow.BackingNode.Width = shadow.Width
 	}
 
 	return shadow
 }
 
-func (shadow *ShadowNode) Height__Self_and_Node(height int, owner string) *ShadowNode {
-	if shadow.BackingNode.OwnHeight(owner) {
+func (shadow *ShadowNode) SetHeight_on_Self_and_Node(height int, owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsHeight(owner) {
 		shadow.Height = height
 		shadow.BackingNode.Height = shadow.Height
 	}
@@ -46,8 +51,9 @@ func (shadow *ShadowNode) Height__Self_and_Node(height int, owner string) *Shado
 	return shadow
 }
 
-func (shadow *ShadowNode) Dim__Self_and_Node(width, height int, owner string) *ShadowNode {
-	if shadow.BackingNode.OwnDim(owner) {
+func (shadow *ShadowNode) SetDim_on_Self_and_Node(width, height int, owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsDim(owner) {
 		shadow.Width, shadow.Height = width, height
 		shadow.BackingNode.Width, shadow.BackingNode.Height = width, height
 	}
@@ -55,16 +61,18 @@ func (shadow *ShadowNode) Dim__Self_and_Node(width, height int, owner string) *S
 	return shadow
 }
 
-func (shadow *ShadowNode) Height__Node_Only(owner string) *ShadowNode {
-	if shadow.BackingNode.OwnHeight(owner) {
+func (shadow *ShadowNode) SetHeight_on_Node_Only(owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsHeight(owner) {
 		shadow.BackingNode.Height = shadow.Height
 	}
 
 	return shadow
 }
 
-func (shadow *ShadowNode) Dim__Node_Only(owner string) *ShadowNode {
-	if shadow.BackingNode.OwnDim(owner) {
+func (shadow *ShadowNode) SetDim_on_Node_Only(owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsDim(owner) {
 		shadow.BackingNode.Width = shadow.Width
 		shadow.BackingNode.Height = shadow.Height
 	}
@@ -72,8 +80,9 @@ func (shadow *ShadowNode) Dim__Node_Only(owner string) *ShadowNode {
 	return shadow
 }
 
-func (shadow *ShadowNode) Left__Self_and_Node(left int, owner string) *ShadowNode {
-	if shadow.BackingNode.OwnLeft(owner) {
+func (shadow *ShadowNode) SetLeft_on_Self_and_Node(left int, owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsLeft(owner) {
 		shadow.Left = left
 		shadow.BackingNode.Left = shadow.Left
 	}
@@ -81,16 +90,18 @@ func (shadow *ShadowNode) Left__Self_and_Node(left int, owner string) *ShadowNod
 	return shadow
 }
 
-func (shadow *ShadowNode) Left__Node_Only(owner string) *ShadowNode {
-	if shadow.BackingNode.OwnLeft(owner) {
+func (shadow *ShadowNode) SetLeft_on_Node_Only(owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsLeft(owner) {
 		shadow.BackingNode.Left = shadow.Left
 	}
 
 	return shadow
 }
 
-func (shadow *ShadowNode) Top__Self_and_Node(top int, owner string) *ShadowNode {
-	if shadow.BackingNode.OwnTop(owner) {
+func (shadow *ShadowNode) SetTop_on_Self_and_Node(top int, owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsTop(owner) {
 		shadow.Top = top
 		shadow.BackingNode.Top = shadow.Top
 	}
@@ -98,8 +109,9 @@ func (shadow *ShadowNode) Top__Self_and_Node(top int, owner string) *ShadowNode 
 	return shadow
 }
 
-func (shadow *ShadowNode) Pos__Self_and_Node(left, top int, owner string) *ShadowNode {
-	if shadow.BackingNode.OwnPos(owner) {
+func (shadow *ShadowNode) SetPos_on_Self_and_Node(left, top int, owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsPos(owner) {
 		shadow.Left, shadow.Top = left, top
 
 		shadow.BackingNode.Left, shadow.BackingNode.Top = left, top
@@ -108,16 +120,18 @@ func (shadow *ShadowNode) Pos__Self_and_Node(left, top int, owner string) *Shado
 	return shadow
 }
 
-func (shadow *ShadowNode) Top__Node_Only(owner string) *ShadowNode {
-	if shadow.BackingNode.OwnTop(owner) {
+func (shadow *ShadowNode) SetTop_on_Node_Only(owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsTop(owner) {
 		shadow.BackingNode.Top = shadow.Top
 	}
 
 	return shadow
 }
 
-func (shadow *ShadowNode) Pos__Node_Only(owner string) *ShadowNode {
-	if shadow.BackingNode.OwnPos(owner) {
+func (shadow *ShadowNode) SetPos_on_Node_Only(owner string) *ShadowNode {
+
+	if shadow.BackingNode.OwnsPos(owner) {
 		shadow.BackingNode.Left = shadow.Left
 		shadow.BackingNode.Top = shadow.Top
 	}

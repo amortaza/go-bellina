@@ -19,16 +19,21 @@ func getCanvas(node *Node) hal.Canvas {
 
 		g_canvas[node.Id] = canvas
 
-	} else if node.Dirty {
+		return canvas
+	}
 
-		if canvas.GetWidth() != node.Width || canvas.GetHeight() != node.Height {
+	if !node.Dirty {
 
-			canvas.Free()
+		return canvas
+	}
 
-			canvas = g_graphics.NewCanvas(node.Width, node.Height)
+	if canvas.GetWidth() != node.Width || canvas.GetHeight() != node.Height {
 
-			g_canvas[node.Id] = canvas
-		}
+		canvas.Free()
+
+		canvas = g_graphics.NewCanvas(node.Width, node.Height)
+
+		g_canvas[node.Id] = canvas
 	}
 
 	return canvas
@@ -46,7 +51,7 @@ func renderCanvas(node *Node) hal.Canvas {
 	{
 		canvas.Clear(.3, .3, .3)
 
-		if !node.CustomRenderTopsKids {
+		if !node.CustomsShouldRendersAfterKids {
 			renderCustom(node)
 		}
 
@@ -59,7 +64,7 @@ func renderCanvas(node *Node) hal.Canvas {
 			kidCanvas.Paint(false, kid.Left , kid.Top, FourOnesFloat32)
 		}
 
-		if node.CustomRenderTopsKids {
+		if node.CustomsShouldRendersAfterKids {
 			renderCustom(node)
 		}
 	}

@@ -64,6 +64,7 @@ func InvisibleToMouseEvents() {
 }
 
 func CustomRenderer(f func(node *Node), topsKids bool) {
+
 	if Current_Node.CustomRender_1 == nil {
 		Current_Node.CustomRender_1 = f
 
@@ -71,7 +72,7 @@ func CustomRenderer(f func(node *Node), topsKids bool) {
 		Current_Node.CustomRender_2 = f
 	}
 
-	Current_Node.CustomRenderTopsKids = topsKids
+	Current_Node.CustomsShouldRendersAfterKids = topsKids
 }
 
 func Dirty() {
@@ -87,6 +88,7 @@ func SettleKids() {
 }
 
 func RequireSettledBoundary()  {
+
 	if !Current_Node.SettledBoundary {
 		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
 		panic("See print out - RequireSettledBoundary error")
@@ -100,28 +102,28 @@ func RequireSettledKids() {
 	}
 }
 
-func OwnLeft(owner string) bool {
-	return Current_Node.OwnLeft(owner)
+func OwnsLeft(owner string) bool {
+	return Current_Node.OwnsLeft(owner)
 }
 
-func OwnTop(owner string) bool {
-	return Current_Node.OwnTop(owner)
+func OwnsTop(owner string) bool {
+	return Current_Node.OwnsTop(owner)
 }
 
-func OwnWidth(owner string) bool {
-	return Current_Node.OwnWidth(owner)
+func OwnsWidth(owner string) bool {
+	return Current_Node.OwnsWidth(owner)
 }
 
-func OwnHeight(owner string) bool {
-	return Current_Node.OwnHeight(owner)
+func OwnsHeight(owner string) bool {
+	return Current_Node.OwnsHeight(owner)
 }
 
-func OwnPos(owner string) bool {
-	return Current_Node.OwnPos(owner)
+func OwnsPos(owner string) bool {
+	return Current_Node.OwnsPos(owner)
 }
 
-func OwnDim(owner string) bool {
-	return Current_Node.OwnDim(owner)
+func OwnsDim(owner string) bool {
+	return Current_Node.OwnsDim(owner)
 }
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
@@ -135,10 +137,10 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 func AddFunc(cb func()) {
 
 	if Current_Node.Kids == nil || Current_Node.Kids.Len() == 0 {
-		Current_Node.funcs_pre_kids.PushBack(cb)
+		Current_Node.stabilize_funcs_pre_kids.PushBack(cb)
 
 	} else {
-		Current_Node.funcs_post_kids.PushBack(cb)
+		Current_Node.stabilize_funcs_post_kids.PushBack(cb)
 	}
 }
 

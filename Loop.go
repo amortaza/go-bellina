@@ -18,24 +18,15 @@ func bl_onLoop() {
 	g_LifeCycle_AfterUser_Ticks_ShortTerm = list.New()
 
 	// long term ticks
-	for e := g_LifeCycle_BeforeUser_Ticks_LongTerm.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
+	callAllCallbacks(g_LifeCycle_BeforeUser_Ticks_LongTerm)
 
 	g_user_tick()
 
 	// long term ticks
-	for e := g_LifeCycle_AfterUser_Ticks_LongTerm.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
+	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_LongTerm)
 
 	// short term ticks
-	for e := g_LifeCycle_AfterUser_Ticks_ShortTerm.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
+	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_ShortTerm)
 
 	// todo
 	g_graphics.Clear(.3, .3, .3)
@@ -46,7 +37,8 @@ func bl_onLoop() {
 	debug("**** CANVAS")
 
 	if Root_Node != nil {
-		Stabilize(Root_Node)
+
+		stabilize(Root_Node)
 
 		setDirty_IncludeKids(Root_Node)
 
@@ -65,3 +57,14 @@ func bl_onLoop() {
 	debug("END ********************************************************************** ")
 }
 
+func stabilize(node *Node) {
+
+	callAllCallbacks(node.stabilize_funcs_pre_kids)
+
+	for k := node.Kids.Front(); k != nil; k = k.Next() {
+		kid := k.Value.(*Node)
+		stabilize(kid)
+	}
+
+	callAllCallbacks(node.stabilize_funcs_post_kids)
+}

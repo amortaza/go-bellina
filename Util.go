@@ -14,6 +14,7 @@ func DivId(id string) {
 }
 
 func GetNodeById(id string ) *Node {
+
 	node, ok := g_nodeById[id]
 
 	if !ok {
@@ -25,24 +26,6 @@ func GetNodeById(id string ) *Node {
 	return node
 }
 
-func Stabilize(node *Node) {
-
-	for e := node.funcs_pre_kids.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
-
-	for k := node.Kids.Front(); k != nil; k = k.Next() {
-		kid := k.Value.(*Node)
-		Stabilize(kid)
-	}
-
-	for e := node.funcs_post_kids.Front(); e != nil; e = e.Next() {
-		cb := e.Value.(func())
-		cb()
-	}
-}
-
 func Disp(node *Node) {
 	fmt.Println("Node ", node.Id, "(", node.Dirty, node.Left, ", ", node.Top, ") (", node.Width, " x ", node.Height, ")")
 }
@@ -50,3 +33,23 @@ func Disp(node *Node) {
 func SetMouseCursor(cursor hal.MouseCursor) {
 	Hal.SetMouseCursor(cursor)
 }
+
+func GetNodeAbsolutePos(node *Node)(absX, absY int) {
+
+	if node == nil {
+		return 0, 0
+	}
+
+	absX, absY = node.Left, node.Top
+
+	node = node.Parent
+
+	for node != nil {
+		absX += node.Left;
+		absY += node.Top;
+		node = node.Parent
+	}
+
+	return absX, absY
+}
+
