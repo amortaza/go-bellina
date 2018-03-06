@@ -4,10 +4,7 @@ import "container/list"
 
 func bl_onLoop() {
 
-	// todo remove for PROD
 	fps()
-
-	//debug("START ********************************************************************** " )
 
 	// store the last frame
 	g_lastFrame_nodeById = g_nodeById
@@ -32,13 +29,10 @@ func bl_onLoop() {
 	// short term ticks
 	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_ShortTerm)
 
-	// todo
 	g_graphics.Clear(.3, .3, .3)
 
 	w, h := Hal.GetWindowDim()
 	g_graphics.PushView(w, h)
-
-	//debug("**** CANVAS")
 
 	if Root_Node != nil {
 
@@ -56,8 +50,6 @@ func bl_onLoop() {
 	if g_nodeStack.Size > 0 {
 		panic("Node stack memory leak")
 	}
-
-	//debug("END ********************************************************************** ")
 }
 
 func stabilize(node *Node) {

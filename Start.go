@@ -19,7 +19,7 @@ func bl_onAfterGL() {
 
 	init_bl()
 
-	fmt.Println("Bellina User Init Callback")
+	fmt.Println("(+) Bellina User Init Callback")
 
 	if g_user_init != nil {
 		g_user_init()
@@ -28,7 +28,7 @@ func bl_onAfterGL() {
 
 func bl_onBeforeDeleteWindow() {
 
-	fmt.Println("- user uninit callback")
+	fmt.Println("(-) Calling User Uninit Callback")
 
 	if g_user_uninit != nil {
 		g_user_uninit()

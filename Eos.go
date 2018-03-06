@@ -1,6 +1,9 @@
 package bl
 
-import "github.com/amortaza/go-hal"
+import (
+	"github.com/amortaza/go-hal"
+	"fmt"
+)
 
 var g_canvas map[string] hal.Canvas
 
@@ -91,5 +94,15 @@ func renderCustom(node *Node) {
 
 	if node.CustomRender_2 != nil {
 		node.CustomRender_2(node)
+	}
+}
+
+func freeCanvases() {
+
+	for nodeId, canvas := range g_canvas {
+
+		fmt.Println("(-) Freeing canvas for " + nodeId)
+
+		canvas.Free()
 	}
 }
