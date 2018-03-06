@@ -25,7 +25,7 @@ func setDirty_IncludeKids(node *Node) *Node {
 			node.Dirty = true
 		}
 
-		if lastFrameKid.Left != kid.Left || lastFrameKid.Top != kid.Top {
+		if lastFrameKid != nil && (lastFrameKid.Left != kid.Left || lastFrameKid.Top != kid.Top) {
 
 			node.Dirty = true
 		}
