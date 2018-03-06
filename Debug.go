@@ -20,7 +20,7 @@ func fps() {
 
 func debug(msg string) {
 
-	if false {
+	if true {
 		fmt.Println(msg)
 	}
 }

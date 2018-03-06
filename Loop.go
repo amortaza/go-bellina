@@ -7,7 +7,11 @@ func bl_onLoop() {
 	// todo remove for PROD
 	fps()
 
-	debug("START ********************************************************************** " )
+	//debug("START ********************************************************************** " )
+
+	// store the last frame
+	g_lastFrame_nodeById = g_nodeById
+	g_lastFrame_Root_Node = Root_Node;
 
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
@@ -34,7 +38,7 @@ func bl_onLoop() {
 	w, h := Hal.GetWindowDim()
 	g_graphics.PushView(w, h)
 
-	debug("**** CANVAS")
+	//debug("**** CANVAS")
 
 	if Root_Node != nil {
 
@@ -53,7 +57,7 @@ func bl_onLoop() {
 		panic("Node stack memory leak")
 	}
 
-	debug("END ********************************************************************** ")
+	//debug("END ********************************************************************** ")
 }
 
 func stabilize(node *Node) {

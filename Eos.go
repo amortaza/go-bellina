@@ -19,21 +19,28 @@ func getCanvas(node *Node) hal.Canvas {
 
 		g_canvas[node.Id] = canvas
 
-		return canvas
-	}
-
-	if !node.Dirty {
+		// since we have a blank canvas, we need to flag that we need a redraw
+		node.Dirty = true
 
 		return canvas
 	}
+
+	// note: node.Dirty does not dictate whether we need a new canvas or not.
+	// but a new canvas necesarily means dirty = true since we need a repaint.
+	// dirty means that the content of the canvas needs repainting
 
 	if canvas.GetWidth() != node.Width || canvas.GetHeight() != node.Height {
+
+		// todo: if canvas is shrinking, no need to get a brand new canvas, re-use existing one
 
 		canvas.Free()
 
 		canvas = g_graphics.NewCanvas(node.Width, node.Height)
 
 		g_canvas[node.Id] = canvas
+
+		// since we have a blank canvas, we need to flag that we need a redraw
+		node.Dirty = true
 	}
 
 	return canvas
@@ -46,6 +53,8 @@ func renderCanvas(node *Node) hal.Canvas {
 	if (!node.Dirty) {
 		return canvas
 	}
+
+	debug("Rendering canvas...")
 
 	canvas.Begin()
 	{
