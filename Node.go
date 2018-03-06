@@ -45,6 +45,8 @@ func newNode() *Node {
 
 	node := &Node{}
 
+	node.Id = adt.NewUUID()
+
 	node.Kids = list.New()
 
 	return node
