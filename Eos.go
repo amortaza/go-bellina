@@ -2,25 +2,25 @@ package bl
 
 import (
 	"github.com/amortaza/go-hal"
-	"fmt"
 )
 
-var g_canvas map[string] hal.Canvas
+var g_canvasById map[string] hal.Canvas
 
 func init() {
 
-	g_canvas = make(map[string] hal.Canvas)
+	g_canvasById = make(map[string] hal.Canvas)
 }
 
 func getCanvas(node *Node) hal.Canvas {
 
-	canvas, ok := g_canvas[node.Id]
+	canvas, ok := g_canvasById[node.Id]
 
 	if !ok {
 
+		debug("  Allocating Canvas for " + node.Id, "canvas")
 		canvas = g_graphics.NewCanvas(node.Width, node.Height)
 
-		g_canvas[node.Id] = canvas
+		g_canvasById[node.Id] = canvas
 
 		// since we have a blank canvas, we need to flag that we need a redraw
 		node.Dirty = true
@@ -40,7 +40,7 @@ func getCanvas(node *Node) hal.Canvas {
 
 		canvas = g_graphics.NewCanvas(node.Width, node.Height)
 
-		g_canvas[node.Id] = canvas
+		g_canvasById[node.Id] = canvas
 
 		// since we have a blank canvas, we need to flag that we need a redraw
 		node.Dirty = true
@@ -56,8 +56,6 @@ func renderCanvas(node *Node) hal.Canvas {
 	if (!node.Dirty) {
 		return canvas
 	}
-
-	debug("Rendering canvas...")
 
 	canvas.Begin()
 	{
@@ -97,12 +95,3 @@ func renderCustom(node *Node) {
 	}
 }
 
-func freeCanvases() {
-
-	for nodeId, canvas := range g_canvas {
-
-		fmt.Println("(-) Freeing canvas for " + nodeId)
-
-		canvas.Free()
-	}
-}

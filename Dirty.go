@@ -1,7 +1,6 @@
 package bl
 
 var g_lastFrame_nodeById map[string] *Node
-var g_lastFrame_Root_Node    *Node
 
 func setDirty_IncludeKids(node *Node) *Node {
 

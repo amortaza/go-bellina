@@ -14,6 +14,10 @@ func io_onKey(
 
 func io_onMouseMove(x, y int) {
 
+	if Root_Node == nil {
+		return
+	}
+
 	Mouse_X, Mouse_Y = x, y
 
 	node := getNodeAt__VisibleToMouseEvents(x, y)

@@ -1,7 +1,6 @@
 package bl
 
 import (
-	"fmt"
 	"github.com/amortaza/go-hal"
 )
 
@@ -19,7 +18,7 @@ func bl_onAfterGL() {
 
 	init_bl()
 
-	fmt.Println("(+) Bellina User Init Callback")
+	debug("     (+) Bellina User Init Callback", "sys")
 
 	if g_user_init != nil {
 		g_user_init()
@@ -28,7 +27,7 @@ func bl_onAfterGL() {
 
 func bl_onBeforeDeleteWindow() {
 
-	fmt.Println("(-) Calling User Uninit Callback")
+	debug("     (-) Calling User Uninit Callback", "sys")
 
 	if g_user_uninit != nil {
 		g_user_uninit()

@@ -1,17 +1,21 @@
 package bl
 
-import "container/list"
+import (
+	"container/list"
+)
 
 func bl_onLoop() {
+
+	debug("    Starting loop", "loop")
 
 	fps()
 
 	// store the last frame
 	g_lastFrame_nodeById = g_nodeById
-	g_lastFrame_Root_Node = Root_Node;
 
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
+	Root_Node = nil
 
 	// Clear Short Term
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
@@ -50,6 +54,8 @@ func bl_onLoop() {
 	if g_nodeStack.Size > 0 {
 		panic("Node stack memory leak")
 	}
+
+	garbageCollectDeletedNodes()
 }
 
 func stabilize(node *Node) {

@@ -3,6 +3,7 @@ package bl
 import (
 	"time"
 	"fmt"
+	"strconv"
 )
 
 var g_fps_start_time = time.Now().Unix()
@@ -14,13 +15,22 @@ func fps() {
 
 	if g_fps_frame % 60 == 0 {
 		var now = time.Now().Unix()
-		fmt.Println("FPS ", g_fps_frame / (now - g_fps_start_time))
+		debug("     FPS " + strconv.Itoa(int(g_fps_frame / (now - g_fps_start_time))), "fps")
 	}
 }
 
-func debug(msg string) {
+func debug(msg, src string) {
 
-	if true {
-		fmt.Println(msg)
+	log := src == "canvas" ||
+		   //src == "fps" ||
+		   src == "gc" ||
+		   //src == "loop" ||
+		   src == "sys" ||
+		   src == ""
+
+	//log = false
+
+	if log {
+		fmt.Println("(" + src + ")  " + msg)
 	}
 }
