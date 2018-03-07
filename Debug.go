@@ -21,12 +21,12 @@ func fps() {
 
 func debug(msg, src string) {
 
-	log := src == "canvas" ||
+	log := src == "" ||
 		   //src == "fps" ||
-		   src == "gc" ||
+		   //src == "gc" ||
 		   //src == "loop" ||
-		   src == "sys" ||
-		   src == ""
+		   //src == "sys" ||
+		   src == "canvas"
 
 	//log = false
 

@@ -57,6 +57,8 @@ func renderCanvas(node *Node) hal.Canvas {
 		return canvas
 	}
 
+	debug("Rendering " + node.Id, "canvas" )
+
 	canvas.Begin()
 	{
 		canvas.Clear(.3, .3, .3)
