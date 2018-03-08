@@ -51,13 +51,13 @@ func End() {
 }
 
 func Pos(left, top int) {
-	Current_Node.Left = left
-	Current_Node.Top = top
+	Current_Node.left = left
+	Current_Node.top = top
 }
 
 func Dim(width, height int) {
-	Current_Node.Width = width
-	Current_Node.Height = height
+	Current_Node.width = width
+	Current_Node.height = height
 }
 
 func InvisibleToMouseEvents() {
@@ -92,14 +92,14 @@ func RequireSettledBoundary()  {
 
 	if !Current_Node.SettledBoundary {
 		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
-		panic("See print out - RequireSettledBoundary error")
+//		panic("See print out - RequireSettledBoundary error")
 	}
 }
 
 func RequireSettledKids() {
 	if !Current_Node.SettledKids {
 		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
-		panic("See print out - RequireSettledKids error")
+		//panic("See print out - RequireSettledKids error")
 	}
 }
 

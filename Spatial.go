@@ -16,8 +16,8 @@ func getNodeAt__VisibleToMouseEvents(x, y int) *Node {
 
 func _getNodeAt_VisibleToMouseEvents(root *Node, x, y int) *Node {
 
-	x -= root.Left
-	y -= root.Top
+	x -= root.left
+	y -= root.top
 
 	for e := root.Kids.Back(); e != nil; e = e.Prev() {
 
@@ -37,7 +37,7 @@ func _getNodeAt_VisibleToMouseEvents(root *Node, x, y int) *Node {
 
 func _contains(node *Node, x, y int) (ans bool) {
 
-	ans = node.Left <= x && node.Top <= y && node.Left + node.Width > x && node.Top + node.Height > y
+	ans = node.left <= x && node.top <= y && node.left+ node.width > x && node.top+ node.height > y
 
 	return ans
 }

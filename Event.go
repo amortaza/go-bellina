@@ -1,6 +1,8 @@
 package bl
 
-import "container/list"
+import (
+	"container/list"
+)
 
 var g_longTerm_callbacksByEventType map[string] *list.List
 var g_shortTerm_callbacksByEventType map[string] *list.List
@@ -52,7 +54,6 @@ func FireEvent(event Event) {
 		for e := callbacks.Front(); e != nil; e = e.Next() {
 
 			callback := e.Value.(func(Event))
-
 			callback(event.(Event))
 		}
 	}

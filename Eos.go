@@ -18,7 +18,7 @@ func getCanvas(node *Node) hal.Canvas {
 	if !ok {
 
 		debug("  Allocating Canvas for " + node.Id, "canvas")
-		canvas = g_graphics.NewCanvas(node.Width, node.Height)
+		canvas = g_graphics.NewCanvas(node.width, node.height)
 
 		g_canvasById[node.Id] = canvas
 
@@ -32,13 +32,13 @@ func getCanvas(node *Node) hal.Canvas {
 	// but a new canvas necesarily means dirty = true since we need a repaint.
 	// dirty means that the content of the canvas needs repainting
 
-	if canvas.GetWidth() != node.Width || canvas.GetHeight() != node.Height {
+	if canvas.GetWidth() != node.width || canvas.GetHeight() != node.height {
 
 		// todo: if canvas is shrinking, no need to get a brand new canvas, re-use existing one
 
 		canvas.Free()
 
-		canvas = g_graphics.NewCanvas(node.Width, node.Height)
+		canvas = g_graphics.NewCanvas(node.width, node.height)
 
 		g_canvasById[node.Id] = canvas
 
@@ -73,7 +73,7 @@ func renderCanvas(node *Node) hal.Canvas {
 
 			kidCanvas := renderCanvas(kid)
 
-			kidCanvas.Paint(false, kid.Left , kid.Top, FourOnesFloat32)
+			kidCanvas.Paint(false, kid.left, kid.top, FourOnesFloat32)
 		}
 
 		if node.CustomsShouldRendersAfterKids {

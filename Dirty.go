@@ -5,14 +5,23 @@ var g_lastFrame_nodeById map[string] *Node
 func setDirty_IncludeKids(node *Node) *Node {
 
 	lastFrameNode, ok := g_lastFrame_nodeById[node.Id]
-	
+
 	if !ok {
 
 		node.Dirty = true
 		
-	} else if lastFrameNode.Width != node.Width || lastFrameNode.Height != node.Height {
-		
-		node.Dirty = true
+	} else {
+
+		if lastFrameNode.width != node.width || lastFrameNode.height != node.height {
+			node.Dirty = true
+		}
+
+		if node.Parent != nil {
+
+			if lastFrameNode.left != node.left || lastFrameNode.top != node.top {
+				node.Parent.Dirty = true
+			}
+		}
 	}
 	
 	for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
@@ -25,7 +34,7 @@ func setDirty_IncludeKids(node *Node) *Node {
 			node.Dirty = true
 		}
 
-		if lastFrameKid != nil && (lastFrameKid.Left != kid.Left || lastFrameKid.Top != kid.Top) {
+		if lastFrameKid != nil && (lastFrameKid.left != kid.left || lastFrameKid.top != kid.top) {
 
 			node.Dirty = true
 		}

@@ -27,7 +27,7 @@ func GetNodeById(id string ) *Node {
 }
 
 func Disp(node *Node) {
-	fmt.Println("Node ", node.Id, "(", node.Dirty, node.Left, ", ", node.Top, ") (", node.Width, " x ", node.Height, ")")
+	fmt.Println("Node ", node.Id, "(", node.Dirty, node.left, ", ", node.top, ") (", node.width, " x ", node.height, ")")
 }
 
 func SetMouseCursor(cursor hal.MouseCursor) {
@@ -40,13 +40,13 @@ func GetNodeAbsolutePos(node *Node)(absX, absY int) {
 		return 0, 0
 	}
 
-	absX, absY = node.Left, node.Top
+	absX, absY = node.left, node.top
 
 	node = node.Parent
 
 	for node != nil {
-		absX += node.Left;
-		absY += node.Top;
+		absX += node.left;
+		absY += node.top;
 		node = node.Parent
 	}
 

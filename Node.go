@@ -9,11 +9,13 @@ import (
 var g_nodeById map[string] *Node
 var g_nodeStack adt.Stack
 
+var g_nodes_are_immutable bool
+
 type Node struct {
 
 	Id                       string
 
-	Left, Top, Width, Height int
+	left, top, width, height int
 
 	Parent                   *Node
 	Kids                     *list.List
@@ -59,7 +61,6 @@ func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
 		for element := node.OnMouseMoveCallbacks.Front(); element != nil; element = element.Next() {
 
 			cb := element.Value.(func(*MouseMoveEvent))
-
 			cb(e)
 		}
 	}
@@ -84,7 +85,7 @@ func (node *Node) OwnsLeft(owner string) bool {
 		node.OwnerOfLeft = owner
 
 	} else if owner != "*" && node.OwnerOfLeft != owner {
-		fmt.Println("Node \"", node.Id, "\" Left is already owned by \"", node.OwnerOfLeft, "\" and set to ", node.Left, ", it cannot be owned by \"", owner, "\"")
+		fmt.Println("Node \"", node.Id, "\" left is already owned by \"", node.OwnerOfLeft, "\" and set to ", node.left, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -97,7 +98,7 @@ func (node *Node) OwnsTop(owner string) bool {
 		node.OwnerOfTop = owner
 
 	} else if owner != "*" && node.OwnerOfTop != owner {
-		fmt.Println("Node \"", node.Id, "\" Top is already owned by \"", node.OwnerOfTop, "\" and set to ", node.Top, ", it cannot be owned by \"", owner, "\"")
+		fmt.Println("Node \"", node.Id, "\" top is already owned by \"", node.OwnerOfTop, "\" and set to ", node.top, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -110,7 +111,7 @@ func (node *Node) OwnsWidth(owner string) bool {
 		node.OwnerOfWidth = owner
 		
 	} else if owner != "*" && node.OwnerOfWidth != owner {
-		fmt.Println("Node \"", node.Id, "\" Width is already owned by \"", node.OwnerOfWidth, "\" and set to ", node.Width, ", it cannot be owned by \"", owner, "\"")
+		fmt.Println("Node \"", node.Id, "\" Width is already owned by \"", node.OwnerOfWidth, "\" and set to ", node.width, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -123,7 +124,7 @@ func (node *Node) OwnsHeight(owner string) bool {
 		node.OwnerOfHeight = owner
 
 	} else if owner != "*" && node.OwnerOfHeight != owner {
-		fmt.Println("Node \"", node.Id, "\" Height is already owned by \"", node.OwnerOfHeight, "\" and set to ", node.Height, ", it cannot be owned by \"", owner, "\"")
+		fmt.Println("Node \"", node.Id, "\" height is already owned by \"", node.OwnerOfHeight, "\" and set to ", node.height, ", it cannot be owned by \"", owner, "\"")
 		return false
 	}
 
@@ -144,4 +145,56 @@ func (node *Node) OwnsDim(owner string) bool {
 	height := node.OwnsHeight(owner)
 
 	return width && height
+}
+
+func (node *Node) SetLeft(left int) {
+
+	if g_nodes_are_immutable {
+		panic("You are trying to Set the Left of something when we are in immutable mode!")
+	}
+	node.left = left
+}
+
+func (node *Node) Left() int {
+
+	return node.left
+}
+
+func (node *Node) SetTop(top int) {
+
+	if g_nodes_are_immutable {
+		panic("You are trying to Set the Top of something when we are in immutable mode!")
+	}
+	node.top = top
+}
+
+func (node *Node) Top() int {
+
+	return node.top
+}
+
+func (node *Node) SetWidth(width int) {
+
+	if g_nodes_are_immutable {
+		panic("You are trying to Set the Width of something when we are in immutable mode!")
+	}
+	node.width = width
+}
+
+func (node *Node) Width() int {
+
+	return node.width
+}
+
+func (node *Node) SetHeight(height int) {
+
+	if g_nodes_are_immutable {
+		panic("You are trying to Set the Height of something when we are in immutable mode!")
+	}
+	node.height = height
+}
+
+func (node *Node) Height() int {
+
+	return node.height
 }

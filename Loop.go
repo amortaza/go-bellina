@@ -6,7 +6,7 @@ import (
 
 func bl_onLoop() {
 
-	debug("    Starting loop", "loop")
+	debug("-------------------- Starting loop", "loop")
 
 	fps()
 
@@ -21,6 +21,8 @@ func bl_onLoop() {
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
 
 	g_LifeCycle_AfterUser_Ticks_ShortTerm = list.New()
+
+	g_nodes_are_immutable = false
 
 	// long term ticks
 	callAllCallbacks(g_LifeCycle_BeforeUser_Ticks_LongTerm)
@@ -55,7 +57,11 @@ func bl_onLoop() {
 		panic("Node stack memory leak")
 	}
 
+	g_nodes_are_immutable = true
+
 	garbageCollectDeletedNodes()
+
+	debug("<<<<<<<<<<<<<<<< exiting loop", "loop")
 }
 
 func stabilize(node *Node) {
