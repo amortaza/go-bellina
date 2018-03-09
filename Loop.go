@@ -48,6 +48,7 @@ func bl_onLoop() {
 
 		canvas := renderCanvas(Root_Node)
 
+		// todo: root is being painted all the time
 		canvas.Paint(false, 0, 0, FourOnesFloat32)
 	}
 
