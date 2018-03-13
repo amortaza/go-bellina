@@ -35,24 +35,17 @@ func bl_onLoop() {
 	// short term ticks
 	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_ShortTerm)
 
-	g_graphics.Clear(.3, .3, .3)
-
-	w, h := Hal.GetWindowDim()
-	g_graphics.PushView(w, h)
-
 	if Root_Node != nil {
 
 		stabilize(Root_Node)
 
 		setDirty_IncludeKids(Root_Node)
 
-		canvas := renderCanvas(Root_Node)
+		if Root_Node.Dirty {
 
-		// todo: root is being painted all the time
-		canvas.Paint(false, 0, 0, FourOnesFloat32)
+			render()
+		}
 	}
-
-	g_graphics.PopView()
 
 	if g_nodeStack.Size > 0 {
 		panic("Node stack memory leak")
@@ -65,6 +58,19 @@ func bl_onLoop() {
 	debug("<<<<<<<<<<<<<<<< exiting loop", "loop")
 }
 
+func render() {
+
+	w, h := Hal.GetWindowDim()
+	g_graphics.PushView(w, h)
+
+	g_graphics.Clear(.3, .3, .3)
+
+	canvas := renderCanvas(Root_Node)
+
+	canvas.Paint(false, 0, 0, FourOnesFloat32)
+
+	g_graphics.PopView()
+}
 func stabilize(node *Node) {
 
 	callAllCallbacks(node.stabilize_funcs_pre_kids)

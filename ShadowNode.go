@@ -27,7 +27,7 @@ func (shadow *ShadowNode) SetWidth_on_Self_and_Node(width int, owner string) *Sh
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsWidth(owner) {
+	if shadow.BackingNode.IsOwnerOfWidth(owner) {
 
 		shadow.Width = width
 		shadow.BackingNode.width = shadow.Width
@@ -42,7 +42,7 @@ func (shadow *ShadowNode) SetWidth_on_Node_Only(owner string) *ShadowNode {
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsWidth(owner) {
+	if shadow.BackingNode.IsOwnerOfWidth(owner) {
 		shadow.BackingNode.width = shadow.Width
 	}
 
@@ -55,7 +55,7 @@ func (shadow *ShadowNode) SetHeight_on_Self_and_Node(height int, owner string) *
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsHeight(owner) {
+	if shadow.BackingNode.IsOwnerOfHeight(owner) {
 		shadow.Height = height
 		shadow.BackingNode.height = shadow.Height
 	}
@@ -69,35 +69,7 @@ func (shadow *ShadowNode) SetHeight_on_Node_Only(owner string) *ShadowNode {
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsHeight(owner) {
-		shadow.BackingNode.height = shadow.Height
-	}
-
-	return shadow
-}
-
-func (shadow *ShadowNode) SetDim_on_Self_and_Node(width, height int, owner string) *ShadowNode {
-
-	if g_nodes_are_immutable {
-		panic("Cannot write on immutable")
-	}
-
-	if shadow.BackingNode.OwnsDim(owner) {
-		shadow.Width, shadow.Height = width, height
-		shadow.BackingNode.width, shadow.BackingNode.height = width, height
-	}
-
-	return shadow
-}
-
-func (shadow *ShadowNode) SetDim_on_Node_Only(owner string) *ShadowNode {
-
-	if g_nodes_are_immutable {
-		panic("Cannot write on immutable")
-	}
-
-	if shadow.BackingNode.OwnsDim(owner) {
-		shadow.BackingNode.width = shadow.Width
+	if shadow.BackingNode.IsOwnerOfHeight(owner) {
 		shadow.BackingNode.height = shadow.Height
 	}
 
@@ -110,7 +82,7 @@ func (shadow *ShadowNode) SetLeft_on_Self_and_Node(left int, owner string) *Shad
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsLeft(owner) {
+	if shadow.BackingNode.IsOwnerOfLeft(owner) {
 		shadow.Left = left
 		shadow.BackingNode.left = shadow.Left
 	}
@@ -124,7 +96,7 @@ func (shadow *ShadowNode) SetLeft_on_Node_Only(owner string) *ShadowNode {
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsLeft(owner) {
+	if shadow.BackingNode.IsOwnerOfLeft(owner) {
 		shadow.BackingNode.left = shadow.Left
 	}
 
@@ -137,7 +109,7 @@ func (shadow *ShadowNode) SetTop_on_Self_and_Node(top int, owner string) *Shadow
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsTop(owner) {
+	if shadow.BackingNode.IsOwnerOfTop(owner) {
 		shadow.Top = top
 		shadow.BackingNode.top = shadow.Top
 	}
@@ -151,44 +123,10 @@ func (shadow *ShadowNode) SetTop_on_Node_Only(owner string) *ShadowNode {
 		panic("Cannot write on immutable")
 	}
 
-	if shadow.BackingNode.OwnsTop(owner) {
+	if shadow.BackingNode.IsOwnerOfTop(owner) {
 		shadow.BackingNode.top = shadow.Top
 	}
 
 	return shadow
 }
-
-func (shadow *ShadowNode) SetPos_on_Self_and_Node(left, top int, owner string) *ShadowNode {
-
-	if g_nodes_are_immutable {
-		panic("Cannot write on immutable")
-	}
-
-	if shadow.BackingNode.OwnsPos(owner) {
-
-		shadow.Left, shadow.Top = left, top
-
-		shadow.BackingNode.left, shadow.BackingNode.top = left, top
-	}
-
-	return shadow
-}
-
-func (shadow *ShadowNode) SetPos_on_Node_Only(owner string) *ShadowNode {
-
-	if g_nodes_are_immutable {
-		panic("Cannot write on immutable")
-	}
-
-	if !shadow.BackingNode.OwnsPos(owner) {
-		return shadow
-	}
-
-	shadow.BackingNode.left = shadow.Left
-	shadow.BackingNode.top = shadow.Top
-
-	return shadow
-}
-
-
 

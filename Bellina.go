@@ -103,30 +103,6 @@ func RequireSettledKids() {
 	}
 }
 
-func OwnsLeft(owner string) bool {
-	return Current_Node.OwnsLeft(owner)
-}
-
-func OwnsTop(owner string) bool {
-	return Current_Node.OwnsTop(owner)
-}
-
-func OwnsWidth(owner string) bool {
-	return Current_Node.OwnsWidth(owner)
-}
-
-func OwnsHeight(owner string) bool {
-	return Current_Node.OwnsHeight(owner)
-}
-
-func OwnsPos(owner string) bool {
-	return Current_Node.OwnsPos(owner)
-}
-
-func OwnsDim(owner string) bool {
-	return Current_Node.OwnsDim(owner)
-}
-
 func OnMouseMove(cb func(*MouseMoveEvent)) {
 	registerOnMouseMoveOnNode(Current_Node, cb)
 }
@@ -144,3 +120,35 @@ func AddStabilizeFunc_PreKids(cb func()) {
 	Current_Node.stabilize_funcs_pre_kids.PushBack(cb)
 }
 
+func OnFreeNode(cb_OnFreeNode func(nodeId string)) {
+
+	callbacks, ok := g_onFreeNodeCallbacks[ Current_Node.Id ]
+
+	if !ok {
+
+		callbacks = list.New()
+
+		g_onFreeNodeCallbacks[ Current_Node.Id ] = callbacks
+	}
+
+	callbacks.PushBack(cb_OnFreeNode)
+}
+
+func LeftOwner(owner string) {
+
+	Current_Node.SetOwnerOfLeft(owner)
+}
+
+func TopOwner(owner string) {
+
+	Current_Node.SetOwnerOfTop(owner)
+}
+
+func WidthOwner(owner string) {
+
+	Current_Node.SetOwnerOfWidth(owner)
+}
+func HeightOwner(owner string) {
+
+	Current_Node.SetOwnerOfHeight(owner)
+}
