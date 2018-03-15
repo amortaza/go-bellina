@@ -55,8 +55,24 @@ func Pos(left, top int) {
 	Current_Node.top = top
 }
 
+func Left(left int) {
+	Current_Node.left = left
+}
+
+func Top(top int) {
+	Current_Node.top = top
+}
+
 func Dim(width, height int) {
 	Current_Node.width = width
+	Current_Node.height = height
+}
+
+func Width(width int) {
+	Current_Node.width = width
+}
+
+func height(height int) {
 	Current_Node.height = height
 }
 

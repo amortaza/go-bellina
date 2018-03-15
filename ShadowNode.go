@@ -1,5 +1,7 @@
 package bl
 
+import "fmt"
+
 type ShadowNode struct {
 
 	Id string
@@ -31,6 +33,8 @@ func (shadow *ShadowNode) SetWidth_on_Self_and_Node(width int, owner string) *Sh
 
 		shadow.Width = width
 		shadow.BackingNode.width = shadow.Width
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -44,6 +48,8 @@ func (shadow *ShadowNode) SetWidth_on_Node_Only(owner string) *ShadowNode {
 
 	if shadow.BackingNode.IsOwnerOfWidth(owner) {
 		shadow.BackingNode.width = shadow.Width
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -58,6 +64,8 @@ func (shadow *ShadowNode) SetHeight_on_Self_and_Node(height int, owner string) *
 	if shadow.BackingNode.IsOwnerOfHeight(owner) {
 		shadow.Height = height
 		shadow.BackingNode.height = shadow.Height
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -71,6 +79,8 @@ func (shadow *ShadowNode) SetHeight_on_Node_Only(owner string) *ShadowNode {
 
 	if shadow.BackingNode.IsOwnerOfHeight(owner) {
 		shadow.BackingNode.height = shadow.Height
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -85,6 +95,8 @@ func (shadow *ShadowNode) SetLeft_on_Self_and_Node(left int, owner string) *Shad
 	if shadow.BackingNode.IsOwnerOfLeft(owner) {
 		shadow.Left = left
 		shadow.BackingNode.left = shadow.Left
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -98,6 +110,8 @@ func (shadow *ShadowNode) SetLeft_on_Node_Only(owner string) *ShadowNode {
 
 	if shadow.BackingNode.IsOwnerOfLeft(owner) {
 		shadow.BackingNode.left = shadow.Left
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -112,6 +126,8 @@ func (shadow *ShadowNode) SetTop_on_Self_and_Node(top int, owner string) *Shadow
 	if shadow.BackingNode.IsOwnerOfTop(owner) {
 		shadow.Top = top
 		shadow.BackingNode.top = shadow.Top
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
@@ -125,6 +141,8 @@ func (shadow *ShadowNode) SetTop_on_Node_Only(owner string) *ShadowNode {
 
 	if shadow.BackingNode.IsOwnerOfTop(owner) {
 		shadow.BackingNode.top = shadow.Top
+	} else {
+		fmt.Println("Wrong owner")
 	}
 
 	return shadow
