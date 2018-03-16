@@ -26,11 +26,6 @@ type Node struct {
 	CustomRender_2                func(node *Node)
 	CustomsShouldRendersAfterKids bool
 
-	OwnerOfLeft              string
-	OwnerOfTop               string
-	OwnerOfWidth             string
-	OwnerOfHeight            string
-
 	// if true, then mouse events do not fire on this node
 	InvisibleToMouseEvents   bool
 
@@ -45,8 +40,6 @@ type Node struct {
 func newNode() *Node {
 
 	node := &Node{}
-
-	node.Id = adt.NewUUID()
 
 	node.Kids = list.New()
 
@@ -132,89 +125,5 @@ func (node *Node) SetHeight(height int) {
 func (node *Node) Height() int {
 
 	return node.height
-}
-
-// Left
-
-func (node *Node) IsOwnerOfLeft(owner string) bool {
-
-	return node.OwnerOfLeft == "" || node.OwnerOfLeft == owner
-}
-
-func (node *Node) SetOwnerOfLeft(newOwner string) bool {
-
-	if node.OwnerOfLeft == "" {
-		node.OwnerOfLeft = newOwner
-
-	} else if node.OwnerOfLeft != newOwner {
-		debug("Node \"" + node.Id + "\" Left is already owned by \"" + node.OwnerOfLeft + "\" it cannot be owned by \"" + newOwner + "\"", "")
-
-		return false
-	}
-
-	return true
-}
-
-// Top
-
-func (node *Node) IsOwnerOfTop(owner string) bool {
-
-	return node.OwnerOfTop == "" || node.OwnerOfTop == owner
-}
-
-func (node *Node) SetOwnerOfTop(newOwner string) bool {
-
-	if node.OwnerOfTop == "" {
-		node.OwnerOfTop = newOwner
-
-	} else if node.OwnerOfTop != newOwner {
-		debug("Node \"" + node.Id + "\" Top is already owned by \"" + node.OwnerOfTop + "\" it cannot be owned by \"" + newOwner + "\"", "")
-
-		return false
-	}
-
-	return true
-}
-
-// Width
-
-func (node *Node) IsOwnerOfWidth(owner string) bool {
-
-	return node.OwnerOfWidth == "" || node.OwnerOfWidth == owner
-}
-
-func (node *Node) SetOwnerOfWidth(newOwner string) bool {
-
-	if node.OwnerOfWidth == "" {
-		node.OwnerOfWidth = newOwner
-
-	} else if node.OwnerOfWidth != newOwner {
-		debug("Node \"" + node.Id + "\" Width is already owned by \"" + node.OwnerOfWidth + "\" it cannot be owned by \"" + newOwner + "\"", "")
-
-		return false
-	}
-
-	return true
-}
-
-// Height
-
-func (node *Node) IsOwnerOfHeight(owner string) bool {
-
-	return node.OwnerOfHeight == "" || node.OwnerOfHeight == owner
-}
-
-func (node *Node) SetOwnerOfHeight(newOwner string) bool {
-
-	if node.OwnerOfHeight == "" {
-		node.OwnerOfHeight = newOwner
-
-	} else if node.OwnerOfHeight != newOwner {
-		debug("Node \"" + node.Id + "\" Height is already owned by \"" + node.OwnerOfHeight + "\" it cannot be owned by \"" + newOwner + "\"", "")
-
-		return false
-	}
-
-	return true
 }
 

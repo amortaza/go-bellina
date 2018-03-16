@@ -39,6 +39,8 @@ func bl_onLoop() {
 
 		stabilize(Root_Node)
 
+		syncFromShadow(Root_Node)
+
 		setDirty_IncludeKids(Root_Node)
 
 		if Root_Node.Dirty {

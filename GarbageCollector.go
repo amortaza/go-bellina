@@ -58,7 +58,7 @@ func freeNode_fromPluginData(nodeId string) {
 		return
 	}
 
-	for e := callbacks.Front(); e != nil; e.Next() {
+	for e := callbacks.Front(); e != nil; e = e.Next() {
 
 		callback := e.Value.(func(string))
 

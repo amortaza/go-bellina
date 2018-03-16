@@ -149,22 +149,3 @@ func OnFreeNode(cb_OnFreeNode func(nodeId string)) {
 
 	callbacks.PushBack(cb_OnFreeNode)
 }
-
-func LeftOwner(owner string) {
-
-	Current_Node.SetOwnerOfLeft(owner)
-}
-
-func TopOwner(owner string) {
-
-	Current_Node.SetOwnerOfTop(owner)
-}
-
-func WidthOwner(owner string) {
-
-	Current_Node.SetOwnerOfWidth(owner)
-}
-func HeightOwner(owner string) {
-
-	Current_Node.SetOwnerOfHeight(owner)
-}

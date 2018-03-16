@@ -63,3 +63,39 @@ func HasShadowById(id string) (*ShadowNode, bool) {
 
 	return shadow, ok
 }
+
+func syncFromShadow(node *Node) {
+
+	validateNodeId(node)
+
+	shadow, ok := g_shadowNodeById[node.Id]
+
+	if ok {
+
+		shadow.BackingNode.left = shadow.Left
+		shadow.BackingNode.top = shadow.Top
+		shadow.BackingNode.width = shadow.Width
+		shadow.BackingNode.height = shadow.Height
+	}
+
+	for e := node.Kids.Front(); e != nil; e = e.Next() {
+
+		kid := e.Value.(*Node)
+
+		syncFromShadow(kid)
+	}
+}
+
+func validateNodeId(node *Node) {
+
+	if node.Id == "" {
+
+		parentId := "No Parent"
+
+		if node.Parent != nil {
+			parentId = node.Parent.Id
+		}
+
+		panic( "Node MUST have ID, parent was " + parentId )
+	}
+}
