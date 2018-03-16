@@ -41,10 +41,10 @@ func bl_onLoop() {
 
 		syncFromShadow(Root_Node)
 
-		setDirty_IncludeKids(Root_Node)
+		setDirty_New_and_Changed_Nodes(Root_Node)
+		setDirty_Removed_Nodes_and_GarbageCollect()
 
 		if Root_Node.Dirty {
-
 			render()
 		}
 	}
@@ -54,8 +54,6 @@ func bl_onLoop() {
 	}
 
 	g_nodes_are_immutable = true
-
-	garbageCollectDeletedNodes()
 
 	debug("<<<<<<<<<<<<<<<< exiting loop", "loop")
 }

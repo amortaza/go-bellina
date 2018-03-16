@@ -11,13 +11,47 @@ func init() {
 
 var g_onFreeNodeCallbacks map[string] *list.List
 
-func garbageCollectDeletedNodes() {
+func mark_this_and_parents_dirty(node *Node) {
 
+	node.Dirty = true
+
+	var p = node.Parent
+
+	for true {
+
+		if p == nil {
+			return
+		}
+
+		if p.Dirty {
+			return
+		}
+
+		p.Dirty = true
+
+		p = p.Parent
+	}
+}
+
+func setDirty_Removed_Nodes_and_GarbageCollect() {
+
+	// find deleted nodes
 	for nodeId, node := range g_lastFrame_nodeById {
 
 		_, ok := g_nodeById[nodeId]
 
 		if !ok {
+
+			if node.Parent != nil {
+
+				// everything so far is from 'previous' frame, get into 'this' frame
+				parent, ok := g_nodeById[node.Parent.Id]
+
+				if ok {
+					mark_this_and_parents_dirty(parent)
+				}
+			}
+
 			freeNode(node)
 		}
 	}

@@ -2,35 +2,32 @@ package bl
 
 var g_lastFrame_nodeById map[string] *Node
 
-func setDirty_IncludeKids(node *Node) *Node {
+func setDirty_New_and_Changed_Nodes(node *Node) *Node {
 
 	lastFrameNode, ok := g_lastFrame_nodeById[node.Id]
 
 	if !ok {
 
+		// making parents dirty is done in child loop
 		node.Dirty = true
-		
+
 	} else {
 
 		if lastFrameNode.width != node.width || lastFrameNode.height != node.height {
+
+			// making parents dirty is done in child loop
 			node.Dirty = true
-		}
-
-		if node.Parent != nil {
-
-			if lastFrameNode.left != node.left || lastFrameNode.top != node.top {
-				node.Parent.Dirty = true
-			}
 		}
 	}
 	
-	for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
+	for e := node.Kids.Front(); e != nil; e = e.Next() {
 
-		kid := kide.Value.(*Node)
+		kid := e.Value.(*Node)
 		
-		lastFrameKid := setDirty_IncludeKids(kid)
+		lastFrameKid := setDirty_New_and_Changed_Nodes(kid)
 
 		if kid.Dirty {
+
 			node.Dirty = true
 		}
 
