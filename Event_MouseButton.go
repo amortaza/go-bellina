@@ -35,10 +35,10 @@ func NewMouseButtonEvent(
 
 func registerOnMouseButtonOnNode(node *Node, cb func(*MouseButtonEvent)) {
 
-	if node.OnMouseButtonCallbacks == nil {
-		node.OnMouseButtonCallbacks = list.New()
+	if node.On_Mouse_Button_Callbacks == nil {
+		node.On_Mouse_Button_Callbacks = list.New()
 	}
 
-	node.OnMouseButtonCallbacks.PushBack(cb);
+	node.On_Mouse_Button_Callbacks.PushBack(cb);
 }
 

@@ -29,6 +29,9 @@ func bl_onLoop() {
 
 	g_user_tick()
 
+	// resize root
+	resizeRoot()
+
 	// long term ticks
 	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_LongTerm)
 
@@ -67,10 +70,11 @@ func render() {
 
 	canvas := renderCanvas(Root_Node)
 
-	canvas.Paint(false, 0, 0, FourOnesFloat32)
+	canvas.Paint(false, 0, 0, four_ones_float32)
 
 	g_graphics.PopView()
 }
+
 func stabilize(node *Node) {
 
 	callAllCallbacks(node.stabilize_funcs_pre_kids)
@@ -79,4 +83,16 @@ func stabilize(node *Node) {
 		kid := k.Value.(*Node)
 		stabilize(kid)
 	}
+}
+
+func resizeRoot() {
+
+	if Root_Node == nil {
+		return
+	}
+
+	shadow := EnsureShadowById("ROOT")
+
+	shadow.Width = Window_Width
+	shadow.Height = Window_Height
 }

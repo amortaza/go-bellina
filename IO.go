@@ -45,9 +45,9 @@ func io_onMouseButton(
 
 	e := NewMouseButtonEvent(button, Mouse_X, Mouse_Y, action, node)
 
-	if node.OnMouseButtonCallbacks != nil {
+	if node.On_Mouse_Button_Callbacks != nil {
 
-		for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
+		for element := node.On_Mouse_Button_Callbacks.Front(); element != nil; element = element.Next() {
 
 			cb := element.Value.(func(*MouseButtonEvent))
 

@@ -25,11 +25,11 @@ func NewMouseMoveEvent(x, y int, target *Node) *MouseMoveEvent {
 
 func registerOnMouseMoveOnNode(node *Node, cb func(*MouseMoveEvent)) {
 
-	if node.OnMouseMoveCallbacks == nil {
+	if node.On_Mouse_Move_Callbacks == nil {
 
-		node.OnMouseMoveCallbacks = list.New()
+		node.On_Mouse_Move_Callbacks = list.New()
 	}
 
-	node.OnMouseMoveCallbacks.PushBack(cb);
+	node.On_Mouse_Move_Callbacks.PushBack(cb);
 }
 

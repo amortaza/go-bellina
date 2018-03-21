@@ -19,15 +19,16 @@ type Node struct {
 	Parent                   *Node
 	Kids                     *list.List
 
-	OnMouseMoveCallbacks     *list.List
-	OnMouseButtonCallbacks   *list.List
+	On_Mouse_Move_Callbacks   *list.List
+	On_Mouse_Button_Callbacks *list.List
 
-	CustomRender_1                func(node *Node)
-	CustomRender_2                func(node *Node)
-	CustomsShouldRendersAfterKids bool
+	// Use case for 1/2 custom renderer is the Border.Fill + Border.Wire
+	CustomRender_1            func(node *Node)
+	CustomRender_2            func(node *Node)
+	Customs_Render_After_Kids bool
 
 	// if true, then mouse events do not fire on this node
-	InvisibleToMouseEvents   bool
+	Invisible_to_Mouse_Events bool
 
 	SettledBoundary          bool
 	SettledKids              bool
@@ -48,9 +49,9 @@ func newNode() *Node {
 
 func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
 
-	if node.OnMouseMoveCallbacks != nil {
+	if node.On_Mouse_Move_Callbacks != nil {
 
-		for element := node.OnMouseMoveCallbacks.Front(); element != nil; element = element.Next() {
+		for element := node.On_Mouse_Move_Callbacks.Front(); element != nil; element = element.Next() {
 
 			cb := element.Value.(func(*MouseMoveEvent))
 			cb(e)
@@ -60,9 +61,9 @@ func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
 
 func (node *Node) CallMouseButtonCallbacks(e *MouseButtonEvent) {
 
-	if node.OnMouseButtonCallbacks != nil {
+	if node.On_Mouse_Button_Callbacks != nil {
 
-		for element := node.OnMouseButtonCallbacks.Front(); element != nil; element = element.Next() {
+		for element := node.On_Mouse_Button_Callbacks.Front(); element != nil; element = element.Next() {
 
 			cb := element.Value.(func(*MouseButtonEvent))
 

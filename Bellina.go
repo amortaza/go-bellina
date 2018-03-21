@@ -77,7 +77,7 @@ func height(height int) {
 }
 
 func InvisibleToMouseEvents() {
-	Current_Node.InvisibleToMouseEvents = true
+	Current_Node.Invisible_to_Mouse_Events = true
 }
 
 func CustomRenderer(f func(node *Node), topsKids bool) {
@@ -89,7 +89,7 @@ func CustomRenderer(f func(node *Node), topsKids bool) {
 		Current_Node.CustomRender_2 = f
 	}
 
-	Current_Node.CustomsShouldRendersAfterKids = topsKids
+	Current_Node.Customs_Render_After_Kids = topsKids
 }
 
 func Dirty() {

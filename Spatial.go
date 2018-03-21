@@ -23,7 +23,7 @@ func _getNodeAt_VisibleToMouseEvents(root *Node, x, y int) *Node {
 
 		kid := e.Value.(*Node)
 
-		if kid.InvisibleToMouseEvents {
+		if kid.Invisible_to_Mouse_Events {
 			continue
 		}
 
