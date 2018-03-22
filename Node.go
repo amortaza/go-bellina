@@ -30,8 +30,8 @@ type Node struct {
 	// if true, then mouse events do not fire on this node
 	Invisible_to_Mouse_Events bool
 
-	SettledBoundary          bool
-	SettledKids              bool
+	//SettledBoundary          bool
+	//SettledKids              bool
 
 	Dirty                    bool
 

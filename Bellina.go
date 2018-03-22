@@ -1,7 +1,6 @@
 package bl
 
 import (
-	"fmt"
 	"container/list"
 )
 
@@ -72,7 +71,7 @@ func Width(width int) {
 	Current_Node.width = width
 }
 
-func height(height int) {
+func Height(height int) {
 	Current_Node.height = height
 }
 
@@ -96,28 +95,28 @@ func Dirty() {
 	Current_Node.Dirty = true
 }
 
-func SettleBoundary() {
-	Current_Node.SettledBoundary = true
-}
+//func SettleBoundary() {
+//	Current_Node.SettledBoundary = true
+//}
 
-func SettleKids() {
-	Current_Node.SettledKids = true
-}
+//func SettleKids() {
+//	Current_Node.SettledKids = true
+//}
 
-func RequireSettledBoundary()  {
-
-	if !Current_Node.SettledBoundary {
-		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
+//func RequireSettledBoundary()  {
+//
+//	if !Current_Node.SettledBoundary {
+//		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
 //		panic("See print out - RequireSettledBoundary error")
-	}
-}
+//	}
+//}
 
-func RequireSettledKids() {
-	if !Current_Node.SettledKids {
-		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
+//func RequireSettledKids() {
+//	if !Current_Node.SettledKids {
+//		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
 		//panic("See print out - RequireSettledKids error")
-	}
-}
+	//}
+//}
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
 	registerOnMouseMoveOnNode(Current_Node, cb)
@@ -139,6 +138,21 @@ func AddStabilizeFunc_PreKids(cb func()) {
 func OnFreeNode(cb_OnFreeNode func(nodeId string)) {
 
 	callbacks, ok := g_onFreeNodeCallbacks[ Current_Node.Id ]
+
+	if !ok {
+
+		callbacks = list.New()
+
+		g_onFreeNodeCallbacks[ Current_Node.Id ] = callbacks
+	}
+
+	callbacks.PushBack(cb_OnFreeNode)
+}
+
+func OnFreeNodeId(	nodeId string,
+					cb_OnFreeNode func(nodeId string)) {
+
+	callbacks, ok := g_onFreeNodeCallbacks[ nodeId ]
 
 	if !ok {
 
