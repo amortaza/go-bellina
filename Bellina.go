@@ -135,6 +135,15 @@ func AddStabilizeFunc_PreKids(cb func()) {
 	Current_Node.stabilize_funcs_pre_kids.PushBack(cb)
 }
 
+func AddStabilizeFunc_PostKids(cb func()) {
+
+	if Current_Node.stabilize_funcs_post_kids == nil {
+		Current_Node.stabilize_funcs_post_kids = list.New()
+	}
+
+	Current_Node.stabilize_funcs_post_kids.PushBack(cb)
+}
+
 func OnFreeNode(cb_OnFreeNode func(nodeId string)) {
 
 	callbacks, ok := g_onFreeNodeCallbacks[ Current_Node.Id ]

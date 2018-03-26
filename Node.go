@@ -36,6 +36,7 @@ type Node struct {
 	Dirty                    bool
 
 	stabilize_funcs_pre_kids  *list.List
+	stabilize_funcs_post_kids  *list.List
 }
 
 func newNode() *Node {
