@@ -84,8 +84,11 @@ func CustomRenderer(f func(node *Node), topsKids bool) {
 	if Current_Node.CustomRender_1 == nil {
 		Current_Node.CustomRender_1 = f
 
-	} else {
+	} else if Current_Node.CustomRender_2 == nil {
 		Current_Node.CustomRender_2 = f
+
+	} else {
+		panic("Cannot add CustomRender - too many renders (this would have been numero 3!)")
 	}
 
 	Current_Node.Customs_Render_After_Kids = topsKids
@@ -94,29 +97,6 @@ func CustomRenderer(f func(node *Node), topsKids bool) {
 func Dirty() {
 	Current_Node.Dirty = true
 }
-
-//func SettleBoundary() {
-//	Current_Node.SettledBoundary = true
-//}
-
-//func SettleKids() {
-//	Current_Node.SettledKids = true
-//}
-
-//func RequireSettledBoundary()  {
-//
-//	if !Current_Node.SettledBoundary {
-//		fmt.Println("Boundary has not been settled for node ", Current_Node.Id)
-//		panic("See print out - RequireSettledBoundary error")
-//	}
-//}
-
-//func RequireSettledKids() {
-//	if !Current_Node.SettledKids {
-//		fmt.Println("Kids have not been settled for node ", Current_Node.Id)
-		//panic("See print out - RequireSettledKids error")
-	//}
-//}
 
 func OnMouseMove(cb func(*MouseMoveEvent)) {
 	registerOnMouseMoveOnNode(Current_Node, cb)
