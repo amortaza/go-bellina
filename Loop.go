@@ -4,6 +4,8 @@ import (
 	"container/list"
 )
 
+var g_buffersFilled = 0
+
 func bl_onLoop() {
 
 	debug("-------------------- Starting loop", "loop")
@@ -48,6 +50,14 @@ func bl_onLoop() {
 		setDirty_Removed_Nodes_and_GarbageCollect()
 
 		if Root_Node.Dirty {
+			g_buffersFilled = 0
+		}
+
+		// on some machines without filling at least 2 buffers, the screen flashes
+		// I do not know what is causing this - but this is the workaround
+		if g_buffersFilled < 2 {
+
+			g_buffersFilled++
 			render()
 		}
 	}
