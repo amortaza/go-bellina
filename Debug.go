@@ -23,7 +23,7 @@ func debug(msg, src string) {
 
 	log := src == "" ||
 		   //src == "fps" ||
-		   src == "gc" ||
+		   //src == "gc" ||
 		   //src == "loop" ||
 		   //src == "sys" ||
 		   src == "canvas"

@@ -152,3 +152,11 @@ func OnFreeNodeId(	nodeId string,
 
 	callbacks.PushBack(cb_OnFreeNode)
 }
+
+func DirtyAllNodes() {
+
+	for _, node := range g_nodeById {
+
+		node.Dirty = true
+	}
+}

@@ -15,6 +15,7 @@ func bl_onLoop() {
 	// store the last frame
 	g_lastFrame_nodeById = g_nodeById
 
+	debug("-------------------- Clearning Nodes", "loop")
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
 	Root_Node = nil
@@ -29,7 +30,9 @@ func bl_onLoop() {
 	// long term ticks
 	callAllCallbacks(g_LifeCycle_BeforeUser_Ticks_LongTerm)
 
+	debug("-------------------- Starting to build nodes", "loop")
 	g_user_tick()
+	debug("-------------------- Finished building nodes", "loop")
 
 	// resize root
 	resizeRoot()
