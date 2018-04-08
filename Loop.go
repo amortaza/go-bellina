@@ -83,7 +83,7 @@ func render() {
 
 	canvas := renderCanvas(Root_Node)
 
-	canvas.Paint(false, 0, 0, four_ones_float32)
+	canvas.Paint(true, 0, 0, four_ones_float32)
 
 	g_graphics.PopView()
 }

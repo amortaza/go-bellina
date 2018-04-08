@@ -64,7 +64,7 @@ func renderCanvas(node *Node) hal.Canvas {
 
 	canvas.Begin()
 	{
-		canvas.Clear(.5, .3, .3)
+		canvas.Clear(.15, .3, .3)
 
 		if !node.Customs_Render_After_Kids {
 			renderCustom(node)
@@ -76,7 +76,7 @@ func renderCanvas(node *Node) hal.Canvas {
 
 			kidCanvas := renderCanvas(kid)
 
-			kidCanvas.Paint(false, kid.left, kid.top, four_ones_float32)
+			kidCanvas.Paint(true, kid.left, kid.top, four_ones_float32)
 		}
 
 		if node.Customs_Render_After_Kids {
