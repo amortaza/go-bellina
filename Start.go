@@ -41,7 +41,7 @@ func Start(
 
 		title string,
 
-		width, height int,
+		left, top, width, height int,
 
 		user_init func(),
 		user_tick func(),
@@ -55,7 +55,7 @@ func Start(
 
 	hal.Start(
 			title,
-			width, height,
+			left, top, width, height,
 
 			bl_onAfterGL,
 			bl_onLoop,
