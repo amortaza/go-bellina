@@ -1,3 +1,9 @@
+# Package `bl`
+
+# Installation
+
+`go get -u github.com/amortaza/go-bellina`
+
 # Bellina API Reference
 
 Bellina is a low-level framework for building flexible graphical user interfaces in GoLang.
