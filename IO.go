@@ -20,7 +20,7 @@ func io_onMouseMove(x, y int) {
 
 	Mouse_X, Mouse_Y = x, y
 
-	node := getNodeAt__VisibleToMouseEvents(x, y)
+	node := getNodeAt_VisibleToMouseEvents(x, y)
 
 	if node == nil {
 		node = Root_Node
@@ -37,7 +37,7 @@ func io_onMouseButton(
 		button hal.MouseButton,
 		action hal.ButtonAction) {
 
-	node := getNodeAt__VisibleToMouseEvents(Mouse_X, Mouse_Y)
+	node := getNodeAt_VisibleToMouseEvents(Mouse_X, Mouse_Y)
 
 	if node == nil {
 		node = Root_Node

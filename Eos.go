@@ -76,7 +76,7 @@ func renderCanvas(node *Node) hal.Canvas {
 
 			kidCanvas := renderCanvas(kid)
 
-			kidCanvas.Paint(true, kid.left, kid.top, four_ones_float32)
+			kidCanvas.Paint(true, kid.left, kid.top, four_ones)
 		}
 
 		if node.Customs_Render_After_Kids {

@@ -5,7 +5,7 @@ import (
 	"github.com/amortaza/go-hal"
 )
 
-var four_ones_float32 = []float32{1,1,1,1}
+var four_ones = []float32{1,1,1,1}
 
 func DivId(id string) {
 	Current_Node = GetNodeById(id)
@@ -14,7 +14,6 @@ func DivId(id string) {
 }
 
 func GetNodeById(id string ) *Node {
-
 	node, ok := g_nodeById[id]
 
 	if !ok {
@@ -35,7 +34,6 @@ func SetMouseCursor(cursor hal.MouseCursor) {
 }
 
 func GetNodeAbsolutePos(node *Node)(absX, absY int) {
-
 	if node == nil {
 		return 0, 0
 	}
