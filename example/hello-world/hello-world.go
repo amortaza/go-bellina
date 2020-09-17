@@ -4,7 +4,7 @@ import (
 	"runtime"
 	"fmt"
 	"github.com/amortaza/go-bellina"
-	"github.com/amortaza/go-hal-g5"
+	"github.com/amortaza/go-hal-oob"
 )
 
 func initialize() {
@@ -28,7 +28,7 @@ func init() {
 }
 
 func main() {
-	bl.Start( hal_g5.NewHal(), "Bellina v0.2", 10,10,1280, 1024, initialize, tick, uninit )
+	bl.Start( haloob.NewHal(), "i3wmfloater", 1200,10,1280, 1024, initialize, tick, uninit )
 
 	fmt.Println("bye!")
 }

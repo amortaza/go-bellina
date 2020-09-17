@@ -87,14 +87,18 @@ func render() {
 }
 
 func stabilize(node *Node) {
-	node.stabilize_funcs_pre_kids.CallAll()
+	if node.stabilize_funcs_pre_kids != nil {
+		node.stabilize_funcs_pre_kids.CallAll()
+	}
 
 	for k := node.Kids.Front(); k != nil; k = k.Next() {
 		kid := k.Value.(*Node)
 		stabilize(kid)
 	}
 
-	node.stabilize_funcs_post_kids.CallAll()
+	if node.stabilize_funcs_post_kids != nil {
+		node.stabilize_funcs_post_kids.CallAll()
+	}
 }
 
 func sizeRootShadowToWindow() {
