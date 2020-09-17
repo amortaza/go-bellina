@@ -13,14 +13,13 @@ func io_onKey(
 }
 
 func io_onMouseMove(x, y int) {
-
 	if Root_Node == nil {
 		return
 	}
 
 	Mouse_X, Mouse_Y = x, y
 
-	node := getNodeAt_VisibleToMouseEvents(x, y)
+	node := g_spacial.GetNodeAt_VisibleToMouseEvents(x, y)
 
 	if node == nil {
 		node = Root_Node
@@ -37,7 +36,7 @@ func io_onMouseButton(
 		button hal.MouseButton,
 		action hal.ButtonAction) {
 
-	node := getNodeAt_VisibleToMouseEvents(Mouse_X, Mouse_Y)
+	node := g_spacial.GetNodeAt_VisibleToMouseEvents(Mouse_X, Mouse_Y)
 
 	if node == nil {
 		node = Root_Node
