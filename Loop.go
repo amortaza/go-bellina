@@ -92,14 +92,14 @@ func render() {
 
 func stabilize(node *Node) {
 
-	callAllCallbacks(node.stabilize_funcs_pre_kids)
+	node.stabilize_funcs_pre_kids.CallAll()
 
 	for k := node.Kids.Front(); k != nil; k = k.Next() {
 		kid := k.Value.(*Node)
 		stabilize(kid)
 	}
 
-	callAllCallbacks(node.stabilize_funcs_post_kids)
+	node.stabilize_funcs_post_kids.CallAll()
 }
 
 func resizeRoot() {

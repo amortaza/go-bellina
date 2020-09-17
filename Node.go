@@ -3,6 +3,7 @@ package bl
 import (
 	"container/list"
 	"github.com/amortaza/go-adt"
+	"github.com/amortaza/go-bellina/funclist"
 )
 
 var g_nodeById map[string] *Node
@@ -33,10 +34,10 @@ type Node struct {
 	//SettledBoundary          bool
 	//SettledKids              bool
 
-	Dirty                    bool
+	Dirty                     bool
 
-	stabilize_funcs_pre_kids  *list.List
-	stabilize_funcs_post_kids  *list.List
+	stabilize_funcs_pre_kids  *funclist.FuncList
+	stabilize_funcs_post_kids *funclist.FuncList
 }
 
 func newNode() *Node {
