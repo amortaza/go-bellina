@@ -2,9 +2,10 @@ package bl
 
 import (
 	"container/list"
+	"github.com/amortaza/go-bellina/funclist"
 )
 
-var Root_Node    *Node
+var Root_Node *Node
 var Current_Node *Node
 
 var Window_Width, Window_Height int
@@ -106,18 +107,18 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 
 func AddStabilizeFunc_PreKids(cb func()) {
 	if Current_Node.stabilize_funcs_pre_kids == nil {
-		Current_Node.stabilize_funcs_pre_kids = list.New()
+		Current_Node.stabilize_funcs_pre_kids = funclist.New()
 	}
 
-	Current_Node.stabilize_funcs_pre_kids.PushBack(cb)
+	Current_Node.stabilize_funcs_pre_kids.Add(cb)
 }
 
 func AddStabilizeFunc_PostKids(cb func()) {
 	if Current_Node.stabilize_funcs_post_kids == nil {
-		Current_Node.stabilize_funcs_post_kids = list.New()
+		Current_Node.stabilize_funcs_post_kids = funclist.New()
 	}
 
-	Current_Node.stabilize_funcs_post_kids.PushBack(cb)
+	Current_Node.stabilize_funcs_post_kids.Add(cb)
 }
 
 func OnFreeNode(cb_OnFreeNode func(nodeId string)) {

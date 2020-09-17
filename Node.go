@@ -41,7 +41,6 @@ type Node struct {
 }
 
 func newNode() *Node {
-
 	node := &Node{}
 
 	node.Kids = list.New()
@@ -50,7 +49,6 @@ func newNode() *Node {
 }
 
 func (node *Node) CallMouseMoveCallbacks(e *MouseMoveEvent) {
-
 	if node.On_Mouse_Move_Callbacks != nil {
 
 		for element := node.On_Mouse_Move_Callbacks.Front(); element != nil; element = element.Next() {

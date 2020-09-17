@@ -1,6 +1,7 @@
 package bl
 
 import (
+	"github.com/amortaza/go-bellina/debug"
 	"github.com/amortaza/go-hal"
 )
 
@@ -8,17 +9,15 @@ var g_user_tick func()
 var g_user_init func()
 var g_user_uninit func()
 
+var g_hal hal.HAL
 var g_graphics hal.Graphics
 
-var Hal hal.HAL
-
 func bl_onAfterGL() {
-
-	g_graphics = Hal.GetGraphics()
+	g_graphics = g_hal.GetGraphics()
 
 	init_bl()
 
-	debug("     (+) Bellina User Init Callback", "sys")
+	debug.Log("     (+) Bellina User Init Callback", debug.System)
 
 	if g_user_init != nil {
 		g_user_init()
@@ -26,8 +25,7 @@ func bl_onAfterGL() {
 }
 
 func bl_onBeforeDeleteWindow() {
-
-	debug("     (-) Calling User Uninit Callback", "sys")
+	debug.Log("     (-) Calling User Uninit Callback", debug.System)
 
 	if g_user_uninit != nil {
 		g_user_uninit()
@@ -51,7 +49,7 @@ func Start(
 	g_user_init = user_init
 	g_user_uninit = user_uninit
 
-	Hal = hal
+	g_hal = hal
 
 	hal.Start(
 			title,

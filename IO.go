@@ -46,9 +46,7 @@ func io_onMouseButton(
 	e := NewMouseButtonEvent(button, Mouse_X, Mouse_Y, action, node)
 
 	if node.On_Mouse_Button_Callbacks != nil {
-
 		for element := node.On_Mouse_Button_Callbacks.Front(); element != nil; element = element.Next() {
-
 			cb := element.Value.(func(*MouseButtonEvent))
 
 			cb(e)
@@ -59,7 +57,6 @@ func io_onMouseButton(
 }
 
 func io_onWindowResize(width, height int) {
-
 	resizeEvent := NewWindowResizeEvent(width, height)
 
 	Window_Width, Window_Height = width, height

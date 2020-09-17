@@ -28,7 +28,7 @@ func Disp(node *Node) {
 }
 
 func SetMouseCursor(cursor hal.MouseCursor) {
-	Hal.SetMouseCursor(cursor)
+	g_hal.SetMouseCursor(cursor)
 }
 
 func GetNodeAbsolutePos(node *Node)(absX, absY int) {

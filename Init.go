@@ -6,8 +6,7 @@ func init_bl() {
 
 	// initial resize fire
 	debug.Log("     Fire initial Window Resize event", debug.System)
-
-	resizeEvent := NewWindowResizeEvent(Hal.GetWindowDim())
+	resizeEvent := NewWindowResizeEvent(g_hal.GetWindowDim())
 	FireEvent(resizeEvent)
 
 	// life cycle init

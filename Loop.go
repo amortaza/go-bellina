@@ -46,7 +46,6 @@ func bl_onLoop() {
 	g_LifeCycle_AfterUser_Ticks_ShortTerm.CallAll()
 
 	if Root_Node != nil {
-
 		stabilize(Root_Node)
 
 		syncFromShadow(Root_Node)
@@ -77,8 +76,7 @@ func bl_onLoop() {
 }
 
 func render() {
-
-	w, h := Hal.GetWindowDim()
+	w, h := g_hal.GetWindowDim()
 	g_graphics.PushView(w, h)
 
 	g_graphics.Clear(.3, .3, .3)
@@ -91,7 +89,6 @@ func render() {
 }
 
 func stabilize(node *Node) {
-
 	node.stabilize_funcs_pre_kids.CallAll()
 
 	for k := node.Kids.Front(); k != nil; k = k.Next() {
@@ -103,7 +100,6 @@ func stabilize(node *Node) {
 }
 
 func resizeRoot() {
-
 	if Root_Node == nil {
 		return
 	}
