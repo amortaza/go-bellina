@@ -17,14 +17,13 @@ func bl_onLoop() {
 	// store the last frame
 	g_lastFrame_nodeById = g_nodeById
 
-	debug.Log("-------------------- Clearning Nodes", debug.Loop)
 	// Clear Nodes
+	debug.Log("-------------------- Clearning Nodes", debug.Loop)
 	g_nodeById = make(map[string] *Node)
 	Root_Node = nil
 
 	// Clear Short Term
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
-
 	g_LifeCycle_AfterUser_Ticks_ShortTerm = funclist.New()
 
 	g_nodes_are_immutable = false
@@ -36,8 +35,8 @@ func bl_onLoop() {
 	g_user_tick()
 	debug.Log("-------------------- Finished building nodes", debug.Loop)
 
-	// resize root
-	resizeRoot()
+	//
+	sizeRootShadowToWindow()
 
 	// long term ticks
 	g_LifeCycle_AfterUser_Ticks_LongTerm.CallAll()
@@ -48,7 +47,7 @@ func bl_onLoop() {
 	if Root_Node != nil {
 		stabilize(Root_Node)
 
-		syncFromShadow(Root_Node)
+		syncFromShadow_Position_and_Dimension(Root_Node)
 
 		mark_new_and_changed_nodes_and_their_parents_dirty(Root_Node)
 		garbage_collect_removed_nodes_and_mark_their_parents_dirty()
@@ -60,7 +59,6 @@ func bl_onLoop() {
 		// on some machines without filling at least 2 buffers, the screen flashes
 		// I do not know what is causing this - but this is the workaround
 		if g_buffersFilled < 2 {
-
 			g_buffersFilled++
 			render()
 		}
@@ -99,7 +97,7 @@ func stabilize(node *Node) {
 	node.stabilize_funcs_post_kids.CallAll()
 }
 
-func resizeRoot() {
+func sizeRootShadowToWindow() {
 	if Root_Node == nil {
 		return
 	}
