@@ -50,8 +50,8 @@ func bl_onLoop() {
 
 		syncFromShadow(Root_Node)
 
-		setDirty_New_and_Changed_Nodes(Root_Node)
-		setDirty_Removed_Nodes_and_GarbageCollect()
+		mark_new_and_changed_nodes_and_their_parents_dirty(Root_Node)
+		garbage_collect_removed_nodes_and_mark_their_parents_dirty()
 
 		if Root_Node.Dirty {
 			g_buffersFilled = 0
