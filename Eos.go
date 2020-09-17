@@ -5,18 +5,16 @@ import (
 )
 
 var g_canvasById map[string] hal.Canvas
+var g_four_ones = []float32{1,1,1,1}
 
 func init() {
-
 	g_canvasById = make(map[string] hal.Canvas)
 }
 
 func getCanvas(node *Node) hal.Canvas {
-
 	canvas, ok := g_canvasById[node.Id]
 
 	if !ok {
-
 		debug("  Allocating Canvas for " + node.Id, "canvas")
 
 		canvas = g_graphics.NewCanvas(node.width, node.height)
@@ -53,7 +51,6 @@ func getCanvas(node *Node) hal.Canvas {
 }
 
 func renderCanvas(node *Node) hal.Canvas {
-
 	canvas := getCanvas(node)
 
 	if (!node.Dirty) {
@@ -76,7 +73,7 @@ func renderCanvas(node *Node) hal.Canvas {
 
 			kidCanvas := renderCanvas(kid)
 
-			kidCanvas.Paint(true, kid.left, kid.top, four_ones)
+			kidCanvas.Paint(true, kid.left, kid.top, g_four_ones)
 		}
 
 		if node.Customs_Render_After_Kids {
@@ -90,7 +87,6 @@ func renderCanvas(node *Node) hal.Canvas {
 }
 
 func renderCustom(node *Node) {
-
 	if node.CustomRender_1 != nil {
 		node.CustomRender_1(node)
 	}

@@ -10,7 +10,6 @@ var g_fps_start_time = time.Now().Unix()
 var g_fps_frame int64 = 0
 
 func fps() {
-
 	g_fps_frame++
 
 	if g_fps_frame % 60 == 0 {

@@ -11,7 +11,6 @@ var Window_Width, Window_Height int
 var Mouse_X, Mouse_Y int
 
 func Root() {
-
 	Current_Node = newNode()
 
 	Current_Node.Id = "ROOT"
@@ -80,7 +79,6 @@ func InvisibleToMouseEvents() {
 }
 
 func CustomRenderer(f func(node *Node), topsKids bool) {
-
 	if Current_Node.CustomRender_1 == nil {
 		Current_Node.CustomRender_1 = f
 
@@ -107,7 +105,6 @@ func OnMouseButton(cb func(*MouseButtonEvent)) {
 }
 
 func AddStabilizeFunc_PreKids(cb func()) {
-
 	if Current_Node.stabilize_funcs_pre_kids == nil {
 		Current_Node.stabilize_funcs_pre_kids = list.New()
 	}
@@ -116,7 +113,6 @@ func AddStabilizeFunc_PreKids(cb func()) {
 }
 
 func AddStabilizeFunc_PostKids(cb func()) {
-
 	if Current_Node.stabilize_funcs_post_kids == nil {
 		Current_Node.stabilize_funcs_post_kids = list.New()
 	}
@@ -125,7 +121,6 @@ func AddStabilizeFunc_PostKids(cb func()) {
 }
 
 func OnFreeNode(cb_OnFreeNode func(nodeId string)) {
-
 	callbacks, ok := g_onFreeNodeCallbacks[ Current_Node.Id ]
 
 	if !ok {
@@ -144,7 +139,6 @@ func OnFreeNodeId(	nodeId string,
 	callbacks, ok := g_onFreeNodeCallbacks[ nodeId ]
 
 	if !ok {
-
 		callbacks = list.New()
 
 		g_onFreeNodeCallbacks[ Current_Node.Id ] = callbacks
@@ -154,7 +148,6 @@ func OnFreeNodeId(	nodeId string,
 }
 
 func DirtyAllNodes() {
-
 	for _, node := range g_nodeById {
 
 		node.Dirty = true

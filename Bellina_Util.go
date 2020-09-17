@@ -5,8 +5,6 @@ import (
 	"github.com/amortaza/go-hal"
 )
 
-var four_ones = []float32{1,1,1,1}
-
 func DivId(id string) {
 	Current_Node = GetNodeById(id)
 
