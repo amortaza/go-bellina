@@ -2,20 +2,22 @@ package bl
 
 import (
 	"container/list"
+	"github.com/amortaza/go-bellina/debug"
+	"github.com/amortaza/go-bellina/funclist"
 )
 
 var g_buffersFilled = 0
+var g_fps = debug.NewFPS()
 
 func bl_onLoop() {
+	debug.Log("-------------------- Starting loop", debug.Loop)
 
-	debug("-------------------- Starting loop", "loop")
-
-	fps()
+	g_fps.Tick()
 
 	// store the last frame
 	g_lastFrame_nodeById = g_nodeById
 
-	debug("-------------------- Clearning Nodes", "loop")
+	debug.Log("-------------------- Clearning Nodes", debug.Loop)
 	// Clear Nodes
 	g_nodeById = make(map[string] *Node)
 	Root_Node = nil
@@ -23,25 +25,25 @@ func bl_onLoop() {
 	// Clear Short Term
 	g_shortTerm_callbacksByEventType = make(map[string] *list.List)
 
-	g_LifeCycle_AfterUser_Ticks_ShortTerm = list.New()
+	g_LifeCycle_AfterUser_Ticks_ShortTerm = funclist.New()
 
 	g_nodes_are_immutable = false
 
 	// long term ticks
-	callAllCallbacks(g_LifeCycle_BeforeUser_Ticks_LongTerm)
+	g_LifeCycle_BeforeUser_Ticks_LongTerm.CallAll()
 
-	debug("-------------------- Starting to build nodes", "loop")
+	debug.Log("-------------------- Starting to build nodes", debug.Loop)
 	g_user_tick()
-	debug("-------------------- Finished building nodes", "loop")
+	debug.Log("-------------------- Finished building nodes", debug.Loop)
 
 	// resize root
 	resizeRoot()
 
 	// long term ticks
-	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_LongTerm)
+	g_LifeCycle_AfterUser_Ticks_LongTerm.CallAll()
 
 	// short term ticks
-	callAllCallbacks(g_LifeCycle_AfterUser_Ticks_ShortTerm)
+	g_LifeCycle_AfterUser_Ticks_ShortTerm.CallAll()
 
 	if Root_Node != nil {
 
@@ -71,7 +73,7 @@ func bl_onLoop() {
 
 	g_nodes_are_immutable = true
 
-	debug("<<<<<<<<<<<<<<<< exiting loop", "loop")
+	debug.Log("<<<<<<<<<<<<<<<< exiting loop", debug.Loop)
 }
 
 func render() {

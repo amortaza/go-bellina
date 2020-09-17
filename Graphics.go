@@ -1,6 +1,7 @@
 package bl
 
 import (
+	"github.com/amortaza/go-bellina/debug"
 	"github.com/amortaza/go-hal"
 )
 
@@ -15,7 +16,7 @@ func getCanvas(node *Node) hal.Canvas {
 	canvas, ok := g_canvasById[node.Id]
 
 	if !ok {
-		debug("  Allocating Canvas for " + node.Id, "canvas")
+		debug.Log("  Allocating Canvas for " + node.Id, debug.Canvas)
 
 		canvas = g_graphics.NewCanvas(node.width, node.height)
 
@@ -37,7 +38,7 @@ func getCanvas(node *Node) hal.Canvas {
 
 		canvas.Free()
 
-		debug("  Allocating NEW for OLD Canvas for " + node.Id, "canvas")
+		debug.Log("  Allocating NEW for OLD Canvas for " + node.Id, debug.Canvas)
 
 		canvas = g_graphics.NewCanvas(node.width, node.height)
 
@@ -57,7 +58,7 @@ func renderCanvas(node *Node) hal.Canvas {
 		return canvas
 	}
 
-	debug("Rendering " + node.Id, "canvas" )
+	debug.Log("Rendering " + node.Id, debug.Canvas )
 
 	canvas.Begin()
 	{
@@ -68,7 +69,6 @@ func renderCanvas(node *Node) hal.Canvas {
 		}
 
 		for kide := node.Kids.Front(); kide != nil; kide = kide.Next() {
-
 			kid := kide.Value.(*Node)
 
 			kidCanvas := renderCanvas(kid)

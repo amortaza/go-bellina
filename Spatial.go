@@ -1,7 +1,6 @@
 package bl
 
 func getNodeAt_VisibleToMouseEvents(x, y int) *Node {
-
 	if Root_Node == nil {
 		return nil
 	}

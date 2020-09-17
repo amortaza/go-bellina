@@ -1,23 +1,25 @@
 package bl
 
+import "github.com/amortaza/go-bellina/debug"
+
 func init_bl() {
 
 	// initial resize fire
-	debug("     Fire initial Window Resize event", "sys")
+	debug.Log("     Fire initial Window Resize event", debug.System)
 
 	resizeEvent := NewWindowResizeEvent(Hal.GetWindowDim())
 	FireEvent(resizeEvent)
 
 	// life cycle init
-	debug("     (+) Call all Life-Cycle Init methods...", "sys")
-	callAllCallbacks(g_LifeCycle_Inits)
+	debug.Log("     (+) Call all Life-Cycle Init methods...", debug.System)
+	g_LifeCycle_Inits.CallAll()
 }
 
 func uninit_bl() {
 
 	// life cycle uninit
-	debug("     (-) Call all Life-Cycle Uninit methods...", "sys")
-	callAllCallbacks(g_LifeCycle_Uninits)
+	debug.Log("     (-) Call all Life-Cycle Uninit methods...", debug.System)
+	g_LifeCycle_Uninits.CallAll()
 
 	freeCanvases()
 }
